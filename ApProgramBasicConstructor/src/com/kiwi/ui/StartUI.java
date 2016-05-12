@@ -69,7 +69,7 @@ public class StartUI extends JFrame implements ActionListener {
 		showMessage("初始化Spring架構...");
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"./spring-config.xml");
-		Controller controller = (Controller) context.getBean("Controller");
+		controller = (Controller) context.getBean("Controller");
 
 		controller.testProcess();// 測試用
 		showMessage("初始化Spring架構完成.");
