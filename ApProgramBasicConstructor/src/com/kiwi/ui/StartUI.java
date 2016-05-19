@@ -90,5 +90,4 @@ public class StartUI extends JFrame implements ActionListener {
 			showMessage("寫入&讀取完成.");
 		}
 	}
-
 }
