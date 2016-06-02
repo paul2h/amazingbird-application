@@ -47,7 +47,6 @@ public class Dao {
 		}
 		return instance;
 	}
-
 	// ]]
 
 	// #[[ 指令用Method

@@ -76,7 +76,7 @@ public class StartUI extends JFrame implements ActionListener {
 		return controller;
 	}
 
-	private void initXmlSetting(){
+	private void initXmlSetting() {
 		try {
 			showMessage("讀取Xml設定檔...");
 			// 讀取XML檔案
@@ -96,6 +96,7 @@ public class StartUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 	}
+
 	/** 訊息視窗呈現 */
 	private void showMessage(String message) {
 		messageArea.append(message + "\n");
