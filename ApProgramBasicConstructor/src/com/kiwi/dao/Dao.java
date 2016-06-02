@@ -48,12 +48,6 @@ public class Dao {
 		return instance;
 	}
 
-	/** 初始化Dao */
-	private void initialDao() {
-		sqlSession = sqlSessionFactory.openSession();
-		daoConnector = sqlSession.getMapper(DaoConnector.class);
-	}
-
 	// ]]
 
 	// #[[ 指令用Method
