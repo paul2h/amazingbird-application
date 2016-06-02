@@ -1,10 +1,8 @@
 package com.kiwi.ui;
 
 import java.awt.BorderLayout;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,9 +13,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.kiwi.controller.Controller;
-import com.kiwi.dao.Dao;
-import com.kiwi.dao.DaoManager;
-import com.kiwi.model.DataModel;
 
 @SuppressWarnings("serial")
 public class StartUI extends JFrame implements ActionListener {
@@ -26,6 +21,7 @@ public class StartUI extends JFrame implements ActionListener {
 	private Controller controller;
 	private JButton button;
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		StartUI s = new StartUI();
 	}
