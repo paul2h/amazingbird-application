@@ -5,6 +5,8 @@
 
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
+	<bean id="StartUI" class="com.kiwi.ui.StartUI" />
+
 	<bean id="Service" class="com.kiwi.service.Service" />
 
 	<bean id="Controller" class="com.kiwi.controller.Controller" />
