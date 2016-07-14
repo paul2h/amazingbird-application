@@ -2,6 +2,7 @@ package com.kiwi.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -35,6 +36,7 @@ public class Dao {
 
 	// #[[ 建置用Method
 	public Dao() throws IOException {
+		Resources.setCharset(Charset.forName("UTF-8"));
 		reader = Resources.getResourceAsReader("./myBatisConfig.xml");// Reader會自動關掉 若有多個Connector要重複讀取
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession();
