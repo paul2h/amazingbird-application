@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.kiwi.service.Service;
 
 public class Controller {
-	
+
 	@Autowired
 	Service service;
-	
-	public String testProcess(){
+
+	public String testProcess() {
 		return service.testProcess();
 	}
 
