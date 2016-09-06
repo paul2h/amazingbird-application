@@ -39,7 +39,7 @@ public class Dao {
 		Resources.setCharset(Charset.forName("UTF-8"));
 		reader = Resources.getResourceAsReader("./myBatisConfig.xml");// Reader會自動關掉 若有多個Connector要重複讀取
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
-		sqlSession = sqlSessionFactory.openSession();
+		sqlSession = sqlSessionFactory.openSession(false);//autocommit = false
 		daoConnector = sqlSession.getMapper(DaoConnector.class);
 	}
 
