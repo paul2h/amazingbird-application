@@ -1,14 +1,26 @@
 package com.kiwi.ui;
 
+import java.awt.AWTException;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -21,6 +33,7 @@ import org.apache.logging.log4j.core.config.ConfigurationSource;
 import org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kiwi.conf.GlobalConfig;
 import com.kiwi.controller.Controller;
 
 @SuppressWarnings("serial")
@@ -29,22 +42,31 @@ public class StartUI extends JFrame implements ActionListener {
 	private JTextArea messageArea;
 	private JButton button;
 	private Logger logger;
+	private StartUI instance;
+	private TrayIcon tray_icon; // Tray 的操作功能
+	private SystemTray tray;
+	private String edition = "Spring+Mybatis程式基本版";
 
 	@Autowired
 	private Controller controller;
 
 	public StartUI() {
-		super("Spring+Mybatis程式基本版");
+		super();
+		instance = this;
 	}
 
-	public void start() {
+	public void start(String edition) {
+		this.edition = edition;
 		initUI();
+		initTray(GlobalConfig.TrayPassword, edition);
+		setCloseConfirm();
 	}
 
 	/** 初始化UI介面 */
 	private void initUI() {
 
 		// #[[ UI物件設定
+		this.setTitle(edition);
 		// 文字框
 		this.setLayout(new BorderLayout());
 		messageArea = new JTextArea();
@@ -76,6 +98,82 @@ public class StartUI extends JFrame implements ActionListener {
 			logger = context.getLogger(StartUI.class.getName());
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	/** 點選右上叉叉時顯現確認訊息 */
+	private void setCloseConfirm() {
+		// 系統關閉按鈕
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				Object[] options = new Object[] { "結束", "縮小到系統列" };
+				int result = JOptionPane.showOptionDialog(null, "確定要結束程式嗎？", "詢問", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+				if (result == 0) {
+					tray.remove(tray_icon); // 清除系統列圖示
+					System.exit(0);
+				}
+			}
+		});
+		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+	}
+
+	private void initTray(final String password, String trayName) {
+		try {
+			if (SystemTray.isSupported()) {
+
+				ActionListener exitListener = new ActionListener() {// Tray 操作區
+					public void actionPerformed(ActionEvent e) {
+						String result = (String) JOptionPane.showInputDialog("Password", "請輸入密碼");
+						if (result != null && result.equals(password)) {
+							System.exit(0);
+						}
+					}
+				};
+
+				ActionListener restoreListener = new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						instance.setVisible(true);
+						int state = instance.getExtendedState();
+						state &= ~JFrame.ICONIFIED;
+						instance.setExtendedState(state);
+					}
+				};
+				// 雙擊滑鼠, 還原視窗大小
+				MouseAdapter mouseAdapter = new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() >= 2) {
+							setVisible(true);
+						}
+					}
+				};
+
+				MenuItem tray_exit_item = new MenuItem("Exit");// 在 Tray下的 指令 關閉
+				tray_exit_item.addActionListener(exitListener);
+
+				MenuItem tray_restore_item = new MenuItem("Restore");// 在 Tray下的 指令 復原
+				tray_restore_item.addActionListener(restoreListener);
+
+				Image image = (Image) ImageIO.read(this.getClass().getResource(("/default_icon.png")));
+				PopupMenu tray_popup = new PopupMenu();
+				tray_popup.add(tray_exit_item);
+				tray_popup.add(tray_restore_item);
+
+				tray_icon = new TrayIcon(image, trayName, tray_popup);// 加入
+				tray_icon.addMouseListener(mouseAdapter);
+				tray_icon.setImageAutoSize(true);
+
+				tray = SystemTray.getSystemTray(); // 加在主系統的Tray
+				tray.add(tray_icon);
+
+			} else {
+				JOptionPane.showMessageDialog(null, "部分支援工具遺失!"); // System Tray is not supported
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (AWTException e) {
+			e.printStackTrace();
+			System.err.println("TrayIcon could not be added.");
 		}
 	}
 
