@@ -59,6 +59,7 @@ public class StartUI extends JFrame implements ActionListener {
 		this.edition = edition;
 		initUI();
 		initTray(GlobalConfig.TrayPassword, edition);
+		initIcon();
 		setCloseConfirm();
 	}
 
@@ -154,7 +155,7 @@ public class StartUI extends JFrame implements ActionListener {
 				MenuItem tray_restore_item = new MenuItem("Restore");// 在 Tray下的 指令 復原
 				tray_restore_item.addActionListener(restoreListener);
 
-				Image image = (Image) ImageIO.read(this.getClass().getResource(("/default_icon.png")));
+				Image image = GlobalConfig.FrameIconImage.getImage();
 				PopupMenu tray_popup = new PopupMenu();
 				tray_popup.add(tray_exit_item);
 				tray_popup.add(tray_restore_item);
@@ -169,12 +170,14 @@ public class StartUI extends JFrame implements ActionListener {
 			} else {
 				JOptionPane.showMessageDialog(null, "部分支援工具遺失!"); // System Tray is not supported
 			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
 		} catch (AWTException e) {
 			e.printStackTrace();
 			System.err.println("TrayIcon could not be added.");
 		}
+	}
+	
+	private void initIcon(){
+		this.setIconImage(GlobalConfig.FrameIconImage.getImage());
 	}
 
 	/** 訊息視窗呈現 */
