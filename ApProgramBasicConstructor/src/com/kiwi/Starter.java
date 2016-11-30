@@ -17,7 +17,7 @@ import com.kiwi.controller.Controller;
 
 public class Starter {
 
-	private static final String edition = "Spring+Mybatis初始架構版";
+	private static final String edition = "Spring+Mybatis初始架構版2.0";
 	private ApplicationContext context;
 	private Controller controller;
 
