@@ -13,12 +13,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.w3c.dom.Document;
 
 import com.kiwi.conf.GlobalConfig;
-import com.kiwi.ui.StartUI;
+import com.kiwi.controller.Controller;
 
 public class Starter {
 
 	private static final String edition = "Spring+Mybatis初始架構版";
 	private ApplicationContext context;
+	private Controller controller;
 
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
@@ -32,8 +33,8 @@ public class Starter {
 			initSpringConstruct();
 			createKillBatFile(GlobalConfig.KillBATPath);
 			// 設定&顯現主視窗
-			StartUI mainUI = ((StartUI) context.getBean("StartUI"));
-			mainUI.start(edition);
+			controller = (Controller) context.getBean("Controller");
+			controller.startApplication(edition);
 		} catch (Exception e) {
 			System.out.println("系統執行ERROR");
 			e.printStackTrace();

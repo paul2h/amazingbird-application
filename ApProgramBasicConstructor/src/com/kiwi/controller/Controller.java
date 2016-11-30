@@ -2,15 +2,49 @@ package com.kiwi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kiwi.conf.GlobalConfig;
+import com.kiwi.service.Engin;
 import com.kiwi.service.Service;
+import com.kiwi.ui.MainUI;
 
 public class Controller {
+
+	Engin[] engins = GlobalConfig.Engins;
+
+	@Autowired
+	MainUI mainUI;
 
 	@Autowired
 	Service service;
 
-	public String testProcess() {
-		return service.testProcess();
+	public void startApplication(String edition) {
+		mainUI.start(edition);
+	}
+
+	public void startEngin(String enginID) {
+		for (Engin engin : engins) {
+			if (engin.getEnginID().equals(enginID)) {
+				engin.startEngin();
+			}
+		}
+	}
+
+	public void stopEngin(String enginID) {
+		for (Engin engin : engins) {
+			if (engin.getEnginID().equals(enginID)) {
+				engin.stopEngin();
+			}
+		}
+	}
+
+	/** 取得指定Engin狀態 */
+	public boolean ieEnginStarted(String enginID) {
+		for (Engin engin : engins) {
+			if (engin.getEnginID().equals(enginID)) {
+				return engin.isStarted();
+			}
+		}
+		return false;
 	}
 
 }

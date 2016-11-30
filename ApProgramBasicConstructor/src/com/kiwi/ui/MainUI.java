@@ -2,6 +2,7 @@ package com.kiwi.ui;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
@@ -17,11 +18,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 import org.apache.logging.log4j.Level;
@@ -35,14 +37,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kiwi.conf.GlobalConfig;
 import com.kiwi.controller.Controller;
+import com.kiwi.service.Engin;
 
 @SuppressWarnings("serial")
-public class StartUI extends JFrame implements ActionListener {
+public class MainUI extends JFrame implements ActionListener {
 
+	private static final int frameWidth = 600;
+	private static final int frameHeight = 600;
+	private EnginView[] enginViews = GlobalConfig.EnginViews;
 	private JTextArea messageArea;
-	private JButton button;
+	private JButton startAllButton, stopAllButton;
+	private JTabbedPane mainEnginViewPanel;
 	private Logger logger;
-	private StartUI instance;
+	private MainUI instance;
 	private TrayIcon tray_icon; // Tray 的操作功能
 	private SystemTray tray;
 	private String edition = "Spring+Mybatis程式基本版";
@@ -50,7 +57,7 @@ public class StartUI extends JFrame implements ActionListener {
 	@Autowired
 	private Controller controller;
 
-	public StartUI() {
+	public MainUI() {
 		super();
 		instance = this;
 	}
@@ -68,19 +75,54 @@ public class StartUI extends JFrame implements ActionListener {
 
 		// #[[ UI物件設定
 		this.setTitle(edition);
-		// 文字框
 		this.setLayout(new BorderLayout());
-		messageArea = new JTextArea();
-		this.add(new JScrollPane(messageArea), BorderLayout.CENTER);
-		// 按鈕
-		button = new JButton("測試寫入&取得資料");
-		button.addActionListener(this);
-		this.add(button, BorderLayout.SOUTH);
+		// 主文字&button框
+		JPanel mainButtonsPanel = new JPanel();
+		mainButtonsPanel.setLayout(new GridLayout(2, 1));
+		startAllButton = new JButton("開啟所有Engin");
+		startAllButton.addActionListener(this);
+		mainButtonsPanel.add(startAllButton);
+		stopAllButton = new JButton("關閉所有Engin");
+		stopAllButton.addActionListener(this);
+		mainButtonsPanel.add(stopAllButton);
+		JPanel mainMessagePanel = new JPanel();
+		mainMessagePanel.setLayout(new BorderLayout());
+		messageArea = new JTextArea(5, 10);
+		mainMessagePanel.add(new JScrollPane(messageArea), BorderLayout.CENTER);
+		mainMessagePanel.add(mainButtonsPanel, BorderLayout.WEST);
+
+		this.add(mainMessagePanel, BorderLayout.NORTH);
+		// 各Engin控制 & View
+		mainEnginViewPanel = new JTabbedPane();
+		for (Engin engin : GlobalConfig.Engins) {
+			JPanel enginPanel = new JPanel();
+			enginPanel.setLayout(new BorderLayout());
+			JButton enginButton = new JButton(engin.getEnginName() + "開關");
+			enginButton.setActionCommand(engin.getEnginID());
+			enginButton.addActionListener(this);
+			enginPanel.add(enginButton, BorderLayout.SOUTH);
+
+			JPanel enginViewPanel = null;
+			for (EnginView enginView : enginViews) {
+				if (enginView.getEnginID().equals(engin.getEnginID())) {
+					enginViewPanel = (JPanel) enginView;
+					break;
+				}
+			}
+			if (enginViewPanel != null) {
+				enginPanel.add(enginViewPanel, BorderLayout.CENTER);
+			} else {
+				enginPanel.add(new JPanel(), BorderLayout.CENTER);// 沒有相對應的viewPanel 產生一個填補
+			}
+			mainEnginViewPanel.add(enginPanel, engin.getEnginName());
+		}
+		this.add(new JScrollPane(mainEnginViewPanel));
+
 		// ]]
 
 		// #[[ 其他基本設定
 		initLogger();
-		this.setSize(400, 300);
+		this.setSize(frameWidth, frameHeight);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		// ]]
@@ -96,7 +138,7 @@ public class StartUI extends JFrame implements ActionListener {
 			LoggerContext context = new LoggerContext("JournalDevLoggerContext");
 			context.start(configuration);
 
-			logger = context.getLogger(StartUI.class.getName());
+			logger = context.getLogger(MainUI.class.getName());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -175,8 +217,8 @@ public class StartUI extends JFrame implements ActionListener {
 			System.err.println("TrayIcon could not be added.");
 		}
 	}
-	
-	private void initIcon(){
+
+	private void initIcon() {
 		this.setIconImage(GlobalConfig.FrameIconImage.getImage());
 	}
 
@@ -189,10 +231,19 @@ public class StartUI extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == button) {
-			showMessage("測試寫入&讀取DB資料...");
-			showMessage(controller.testProcess());
-			showMessage("寫入&讀取完成.");
+		if (e.getSource() == startAllButton) {
+			showMessage("開啟所有Engin...尚未完成");
+		} else if (e.getSource() == stopAllButton) {
+			showMessage("關閉所有Engin...尚未完成");
+		} else {
+			String actionCommand = e.getActionCommand();
+			boolean isEnginStarted = controller.ieEnginStarted(actionCommand);
+			if(isEnginStarted){
+				controller.stopEngin(actionCommand);	
+			}else{
+				controller.startEngin(actionCommand);
+			}
 		}
 	}
+
 }
