@@ -2,7 +2,7 @@ package com.kiwi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.conf.GlobalConfig;
+import com.kiwi.global.GlobalConfig;
 import com.kiwi.service.Engin;
 import com.kiwi.service.Service;
 import com.kiwi.ui.MainUI;

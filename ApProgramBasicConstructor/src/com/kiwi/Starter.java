@@ -12,8 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.w3c.dom.Document;
 
-import com.kiwi.conf.GlobalConfig;
 import com.kiwi.controller.Controller;
+import com.kiwi.global.GlobalConfig;
 
 public class Starter {
 

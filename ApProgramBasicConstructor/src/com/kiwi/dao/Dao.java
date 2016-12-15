@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.kiwi.conf.GlobalConfig;
+import com.kiwi.global.GlobalConfig;
 import com.kiwi.model.DataModel;
 
 /**

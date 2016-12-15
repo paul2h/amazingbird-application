@@ -1,45 +1,28 @@
 package com.kiwi.service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 
-import org.apache.logging.log4j.core.Logger;
-import org.apache.logging.log4j.core.LoggerContext;
-import org.apache.logging.log4j.core.config.Configuration;
-import org.apache.logging.log4j.core.config.ConfigurationFactory;
-import org.apache.logging.log4j.core.config.ConfigurationSource;
-import org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kiwi.dao.Dao;
 import com.kiwi.dao.DaoManager;
+import com.kiwi.global.tools.LogTool;
 import com.kiwi.model.DataModel;
 
 public class Service {
 	@Autowired
 	DaoManager daoManager;
-	
+
 	private Logger logger;
-	
+
 	public Service() {
 		initLog();
 	}
-	
-	private void initLog(){
-		try {
-			ConfigurationFactory factory = XmlConfigurationFactory.getInstance();
-			ConfigurationSource configurationSource = new ConfigurationSource(new FileInputStream(new File("./log4j2.xml")));
-			Configuration configuration = factory.getConfiguration(configurationSource);
-			LoggerContext context = new LoggerContext("JournalDevLoggerContext");
-			context.start(configuration);
 
-			logger = context.getLogger(Service.class.getName());
-			showMessage("logger初始化完成");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private void initLog() {
+		logger = LogTool.getLogger(Service.class.getName());
+		showMessage("log初始化完成");
 	}
 
 	public String testProcess() {
@@ -54,8 +37,8 @@ public class Service {
 		}
 		return result;
 	}
-	
-	private void showMessage(String message){
+
+	private void showMessage(String message) {
 		logger.fatal(message);
 	}
 }

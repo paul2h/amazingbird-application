@@ -1,4 +1,4 @@
-package com.kiwi.conf;
+package com.kiwi.global;
 
 import javax.swing.ImageIcon;
 
@@ -13,6 +13,7 @@ public class GlobalConfig {
 	public static final String Conf_XML_path = "./conf/conf.xml";
 	public static final String MyBatisConfig_XML_Path = "./conf/myBatisConfig.xml";
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
+	public static final String LogSettingPath = "./conf/log4j2.xml";
 	public static final Engin[] Engins = {
 		new DemoEngin()
 	};
