@@ -17,7 +17,7 @@ import com.kiwi.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "Spring+Mybatis初始架構版2.0";
+	private static final String edition = "2017水情介接";
 	private ApplicationContext context;
 	private Controller controller;
 

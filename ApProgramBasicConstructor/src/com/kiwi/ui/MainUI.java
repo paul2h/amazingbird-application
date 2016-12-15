@@ -14,9 +14,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,17 +23,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.core.Logger;
-import org.apache.logging.log4j.core.LoggerContext;
-import org.apache.logging.log4j.core.config.Configuration;
-import org.apache.logging.log4j.core.config.ConfigurationFactory;
-import org.apache.logging.log4j.core.config.ConfigurationSource;
-import org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kiwi.controller.Controller;
 import com.kiwi.global.GlobalConfig;
+import com.kiwi.global.tools.LogTool;
 import com.kiwi.service.Engin;
 
 @SuppressWarnings("serial")
@@ -112,11 +104,12 @@ public class MainUI extends JFrame implements ActionListener {
 			if (enginViewPanel != null) {
 				enginPanel.add(enginViewPanel, BorderLayout.CENTER);
 			} else {
-				enginPanel.add(new JPanel(), BorderLayout.CENTER);// 沒有相對應的viewPanel 產生一個填補
+				enginPanel.add(new JPanel(), BorderLayout.CENTER);// 沒有相對應的viewPanel
+																	// 產生一個填補
 			}
 			mainEnginViewPanel.add(enginPanel, engin.getEnginName());
 		}
-		this.add(new JScrollPane(mainEnginViewPanel));
+		this.add(mainEnginViewPanel);
 
 		// ]]
 
@@ -131,17 +124,7 @@ public class MainUI extends JFrame implements ActionListener {
 	}
 
 	private void initLogger() {
-		try {
-			ConfigurationFactory factory = XmlConfigurationFactory.getInstance();
-			ConfigurationSource configurationSource = new ConfigurationSource(new FileInputStream(new File("./log4j2.xml")));
-			Configuration configuration = factory.getConfiguration(configurationSource);
-			LoggerContext context = new LoggerContext("JournalDevLoggerContext");
-			context.start(configuration);
-
-			logger = context.getLogger(MainUI.class.getName());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		logger = LogTool.getLogger(MainUI.class.getName());
 	}
 
 	/** 點選右上叉叉時顯現確認訊息 */
@@ -150,7 +133,8 @@ public class MainUI extends JFrame implements ActionListener {
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				Object[] options = new Object[] { "結束", "縮小到系統列" };
-				int result = JOptionPane.showOptionDialog(null, "確定要結束程式嗎？", "詢問", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+				int result = JOptionPane.showOptionDialog(null, "確定要結束程式嗎？", "詢問", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (result == 0) {
 					tray.remove(tray_icon); // 清除系統列圖示
 					System.exit(0);
@@ -194,7 +178,8 @@ public class MainUI extends JFrame implements ActionListener {
 				MenuItem tray_exit_item = new MenuItem("Exit");// 在 Tray下的 指令 關閉
 				tray_exit_item.addActionListener(exitListener);
 
-				MenuItem tray_restore_item = new MenuItem("Restore");// 在 Tray下的 指令 復原
+				MenuItem tray_restore_item = new MenuItem("Restore");// 在 Tray下的
+																		// 指令 復原
 				tray_restore_item.addActionListener(restoreListener);
 
 				Image image = GlobalConfig.FrameIconImage.getImage();
@@ -210,7 +195,9 @@ public class MainUI extends JFrame implements ActionListener {
 				tray.add(tray_icon);
 
 			} else {
-				JOptionPane.showMessageDialog(null, "部分支援工具遺失!"); // System Tray is not supported
+				JOptionPane.showMessageDialog(null, "部分支援工具遺失!"); // System Tray
+																	// is not
+																	// supported
 			}
 		} catch (AWTException e) {
 			e.printStackTrace();
@@ -226,7 +213,7 @@ public class MainUI extends JFrame implements ActionListener {
 	private void showMessage(String message) {
 		messageArea.append(message + "\n");
 		messageArea.setCaretPosition(messageArea.getText().length());
-		logger.log(Level.TRACE, message);
+		logger.info(message);
 	}
 
 	@Override
@@ -238,9 +225,9 @@ public class MainUI extends JFrame implements ActionListener {
 		} else {
 			String actionCommand = e.getActionCommand();
 			boolean isEnginStarted = controller.isEnginStarted(actionCommand);
-			if(isEnginStarted){
-				controller.stopEngin(actionCommand);	
-			}else{
+			if (isEnginStarted) {
+				controller.stopEngin(actionCommand);
+			} else {
 				controller.startEngin(actionCommand);
 			}
 		}
