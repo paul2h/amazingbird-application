@@ -2,7 +2,7 @@ package com.kiwi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.conf.GlobalConfig;
+import com.kiwi.global.GlobalConfig;
 import com.kiwi.service.Engin;
 import com.kiwi.service.Service;
 import com.kiwi.ui.MainUI;
@@ -38,7 +38,7 @@ public class Controller {
 	}
 
 	/** 取得指定Engin狀態 */
-	public boolean ieEnginStarted(String enginID) {
+	public boolean isEnginStarted(String enginID) {
 		for (Engin engin : engins) {
 			if (engin.getEnginID().equals(enginID)) {
 				return engin.isStarted();

@@ -35,8 +35,8 @@ import org.apache.logging.log4j.core.config.ConfigurationSource;
 import org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.conf.GlobalConfig;
 import com.kiwi.controller.Controller;
+import com.kiwi.global.GlobalConfig;
 import com.kiwi.service.Engin;
 
 @SuppressWarnings("serial")
@@ -237,7 +237,7 @@ public class MainUI extends JFrame implements ActionListener {
 			showMessage("關閉所有Engin...尚未完成");
 		} else {
 			String actionCommand = e.getActionCommand();
-			boolean isEnginStarted = controller.ieEnginStarted(actionCommand);
+			boolean isEnginStarted = controller.isEnginStarted(actionCommand);
 			if(isEnginStarted){
 				controller.stopEngin(actionCommand);	
 			}else{

@@ -7,11 +7,10 @@
 
 	<bean id="MainUI" class="com.kiwi.ui.MainUI" />
 
-	<bean id="Service" class="com.kiwi.service.Service" />
-
 	<bean id="Controller" class="com.kiwi.controller.Controller" />
-
-	<bean id="DaoManager" class="com.kiwi.dao.DaoManager" />
-
+	
+	<bean id="Service" class="com.kiwi.service.Service" />
+	
+	<bean id="DAO" class="com.kiwi.dao.Dao"></bean>
 
 </beans>

@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.kiwi.conf.GlobalConfig;
+import com.kiwi.global.GlobalConfig;
 import com.kiwi.model.DataModel;
 
 /**
@@ -38,9 +38,14 @@ public class Dao {
 	// #[[ 建置用Method
 	public Dao() throws IOException {
 		Resources.setCharset(Charset.forName("UTF-8"));
-		reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);// Reader會自動關掉 若有多個Connector要重複讀取
+		try {
+			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
+		} catch (Exception e) {
+			// 若匯出後要吃這個路徑
+			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path_Output);
+		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
-		sqlSession = sqlSessionFactory.openSession(false);//autocommit = false
+		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
 		daoConnector = sqlSession.getMapper(DaoConnector.class);
 	}
 
