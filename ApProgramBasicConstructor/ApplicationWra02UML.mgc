@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ClassDiagram>
-    <Class name="com.kiwi.dao.Dao" x="513" y="739">
+    <Class name="com.wavegis.Starter" x="898" y="430">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -8,34 +8,12 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
-        <Association destinationClassName="com.kiwi.dao.DaoConnector"
-            endpointName="daoConnector" kind="Simple"/>
-        <Communication destinationClassName="com.kiwi.dao.DaoConnector"/>
-    </Class>
-    <Class name="com.kiwi.service.Engin" x="208" y="463">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-    </Class>
-    <Class name="com.kiwi.service.demo.DemoEngin" x="-21" y="583">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.kiwi.service.Engin"/>
         <Association
-            destinationClassName="com.kiwi.ui.demo.DemoEnginView"
-            endpointName="demoEnginView" kind="Simple"/>
-        <Communication destinationClassName="com.kiwi.ui.demo.DemoEnginView"/>
+            destinationClassName="com.wavegis.controller.Controller"
+            endpointName="controller" kind="Simple"/>
+        <Communication destinationClassName="com.wavegis.controller.Controller"/>
     </Class>
-    <Class name="com.kiwi.controller.Controller" x="518" y="384">
+    <Class name="com.wavegis.ui.MainUI" x="639" y="163">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -43,56 +21,17 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
-        <Association destinationClassName="com.kiwi.ui.MainUI"
-            endpointName="mainUI" kind="Simple"/>
-        <Association destinationClassName="com.kiwi.service.Service"
-            endpointName="service" kind="Simple"/>
-        <Association destinationClassName="com.kiwi.service.Engin"
-            endpointName="engins" kind="Simple"/>
-        <Communication destinationClassName="com.kiwi.service.Engin"/>
-        <Communication destinationClassName="com.kiwi.service.Service"/>
-        <Communication destinationClassName="com.kiwi.ui.MainUI"/>
-    </Class>
-    <Class name="com.kiwi.dao.DaoConnector" x="549" y="944">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-    </Class>
-    <Class name="com.kiwi.service.Service" x="546" y="543">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Association destinationClassName="com.kiwi.dao.Dao"
-            endpointName="dao" kind="Simple"/>
-        <Communication destinationClassName="com.kiwi.dao.Dao"/>
-    </Class>
-    <Class name="com.kiwi.ui.MainUI" x="513" y="140">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Association destinationClassName="com.kiwi.ui.EnginView"
+        <Association destinationClassName="com.wavegis.basic.EnginView"
             endpointName="enginViews" kind="Simple"/>
         <Association
-            destinationClassName="com.kiwi.controller.Controller"
+            destinationClassName="com.wavegis.controller.Controller"
             endpointName="controller" kind="Simple"/>
-        <Association destinationClassName="com.kiwi.ui.MainUI"
+        <Association destinationClassName="com.wavegis.ui.MainUI"
             endpointName="instance" kind="Simple"/>
-        <Communication destinationClassName="com.kiwi.service.Engin"/>
-        <Communication destinationClassName="com.kiwi.controller.Controller"/>
+        <Communication destinationClassName="com.wavegis.basic.Engin"/>
+        <Communication destinationClassName="com.wavegis.controller.Controller"/>
     </Class>
-    <Class name="com.kiwi.Starter" x="792" y="395">
+    <Class name="com.wavegis.basic.EnginView" x="278" y="141">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -100,12 +39,64 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.wavegis.ui.SimpleEnginView" x="279" y="287">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.wavegis.basic.EnginView"/>
+    </Class>
+    <Class name="com.wavegis.service.hsinchu_ws.HsinchuWSEngin" x="21" y="782">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.wavegis.service.TimerEngin"/>
         <Association
-            destinationClassName="com.kiwi.controller.Controller"
-            endpointName="controller" kind="Simple"/>
-        <Communication destinationClassName="com.kiwi.controller.Controller"/>
+            destinationClassName="com.wavegis.ui.hsinchu_ws.HsinchuWSEnginView"
+            endpointName="enginView" kind="Simple"/>
+        <Communication destinationClassName="com.wavegis.ui.SimpleEnginView"/>
     </Class>
-    <Class name="com.kiwi.ui.EnginView" x="185" y="202">
+    <Class name="com.wavegis.service.Service" x="686" y="615">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="com.wavegis.dao.Dao"
+            endpointName="dao" kind="Simple"/>
+        <Communication destinationClassName="com.wavegis.dao.Dao"/>
+    </Class>
+    <Class name="com.wavegis.service.TimerEngin" x="270" y="678">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.wavegis.basic.Engin"/>
+    </Class>
+    <Class name="com.wavegis.ui.hsinchu_ws.HsinchuWSEnginView" x="40" y="396">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.wavegis.ui.SimpleEnginView"/>
+    </Class>
+    <Class name="com.wavegis.basic.Engin" x="289" y="527">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -114,7 +105,7 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="com.kiwi.ui.demo.DemoEnginView" x="-34" y="82">
+    <Class name="com.wavegis.dao.DaoConnector" x="670" y="876">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -122,9 +113,36 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.kiwi.ui.EnginView"/>
     </Class>
-    <Note x="835" y="348">程式起始點</Note>
-    <Note x="585" y="90">程式主幹</Note>
-    <Note x="221" y="151">掛入的Engin</Note>
+    <Class name="com.wavegis.controller.Controller" x="663" y="408">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="com.wavegis.ui.MainUI"
+            endpointName="mainUI" kind="Simple"/>
+        <Association destinationClassName="com.wavegis.service.Service"
+            endpointName="service" kind="Simple"/>
+        <Association destinationClassName="com.wavegis.basic.Engin"
+            endpointName="engins" kind="Simple"/>
+        <Communication destinationClassName="com.wavegis.ui.MainUI"/>
+        <Communication destinationClassName="com.wavegis.basic.Engin"/>
+    </Class>
+    <Class name="com.wavegis.dao.Dao" x="644" y="711">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="com.wavegis.dao.DaoConnector"
+            endpointName="daoConnector" kind="Simple"/>
+        <Communication destinationClassName="com.wavegis.dao.DaoConnector"/>
+    </Class>
+    <Note x="950" y="376">起始點</Note>
+    <Note x="143" y="261">Engin掛入</Note>
 </ClassDiagram>

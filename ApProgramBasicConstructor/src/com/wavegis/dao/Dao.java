@@ -1,4 +1,4 @@
-package com.kiwi.dao;
+package com.wavegis.dao;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.kiwi.global.GlobalConfig;
-import com.kiwi.model.DataModel;
+import com.wavegis.global.GlobalConfig;
+import com.wavegis.model.DataModel;
 
 /**
  * 給Service取得Dao的Dao總管理物件

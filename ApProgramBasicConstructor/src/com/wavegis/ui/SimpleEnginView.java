@@ -1,10 +1,12 @@
-package com.kiwi.ui;
+package com.wavegis.ui;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import com.wavegis.basic.EnginView;
 
 /**
  * 

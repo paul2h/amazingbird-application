@@ -1,11 +1,11 @@
-package com.kiwi.controller;
+package com.wavegis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.global.GlobalConfig;
-import com.kiwi.service.Engin;
-import com.kiwi.service.Service;
-import com.kiwi.ui.MainUI;
+import com.wavegis.basic.Engin;
+import com.wavegis.global.GlobalConfig;
+import com.wavegis.service.Service;
+import com.wavegis.ui.MainUI;
 
 public class Controller {
 

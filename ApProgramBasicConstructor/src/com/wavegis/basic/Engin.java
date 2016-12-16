@@ -1,6 +1,4 @@
-package com.kiwi.service;
-
-import com.kiwi.ui.EnginView;
+package com.wavegis.basic;
 
 public interface Engin {
 

@@ -1,12 +1,12 @@
-package com.kiwi.global;
+package com.wavegis.global;
 
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
-import com.kiwi.service.Engin;
-import com.kiwi.service.demo.DemoEngin;
-import com.kiwi.ui.EnginView;
+import com.wavegis.basic.Engin;
+import com.wavegis.basic.EnginView;
+import com.wavegis.service.hsinchu_ws.HsinchuWSEngin;
 
 public class GlobalConfig {
 
@@ -17,7 +17,7 @@ public class GlobalConfig {
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 
-	public static final Engin[] Engins = { new DemoEngin() };
+	public static final Engin[] Engins = { new HsinchuWSEngin() };
 
 	@SuppressWarnings("serial")
 	public static final HashMap<String, EnginView> EnginViewMap = new HashMap<String, EnginView>() {

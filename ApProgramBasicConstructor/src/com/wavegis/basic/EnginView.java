@@ -1,4 +1,4 @@
-package com.kiwi.basic;
+package com.wavegis.basic;
 
 public interface EnginView {
 	
