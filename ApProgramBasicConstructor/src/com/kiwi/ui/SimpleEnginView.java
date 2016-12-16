@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.kiwi.basic.EnginView;
+
 /**
  * 
  * 最基本的EnginView,只有文字訊息框

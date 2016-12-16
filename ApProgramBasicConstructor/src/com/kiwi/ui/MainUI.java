@@ -26,10 +26,11 @@ import javax.swing.JTextArea;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kiwi.basic.Engin;
+import com.kiwi.basic.EnginView;
 import com.kiwi.controller.Controller;
 import com.kiwi.global.GlobalConfig;
 import com.kiwi.global.tools.LogTool;
-import com.kiwi.service.Engin;
 
 @SuppressWarnings("serial")
 public class MainUI extends JFrame implements ActionListener {

@@ -1,7 +1,7 @@
 package com.kiwi.service.demo;
 
-import com.kiwi.service.Engin;
-import com.kiwi.ui.EnginView;
+import com.kiwi.basic.Engin;
+import com.kiwi.basic.EnginView;
 import com.kiwi.ui.demo.DemoEnginView;
 
 public class DemoEngin implements Engin {

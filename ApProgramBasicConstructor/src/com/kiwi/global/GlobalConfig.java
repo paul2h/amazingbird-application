@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
-import com.kiwi.service.Engin;
+import com.kiwi.basic.Engin;
+import com.kiwi.basic.EnginView;
 import com.kiwi.service.demo.DemoEngin;
-import com.kiwi.ui.EnginView;
 
 public class GlobalConfig {
 
@@ -17,6 +17,7 @@ public class GlobalConfig {
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 
+	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
 	public static final Engin[] Engins = { new DemoEngin() };
 
 	@SuppressWarnings("serial")
