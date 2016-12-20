@@ -17,20 +17,6 @@ public class GlobalConfig {
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 
-	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
-	public static final Engin[] Engins = { new DemoEngin() };
-
-	@SuppressWarnings("serial")
-	public static final HashMap<String, EnginView> EnginViewMap = new HashMap<String, EnginView>() {
-		{
-			for (Engin engin : Engins) {
-				put(engin.getEnginID(), engin.getEnginView());
-			}
-		}
-	};
-
-	public static final EnginView[] EnginViews = (EnginView[]) EnginViewMap.values()
-			.toArray(new EnginView[Engins.length]);
 
 	public static String TrayPassword = "123";
 	public static String KillBATPath = "D:/kill.bat";

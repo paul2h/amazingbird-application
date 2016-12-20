@@ -3,13 +3,13 @@ package com.kiwi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kiwi.basic.Engin;
-import com.kiwi.global.GlobalConfig;
+import com.kiwi.global.EnginCenter;
 import com.kiwi.service.Service;
 import com.kiwi.ui.MainUI;
 
 public class Controller {
 
-	Engin[] engins = GlobalConfig.Engins;
+	Engin[] engins = EnginCenter.Engins;
 
 	@Autowired
 	MainUI mainUI;

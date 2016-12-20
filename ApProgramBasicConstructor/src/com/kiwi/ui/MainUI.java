@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.kiwi.basic.Engin;
 import com.kiwi.basic.EnginView;
 import com.kiwi.controller.Controller;
+import com.kiwi.global.EnginCenter;
 import com.kiwi.global.GlobalConfig;
 import com.kiwi.global.tools.LogTool;
 
@@ -37,7 +38,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 	private static final int frameWidth = 600;
 	private static final int frameHeight = 600;
-	private EnginView[] enginViews = GlobalConfig.EnginViews;
+	private EnginView[] enginViews = EnginCenter.EnginViews;
 	private JTextArea messageArea;
 	private JButton startAllButton, stopAllButton;
 	private JTabbedPane mainEnginViewPanel;
@@ -87,7 +88,7 @@ public class MainUI extends JFrame implements ActionListener {
 		this.add(mainMessagePanel, BorderLayout.NORTH);
 		// 各Engin控制 & View
 		mainEnginViewPanel = new JTabbedPane();
-		for (Engin engin : GlobalConfig.Engins) {
+		for (Engin engin : EnginCenter.Engins) {
 			JPanel enginPanel = new JPanel();
 			enginPanel.setLayout(new BorderLayout());
 			JButton enginButton = new JButton(engin.getEnginName() + "開關");
