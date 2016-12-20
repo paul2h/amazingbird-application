@@ -22,11 +22,14 @@ public class Starter {
 	private Controller controller;
 
 	public static void main(String[] args) {
-		@SuppressWarnings("unused")
 		Starter starter = new Starter();
+		starter.startApplicationProcess();
 	}
 
-	public Starter() {
+	/**
+	 * 開始程式執行程序
+	 */
+	public void startApplicationProcess() {
 		// 基本初始化
 		try {
 			initXmlSetting();
@@ -66,7 +69,7 @@ public class Starter {
 	 * 初始化整個程式架構(使用Spring Framework)
 	 * 
 	 * @return controller 初始化完後回傳UI用的controller
-	 * */
+	 */
 	public void initSpringConstruct() {
 		System.out.println("初始化Spring架構...");
 		context = new ClassPathXmlApplicationContext(
