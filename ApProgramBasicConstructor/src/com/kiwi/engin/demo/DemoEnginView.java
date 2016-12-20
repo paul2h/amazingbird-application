@@ -1,7 +1,7 @@
-package com.kiwi.ui.demo;
+package com.kiwi.engin.demo;
 
 
-import com.kiwi.ui.SimpleEnginView;
+import com.kiwi.engin.SimpleEnginView;
 
 @SuppressWarnings("serial")
 public class DemoEnginView extends SimpleEnginView {

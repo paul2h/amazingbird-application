@@ -1,4 +1,4 @@
-package com.kiwi.ui;
+package com.kiwi.basic_construction;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
@@ -26,9 +26,8 @@ import javax.swing.JTextArea;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.basic.Engin;
-import com.kiwi.basic.EnginView;
-import com.kiwi.controller.Controller;
+import com.kiwi.engin.Engin;
+import com.kiwi.engin.EnginView;
 import com.kiwi.global.EnginCenter;
 import com.kiwi.global.GlobalConfig;
 import com.kiwi.global.tools.LogTool;

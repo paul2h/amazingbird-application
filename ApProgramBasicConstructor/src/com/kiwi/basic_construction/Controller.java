@@ -1,11 +1,9 @@
-package com.kiwi.controller;
+package com.kiwi.basic_construction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.basic.Engin;
+import com.kiwi.engin.Engin;
 import com.kiwi.global.EnginCenter;
-import com.kiwi.service.Service;
-import com.kiwi.ui.MainUI;
 
 public class Controller {
 

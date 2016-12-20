@@ -1,4 +1,4 @@
-package com.kiwi.dao;
+package com.kiwi.basic_construction;
 
 import java.io.IOException;
 import java.io.Reader;

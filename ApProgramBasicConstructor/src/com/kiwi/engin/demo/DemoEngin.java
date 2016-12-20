@@ -1,8 +1,10 @@
-package com.kiwi.service.demo;
+package com.kiwi.engin.demo;
 
-import com.kiwi.basic.Engin;
-import com.kiwi.basic.EnginView;
-import com.kiwi.ui.demo.DemoEnginView;
+import org.apache.logging.log4j.Logger;
+
+import com.kiwi.engin.Engin;
+import com.kiwi.engin.EnginView;
+import com.kiwi.global.tools.LogTool;
 
 public class DemoEngin implements Engin {
 
@@ -10,6 +12,7 @@ public class DemoEngin implements Engin {
 	private static final String engninName = "測試用Engin";
 	private static final DemoEnginView demoEnginView = new DemoEnginView();
 	private boolean running = false;
+	private Logger logger = LogTool.getLogger(this.getClass().getName());
 
 	@Override
 	public String getEnginID() {
@@ -37,6 +40,7 @@ public class DemoEngin implements Engin {
 
 	private void showMessage(String message) {
 		demoEnginView.showMessage(message);
+		logger.info(message);
 	}
 
 	@Override

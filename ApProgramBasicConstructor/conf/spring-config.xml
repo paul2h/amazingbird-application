@@ -5,12 +5,12 @@
 
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
-	<bean id="MainUI" class="com.kiwi.ui.MainUI" />
+	<bean id="MainUI" class="com.kiwi.basic_construction.MainUI" />
 
-	<bean id="Controller" class="com.kiwi.controller.Controller" />
+	<bean id="Controller" class="com.kiwi.basic_construction.Controller" />
 	
-	<bean id="Service" class="com.kiwi.service.Service" />
+	<bean id="Service" class="com.kiwi.basic_construction.Service" />
 	
-	<bean id="DAO" class="com.kiwi.dao.Dao"></bean>
+	<bean id="DAO" class="com.kiwi.basic_construction.Dao"></bean>
 
 </beans>

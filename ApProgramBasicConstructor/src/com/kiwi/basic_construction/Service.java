@@ -1,11 +1,10 @@
-package com.kiwi.service;
+package com.kiwi.basic_construction;
 
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.dao.Dao;
 import com.kiwi.global.tools.LogTool;
 import com.kiwi.model.DataModel;
 

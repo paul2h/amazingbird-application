@@ -1,12 +1,10 @@
-package com.kiwi.ui;
+package com.kiwi.engin;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
-import com.kiwi.basic.EnginView;
 
 /**
  * 
