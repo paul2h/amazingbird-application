@@ -6,8 +6,8 @@
 				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %l{1} - %msg%n" />
 		</Console>
 		
-	<RollingFile name="BasicLogFile" fileName="basiclogs/basiclog.log"
-		filePattern="basiclogs/basiclog-%d{yyyyMMdd-HH}~%i.log">
+	<RollingFile name="ViewLogFile" fileName="log/viewlogs/viewlog.log"
+		filePattern="log/viewlogs/viewlog-%d{yyyyMMdd-HH}~%i.log">
 		<PatternLayout>
 			<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1} - %msg%n
 			</Pattern>
@@ -18,8 +18,8 @@
 			<SizeBasedTriggeringPolicy size="10 MB" />
 		</Policies>
 	</RollingFile>
-	<RollingFile name="ServiceLog" fileName="servicelogs/servicelog.log"
-		filePattern="servicelogs/controllerlog-%d{yyyyMMdd-HH}~%i.log">
+	<RollingFile name="ServiceLog" fileName="log/servicelogs/servicelog.log"
+		filePattern="log/servicelogs/servicelog-%d{yyyyMMdd-HH}~%i.log">
 		<PatternLayout>
 			<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1} - %msg%n
 			</Pattern>
@@ -38,7 +38,7 @@
 			<AppenderRef ref="Console" />
 		</Root>
 		<logger name="com.kiwi.ui" level="TRACE">
-			<AppenderRef ref="BasicLogFile" />
+			<AppenderRef ref="ViewLogFile" />
 		</logger>
 		<logger name="com.kiwi.service" level="TRACE">
 			<AppenderRef ref="ServiceLog" />
