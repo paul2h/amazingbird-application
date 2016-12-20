@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- locator4的DB - mybatis實作dao -->
-<mapper namespace="com.kiwi.basic_construction.DaoConnector">
+<mapper namespace="com.wavegis.basic_construction.DaoConnector">
 
 	<insert id="creatDemoTable">
 			CREATE TABLE IF NOT EXISTS public.mybatis
@@ -21,7 +21,7 @@
 				'123321'
 			)
 	</insert>
-	<select id="getData" resultType="com.kiwi.model.DataModel">
+	<select id="getData" resultType="com.wavegis.model.DataModel">
 		<![CDATA[
 			SELECT 
 				_id as _id,

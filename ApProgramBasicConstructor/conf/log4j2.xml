@@ -6,8 +6,8 @@
 				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %l{1} - %msg%n" />
 		</Console>
 		
-	<RollingFile name="ViewLogFile" fileName="log/viewlogs/viewlog.log"
-		filePattern="log/viewlogs/viewlog-%d{yyyyMMdd-HH}~%i.log">
+	<RollingFile name="BasicLogFile" fileName="log/basiclogs/basiclog.log"
+		filePattern="log/basiclogs/basiclog-%d{yyyyMMdd-HH}~%i.log">
 		<PatternLayout>
 			<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1} - %msg%n
 			</Pattern>
@@ -18,8 +18,8 @@
 			<SizeBasedTriggeringPolicy size="10 MB" />
 		</Policies>
 	</RollingFile>
-	<RollingFile name="ServiceLog" fileName="log/servicelogs/servicelog.log"
-		filePattern="log/servicelogs/servicelog-%d{yyyyMMdd-HH}~%i.log">
+	<RollingFile name="EnginLog" fileName="log/enginlogs/enginlog.log"
+		filePattern="log/enginlogs/enginlog-%d{yyyyMMdd-HH}~%i.log">
 		<PatternLayout>
 			<Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} [%t] %c{1} - %msg%n
 			</Pattern>
@@ -37,11 +37,11 @@
 		<Root level="ERROR">
 			<AppenderRef ref="Console" />
 		</Root>
-		<logger name="com.kiwi.ui" level="TRACE">
-			<AppenderRef ref="ViewLogFile" />
+		<logger name="com.wavegis.basic_construction" level="TRACE">
+			<AppenderRef ref="BasicLogFile" />
 		</logger>
-		<logger name="com.kiwi.service" level="TRACE">
-			<AppenderRef ref="ServiceLog" />
+		<logger name="com.wavegis.engin" level="TRACE">
+			<AppenderRef ref="EnginLog" />
 		</logger>		
 	</Loggers>
 </Configuration>
