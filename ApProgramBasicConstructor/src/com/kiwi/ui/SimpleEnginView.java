@@ -34,6 +34,7 @@ public abstract class SimpleEnginView extends JPanel implements EnginView {
 		messageCount++;
 		if (messageCount > MessageMaxLine) {
 			messageArea.setText(null);
+			messageCount = 0;
 		}
 		messageArea.append(message + "\n");
 		messageArea.setCaretPosition(messageArea.getText().length());
