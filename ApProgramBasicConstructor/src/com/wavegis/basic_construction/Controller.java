@@ -1,9 +1,9 @@
-package com.kiwi.basic_construction;
+package com.wavegis.basic_construction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.engin.Engin;
-import com.kiwi.global.EnginCenter;
+import com.wavegis.engin.Engin;
+import com.wavegis.global.EnginCenter;
 
 public class Controller {
 

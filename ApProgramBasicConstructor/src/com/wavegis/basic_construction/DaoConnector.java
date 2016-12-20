@@ -1,8 +1,8 @@
-package com.kiwi.basic_construction;
+package com.wavegis.basic_construction;
 
 import java.util.List;
 
-import com.kiwi.model.DataModel;
+import com.wavegis.model.DataModel;
 
 /** 需在指定的DB中新增一個"Demo"的DB */
 public interface DaoConnector {

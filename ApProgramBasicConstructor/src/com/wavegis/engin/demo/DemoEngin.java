@@ -1,10 +1,10 @@
-package com.kiwi.engin.demo;
+package com.wavegis.engin.demo;
 
 import org.apache.logging.log4j.Logger;
 
-import com.kiwi.engin.Engin;
-import com.kiwi.engin.EnginView;
-import com.kiwi.global.tools.LogTool;
+import com.wavegis.engin.Engin;
+import com.wavegis.engin.EnginView;
+import com.wavegis.global.tools.LogTool;
 
 public class DemoEngin implements Engin {
 

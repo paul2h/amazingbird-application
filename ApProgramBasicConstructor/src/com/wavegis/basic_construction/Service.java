@@ -1,12 +1,12 @@
-package com.kiwi.basic_construction;
+package com.wavegis.basic_construction;
 
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.global.tools.LogTool;
-import com.kiwi.model.DataModel;
+import com.wavegis.global.tools.LogTool;
+import com.wavegis.model.DataModel;
 
 public class Service {
 

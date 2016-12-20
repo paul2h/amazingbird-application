@@ -1,4 +1,4 @@
-package com.kiwi;
+package com.wavegis;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,8 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.w3c.dom.Document;
 
-import com.kiwi.basic_construction.Controller;
-import com.kiwi.global.GlobalConfig;
+import com.wavegis.basic_construction.Controller;
+import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 

@@ -1,12 +1,12 @@
-package com.kiwi.global;
+package com.wavegis.global;
 
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 
-import com.kiwi.engin.Engin;
-import com.kiwi.engin.EnginView;
-import com.kiwi.engin.demo.DemoEngin;
+import com.wavegis.engin.Engin;
+import com.wavegis.engin.EnginView;
+import com.wavegis.engin.demo.DemoEngin;
 
 public class GlobalConfig {
 

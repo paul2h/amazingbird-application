@@ -1,4 +1,4 @@
-package com.kiwi.basic_construction;
+package com.wavegis.basic_construction;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
@@ -26,11 +26,11 @@ import javax.swing.JTextArea;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kiwi.engin.Engin;
-import com.kiwi.engin.EnginView;
-import com.kiwi.global.EnginCenter;
-import com.kiwi.global.GlobalConfig;
-import com.kiwi.global.tools.LogTool;
+import com.wavegis.engin.Engin;
+import com.wavegis.engin.EnginView;
+import com.wavegis.global.EnginCenter;
+import com.wavegis.global.GlobalConfig;
+import com.wavegis.global.tools.LogTool;
 
 @SuppressWarnings("serial")
 public class MainUI extends JFrame implements ActionListener {

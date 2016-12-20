@@ -1,4 +1,4 @@
-package com.kiwi.global.tools;
+package com.wavegis.global.tools;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +11,7 @@ import org.apache.logging.log4j.core.config.ConfigurationFactory;
 import org.apache.logging.log4j.core.config.ConfigurationSource;
 import org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory;
 
-import com.kiwi.global.GlobalConfig;
+import com.wavegis.global.GlobalConfig;
 
 public class LogTool {
 

@@ -1,7 +1,7 @@
-package com.kiwi.engin.demo;
+package com.wavegis.engin.demo;
 
 
-import com.kiwi.engin.SimpleEnginView;
+import com.wavegis.engin.SimpleEnginView;
 
 @SuppressWarnings("serial")
 public class DemoEnginView extends SimpleEnginView {
