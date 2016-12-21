@@ -36,13 +36,18 @@ public class Dao {
 	// ]]myBatis物件
 
 	// #[[ 建置用Method
-	public Dao() throws IOException {
+	public Dao() {
 		Resources.setCharset(Charset.forName("UTF-8"));
 		try {
 			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
 		} catch (Exception e) {
 			// 若匯出後要吃這個路徑
-			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path_Output);
+			try {
+				reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path_Output);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				System.out.println("DAO初始化失敗!!");
+			}
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
