@@ -1,4 +1,4 @@
-package com.wavegis.engin.ws;
+package com.wavegis.engin.ws.wavegis;
 
 import java.io.IOException;
 import java.util.List;

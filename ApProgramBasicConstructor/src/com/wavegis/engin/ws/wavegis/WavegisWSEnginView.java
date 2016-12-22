@@ -1,4 +1,4 @@
-package com.wavegis.engin.ws;
+package com.wavegis.engin.ws.wavegis;
 
 import com.wavegis.engin.SimpleEnginView;
 
