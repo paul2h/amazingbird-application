@@ -1,4 +1,4 @@
-package com.wavegis.basic_construction;
+package com.wavegis.engin.insert.rain;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.DataModel;
+import com.wavegis.model.WaterData;
 
 /**
  * 給Service取得Dao的Dao總管理物件
@@ -19,14 +19,14 @@ import com.wavegis.model.DataModel;
  * <pre>
  * 使用方法:mybatis
  */
-public class Dao {
-	static Dao instance;
+public class RainDao {
+	static RainDao instance;
 
 	/* 取得config檔的reader */
 	private Reader reader;
 
 	// #[[DaoConnector List
-	private DaoConnector daoConnector;
+	private RainDaoConnector daoConnector;
 	// ]] Dao List */
 
 	// #[[ myBatis物件
@@ -36,7 +36,7 @@ public class Dao {
 	// ]]myBatis物件
 
 	// #[[ 建置用Method
-	public Dao() {
+	public RainDao() {
 		Resources.setCharset(Charset.forName("UTF-8"));
 		try {
 			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
@@ -45,36 +45,30 @@ public class Dao {
 			try {
 				reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path_Output);
 			} catch (IOException e1) {
+				System.out.println("DAO設定檔取得錯誤!!");
 				e1.printStackTrace();
-				System.out.println("DAO初始化錯誤!!");
 			}
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
-		daoConnector = sqlSession.getMapper(DaoConnector.class);
+		daoConnector = sqlSession.getMapper(RainDaoConnector.class);
+		instance = this;
 	}
 
-	public static Dao getInstance() {
+	public static RainDao getInstance() {
 		if (instance == null) {
-			instance = new Dao();
+			instance = new RainDao();
 		}
 		return instance;
 	}
 	// ]]
 
 	// #[[ 指令用Method
-	public void creatTable() {
-		daoConnector.creatDemoTable();
+
+	public void insertRainData(List<WaterData> waterData) {
+		daoConnector.insertRainData(waterData);
 		sqlSession.commit();
 	}
 
-	public void insertData() {
-		daoConnector.insertData();
-		sqlSession.commit();
-	}
-
-	public List<DataModel> getData() {
-		return daoConnector.getData();
-	}
 	// ]]
 }
