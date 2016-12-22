@@ -1,12 +1,6 @@
 package com.wavegis.global;
 
-import java.util.HashMap;
-
 import javax.swing.ImageIcon;
-
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.demo.DemoEngin;
 
 public class GlobalConfig {
 

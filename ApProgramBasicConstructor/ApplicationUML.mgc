@@ -63,16 +63,6 @@
             endpointName="dao" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.basic_construction.Dao"/>
     </Class>
-    <Class name="com.wavegis.engin.demo.DemoEnginView" x="35" y="352">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.SimpleEnginView"/>
-    </Class>
     <Class name="com.wavegis.engin.Engin" x="254" y="468">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
@@ -133,20 +123,6 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
         <Extension destinationClassName="com.wavegis.engin.EnginView"/>
-    </Class>
-    <Class name="com.wavegis.engin.demo.DemoEngin" x="20" y="608">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.Engin"/>
-        <Association
-            destinationClassName="com.wavegis.engin.demo.DemoEnginView"
-            endpointName="demoEnginView" kind="Simple"/>
-        <Communication destinationClassName="com.wavegis.engin.SimpleEnginView"/>
     </Class>
     <Note x="889" y="396">程式起始</Note>
 </ClassDiagram>
