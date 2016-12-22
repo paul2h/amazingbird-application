@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SETTING>
+	<TrayPassword>0921393905</TrayPassword>
+	<KillBATPath>./kill.bat</KillBATPath>
+	<WS_Time_Period>300000</WS_Time_Period>
+	<INSERT_Time_Period>300000</INSERT_Time_Period>
+</SETTING>

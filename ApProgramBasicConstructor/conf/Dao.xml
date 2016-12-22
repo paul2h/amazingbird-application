@@ -21,17 +21,5 @@
 				'123321'
 			)
 	</insert>
-	<select id="getData" resultType="com.wavegis.model.DataModel">
-		<![CDATA[
-			SELECT 
-				_id as _id,
-				_column1 AS _column1,
-				_column2 AS _column2 
-			FROM 
-				mybatis
-			ORDER BY
-				_id
-		]]>
-	</select>
 
 </mapper>

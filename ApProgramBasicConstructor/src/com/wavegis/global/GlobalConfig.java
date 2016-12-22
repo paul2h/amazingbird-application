@@ -1,12 +1,7 @@
 package com.wavegis.global;
 
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
-
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.demo.DemoEngin;
 
 public class GlobalConfig {
 
@@ -20,5 +15,7 @@ public class GlobalConfig {
 
 	public static String TrayPassword = "123";
 	public static String KillBATPath = "D:/kill.bat";
+	public static int WS_Time_Period = 1000 * 60;
+	public static int INSERT_Time_Period = 1000 * 60;
 
 }

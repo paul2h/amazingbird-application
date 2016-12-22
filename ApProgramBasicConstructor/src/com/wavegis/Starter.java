@@ -17,7 +17,7 @@ import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "2017水情介接";
+	private static final String edition = "2017水情介接-二河局1.0版";
 	private ApplicationContext context;
 	private Controller controller;
 
@@ -57,7 +57,10 @@ public class Starter {
 			System.out.println("TrayPassword : " + GlobalConfig.TrayPassword);
 			GlobalConfig.KillBATPath = doc.getElementsByTagName("KillBATPath").item(0).getFirstChild().getNodeValue();
 			System.out.println("KillBATPath : " + GlobalConfig.KillBATPath);
-
+			GlobalConfig.WS_Time_Period = Integer.valueOf(doc.getElementsByTagName("WS_Time_Period").item(0).getFirstChild().getNodeValue());
+			System.out.println("WS_Time_Period : " + GlobalConfig.WS_Time_Period);
+			GlobalConfig.INSERT_Time_Period = Integer.valueOf(doc.getElementsByTagName("INSERT_Time_Period").item(0).getFirstChild().getNodeValue());
+			System.out.println("INSERT_Time_Period : " + GlobalConfig.INSERT_Time_Period);
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
 			System.out.println("讀取Xml設定失敗.");
