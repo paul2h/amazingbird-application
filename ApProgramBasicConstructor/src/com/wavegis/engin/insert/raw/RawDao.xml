@@ -3,7 +3,7 @@
 <mapper namespace="com.wavegis.engin.insert.raw.RawDaoConnector">
 
 	<insert id="insertRawData" parameterType="java.util.List">
-		INSERT INTO level_raw_ftp(
+		INSERT INTO level_raw_ftp1(
 		stno,
 		datatime,
 		ch1_avg,
