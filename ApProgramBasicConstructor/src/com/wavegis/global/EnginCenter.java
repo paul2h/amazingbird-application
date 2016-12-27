@@ -7,8 +7,8 @@ import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.CCTVEngin;
 import com.wavegis.engin.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.ws.center.CenterWSEngin;
 import com.wavegis.engin.ws.wavegis.WavegisWSEngin;
-import com.wavegis.engin.ws.wra.WraWSEngin;
 
 public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
@@ -17,7 +17,7 @@ public class EnginCenter {
 			new WavegisWSEngin(),
 			new RainDataInsertEngin(),
 			new RawDataInsertEngin(),
-			new WraWSEngin()
+			new CenterWSEngin()
 	};
 
 	@SuppressWarnings("serial")

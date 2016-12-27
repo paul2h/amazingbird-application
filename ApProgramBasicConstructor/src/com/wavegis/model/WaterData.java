@@ -10,7 +10,6 @@ public class WaterData {
 	private double voltage;
 	private double waterlevel;
 	private double rainfall10min;
-	private RainData rainBase;
 
 	public String getStid() {
 		return stid;
@@ -58,14 +57,6 @@ public class WaterData {
 
 	public void setVoltage(double voltage) {
 		this.voltage = voltage;
-	}
-
-	public RainData getRainBase() {
-		return rainBase;
-	}
-
-	public void setRainBase(RainData rainBase) {
-		this.rainBase = rainBase;
 	}
 
 }

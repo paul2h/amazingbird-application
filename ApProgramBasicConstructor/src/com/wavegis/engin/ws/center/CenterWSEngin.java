@@ -1,4 +1,4 @@
-package com.wavegis.engin.ws.wra;
+package com.wavegis.engin.ws.center;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,12 +11,12 @@ import com.wavegis.global.tools.CenterWebServiceSOAPTool;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.WaterData;
 
-public class WraWSEngin extends TimerEngin {
-	private static final String enginID = "WraWS";
+public class CenterWSEngin extends TimerEngin {
+	private static final String enginID = "CenterWS";
 	private static final String enginName = "中央WS接收Engin";
-	private static final WraWSEnginView enginView = new WraWSEnginView();
+	private static final CenterWSEnginView enginView = new CenterWSEnginView();
 
-	private Logger logger = LogTool.getLogger(WraWSEngin.class.getName());
+	private Logger logger = LogTool.getLogger(CenterWSEngin.class.getName());
 
 	@Override
 	public String getEnginID() {
