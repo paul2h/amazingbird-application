@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wavegis.engin.db.DBDaoConnector">
+
+	<select id="getCCTVData" resultType="com.wavegis.model.CCTVData">
+			SELECT 
+				a._vr_no AS stid
+				, a._vr_name AS stname
+				, a._vr_ip AS ip
+				, a.url_suffix
+				, a._user AS account
+				, a._password AS password
+			FROM 
+				vr.vr_data a
+			ORDER BY 
+				a._vr_no
+			;
+	</select>
+</mapper>

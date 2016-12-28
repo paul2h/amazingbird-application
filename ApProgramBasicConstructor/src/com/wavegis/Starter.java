@@ -17,7 +17,7 @@ import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "2017水情介接-嘉義市1.0";
+	private static final String edition = "2017水情介接-嘉義市2.0";
 	private ApplicationContext context;
 	private Controller controller;
 
@@ -57,7 +57,17 @@ public class Starter {
 			System.out.println("TrayPassword : " + GlobalConfig.TrayPassword);
 			GlobalConfig.KillBATPath = doc.getElementsByTagName("KillBATPath").item(0).getFirstChild().getNodeValue();
 			System.out.println("KillBATPath : " + GlobalConfig.KillBATPath);
-
+			GlobalConfig.TimerPeriod = Integer.parseInt(doc.getElementsByTagName("TimerPeriod").item(0).getFirstChild().getNodeValue());
+			System.out.println("TimerPeriod : " + GlobalConfig.TimerPeriod);
+			GlobalConfig.TimerPeriod_DB = Integer.parseInt(doc.getElementsByTagName("TimerPeriod_DB").item(0).getFirstChild().getNodeValue());
+			System.out.println("TimerPeriod_DB : " + GlobalConfig.TimerPeriod_DB);
+			GlobalConfig.CCTVImagePath = doc.getElementsByTagName("CCTVImagePath").item(0).getFirstChild().getNodeValue();
+			System.out.println("CCTVImagePath : " + GlobalConfig.CCTVImagePath);
+			GlobalConfig.ImageDirPath = doc.getElementsByTagName("ImageDirPath").item(0).getFirstChild().getNodeValue();
+			System.out.println("ImageDirPath : " + GlobalConfig.ImageDirPath);
+			GlobalConfig.ImageNewDirPath = doc.getElementsByTagName("ImageNewDirPath").item(0).getFirstChild().getNodeValue();
+			System.out.println("ImageNewDirPath : " + GlobalConfig.ImageNewDirPath);
+			
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
 			System.out.println("讀取Xml設定失敗.");
@@ -72,8 +82,7 @@ public class Starter {
 	 */
 	public void initSpringConstruct() {
 		System.out.println("初始化Spring架構...");
-		context = new ClassPathXmlApplicationContext(
-				GlobalConfig.Spring_conf_path);
+		context = new ClassPathXmlApplicationContext(GlobalConfig.Spring_conf_path);
 		System.out.println("初始化Spring架構完成.");
 	}
 

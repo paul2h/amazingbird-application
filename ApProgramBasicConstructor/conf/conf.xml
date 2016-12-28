@@ -2,4 +2,14 @@
 <SETTING>
 	<TrayPassword>0921393905</TrayPassword>
 	<KillBATPath>./kill.bat</KillBATPath>
+	<TimerPeriod>60000</TimerPeriod>
+	<TimerPeriod_DB>3600000</TimerPeriod_DB>
+	<!-- CCTV介接 -->
+	<!-- 	圖片儲存位置 -->
+	<CCTVImagePath>D:/pic/</CCTVImagePath>
+	<!-- 圖片介接 -->
+	<!-- 	圖片來源位置 -->
+	<ImageDirPath>D:/pic/</ImageDirPath>
+	<!-- 	圖片儲存位置 -->
+	<ImageNewDirPath>D:/pic/</ImageNewDirPath>
 </SETTING>

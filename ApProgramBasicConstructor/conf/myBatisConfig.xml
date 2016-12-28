@@ -15,7 +15,7 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="org.postgresql.Driver" />
 				<property name="url"
-					value="jdbc:postgresql://127.0.0.1:5432/Demo" />
+					value="jdbc:postgresql://192.168.1.20:5430/locator4_chiayi_county_water" />
 				<property name="username" value="postgres" />
 				<property name="password" value="postgres" />
 				<property name="poolMaximumActiveConnections" value="10" />
@@ -27,5 +27,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="Dao.xml" />
+		<mapper resource="com/wavegis/engin/db/DBDao.xml" />
 	</mappers>
 </configuration>
