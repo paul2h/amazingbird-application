@@ -17,9 +17,10 @@ public class GlobalConfig {
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	
+
 	public static int TimerPeriod = 1000;
 	public static int TimerPeriod_DB = 3600000;
+	public static int TimerPeriod_SMS = 1000;
 	public static String TrayPassword = "123";
 	public static String KillBATPath = "D:/kill.bat";
 	// CCTV
@@ -28,5 +29,8 @@ public class GlobalConfig {
 	// 圖片
 	public static String ImageDirPath = "D:/";
 	public static String ImageNewDirPath = "D:/";
-	
+	// 簡訊發送
+	public static String SMS_Account = "11562";
+	public static String SMS_Password = "11562";
+
 }

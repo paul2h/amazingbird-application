@@ -17,7 +17,7 @@ import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "2017水情介接-嘉義市2.0";
+	private static final String edition = "2017水情介接-嘉義市3.0";
 	private ApplicationContext context;
 	private Controller controller;
 
@@ -61,13 +61,19 @@ public class Starter {
 			System.out.println("TimerPeriod : " + GlobalConfig.TimerPeriod);
 			GlobalConfig.TimerPeriod_DB = Integer.parseInt(doc.getElementsByTagName("TimerPeriod_DB").item(0).getFirstChild().getNodeValue());
 			System.out.println("TimerPeriod_DB : " + GlobalConfig.TimerPeriod_DB);
+			GlobalConfig.TimerPeriod_SMS = Integer.parseInt(doc.getElementsByTagName("TimerPeriod_SMS").item(0).getFirstChild().getNodeValue());
+			System.out.println("TimerPeriod_SMS : " + GlobalConfig.TimerPeriod_SMS);
 			GlobalConfig.CCTVImagePath = doc.getElementsByTagName("CCTVImagePath").item(0).getFirstChild().getNodeValue();
 			System.out.println("CCTVImagePath : " + GlobalConfig.CCTVImagePath);
 			GlobalConfig.ImageDirPath = doc.getElementsByTagName("ImageDirPath").item(0).getFirstChild().getNodeValue();
 			System.out.println("ImageDirPath : " + GlobalConfig.ImageDirPath);
 			GlobalConfig.ImageNewDirPath = doc.getElementsByTagName("ImageNewDirPath").item(0).getFirstChild().getNodeValue();
 			System.out.println("ImageNewDirPath : " + GlobalConfig.ImageNewDirPath);
-			
+			GlobalConfig.SMS_Account = doc.getElementsByTagName("SMS_Account").item(0).getFirstChild().getNodeValue();
+			System.out.println("SMS_Account : " + GlobalConfig.SMS_Account);
+			GlobalConfig.SMS_Password = doc.getElementsByTagName("SMS_Password").item(0).getFirstChild().getNodeValue();
+			System.out.println("SMS_Password : " + GlobalConfig.SMS_Password);
+
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
 			System.out.println("讀取Xml設定失敗.");

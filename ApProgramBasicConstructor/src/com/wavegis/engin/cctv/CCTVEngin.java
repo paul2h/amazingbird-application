@@ -21,8 +21,6 @@ import com.wavegis.global.tools.HttpImageTool;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.CCTVData;
 
-import com.wavegis.engin.cctv.CCTVEnginView;
-
 public class CCTVEngin extends TimerEngin{
 
 	private static final String enginID = "CCTV";

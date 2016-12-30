@@ -4,6 +4,8 @@
 	<KillBATPath>./kill.bat</KillBATPath>
 	<TimerPeriod>60000</TimerPeriod>
 	<TimerPeriod_DB>3600000</TimerPeriod_DB>
+	<TimerPeriod_SMS>3600000</TimerPeriod_SMS>
+	
 	<!-- CCTV介接 -->
 	<!-- 	圖片儲存位置 -->
 	<CCTVImagePath>D:/pic/</CCTVImagePath>
@@ -12,4 +14,7 @@
 	<ImageDirPath>D:/pic/</ImageDirPath>
 	<!-- 	圖片儲存位置 -->
 	<ImageNewDirPath>D:/pic/</ImageNewDirPath>
+	
+	<SMS_Account>11562</SMS_Account>
+	<SMS_Password>11562</SMS_Password>
 </SETTING>
