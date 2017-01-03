@@ -17,7 +17,7 @@ import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "2017水情介接-二河局1.0版";
+	private static final String edition = "2017水情介接-二河局2.0版";
 	private ApplicationContext context;
 	private Controller controller;
 
@@ -61,6 +61,9 @@ public class Starter {
 			System.out.println("WS_Time_Period : " + GlobalConfig.WS_Time_Period);
 			GlobalConfig.INSERT_Time_Period = Integer.valueOf(doc.getElementsByTagName("INSERT_Time_Period").item(0).getFirstChild().getNodeValue());
 			System.out.println("INSERT_Time_Period : " + GlobalConfig.INSERT_Time_Period);
+			GlobalConfig.WebServiceURL = doc.getElementsByTagName("WebServiceURL").item(0).getFirstChild().getNodeValue();
+			System.out.println("WebServiceURL : " + GlobalConfig.WebServiceURL);
+			
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
 			System.out.println("讀取Xml設定失敗.");

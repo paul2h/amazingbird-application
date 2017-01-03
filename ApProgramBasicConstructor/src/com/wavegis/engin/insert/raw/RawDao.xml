@@ -4,13 +4,13 @@
 
 	<insert id="insertRawData" parameterType="java.util.List">
 		INSERT INTO level_raw_ftp(
-		stno,
-		datatime,
-		ch1_avg,
-		ch2_avg
+			stno,
+			datatime,
+			ch1_avg,
+			ch2_avg
 		)VALUES
 		<foreach collection="list" item="element" index="index" open="("
-			separator="),(" close=")">
+			separator="),(" close=");">
 			#{element.stid},
 			#{element.lasttime},
 			#{element.waterlevel},

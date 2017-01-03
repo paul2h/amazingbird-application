@@ -49,6 +49,7 @@ public class RawDataInsertEngin extends TimerEngin {
 			showMessage("放入準備INSERT清單 : " + waterData.getStname() + " " + waterData.getLasttime());
 			waterDatas.add(waterData);
 		}
+		
 		if (waterDatas.size() > 0) {
 			showMessage("寫入資料中...");
 			dao.insertRawData(waterDatas);

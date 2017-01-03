@@ -6,12 +6,14 @@ import com.wavegis.engin.Engin;
 import com.wavegis.engin.EnginView;
 import com.wavegis.engin.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.ws.center.CenterWSEngin;
+import com.wavegis.engin.ws.taoyuan.ConvertXMLEngin;
 
 public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
 	public static final Engin[] Engins = {
-			new CenterWSEngin(),
-			new RawDataInsertEngin()
+			new CenterWSEngin()
+			, new RawDataInsertEngin()
+			, new ConvertXMLEngin()
 	};
 
 	@SuppressWarnings("serial")

@@ -4,4 +4,5 @@
 	<KillBATPath>./kill.bat</KillBATPath>
 	<WS_Time_Period>300000</WS_Time_Period>
 	<INSERT_Time_Period>300000</INSERT_Time_Period>
+	<WebServiceURL>http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</WebServiceURL>
 </SETTING>
