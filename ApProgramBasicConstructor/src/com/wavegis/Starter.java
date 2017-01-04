@@ -57,6 +57,8 @@ public class Starter {
 			System.out.println("TrayPassword : " + GlobalConfig.TrayPassword);
 			GlobalConfig.KillBATPath = doc.getElementsByTagName("KillBATPath").item(0).getFirstChild().getNodeValue();
 			System.out.println("KillBATPath : " + GlobalConfig.KillBATPath);
+			GlobalConfig.WebServiceURL = doc.getElementsByTagName("WebServiceURL").item(0).getFirstChild().getNodeValue();
+			System.out.println("WebServiceURL : " + GlobalConfig.WebServiceURL);
 
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
@@ -72,8 +74,7 @@ public class Starter {
 	 */
 	public void initSpringConstruct() {
 		System.out.println("初始化Spring架構...");
-		context = new ClassPathXmlApplicationContext(
-				GlobalConfig.Spring_conf_path);
+		context = new ClassPathXmlApplicationContext(GlobalConfig.Spring_conf_path);
 		System.out.println("初始化Spring架構完成.");
 	}
 

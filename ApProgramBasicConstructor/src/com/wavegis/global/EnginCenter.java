@@ -7,6 +7,7 @@ import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.CCTVEngin;
 import com.wavegis.engin.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.ws.taoyuan.ConvertToBeanEngin;
 import com.wavegis.engin.ws.wavegis.WavegisWSEngin;
 import com.wavegis.engin.ws.wra.WraWSEngin;
 
@@ -17,7 +18,8 @@ public class EnginCenter {
 			new WavegisWSEngin(),
 			new RainDataInsertEngin(),
 			new RawDataInsertEngin(),
-			new WraWSEngin()
+			new WraWSEngin(),
+			new ConvertToBeanEngin()
 	};
 
 	@SuppressWarnings("serial")

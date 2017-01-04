@@ -11,8 +11,7 @@ public class GlobalConfig {
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 
-
 	public static String TrayPassword = "123";
 	public static String KillBATPath = "D:/kill.bat";
-
+	public static String WebServiceURL = "http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML";
 }
