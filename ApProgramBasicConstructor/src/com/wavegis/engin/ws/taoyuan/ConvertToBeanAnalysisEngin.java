@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -97,7 +98,7 @@ public class ConvertToBeanAnalysisEngin implements AnalysisEngin<DynaBean>{
 						switch(nodeName){
 							case "DATATIME":
 								try {
-									nodeValue = new SimpleDateFormat("yyyy/MM/dd a hh:mm:ss").parse(nodeText);
+									nodeValue = new SimpleDateFormat("yyyy/MM/dd a hh:mm:ss", Locale.TAIWAN).parse(nodeText);
 								} catch(ParseException e){
 									e.printStackTrace();
 								}
