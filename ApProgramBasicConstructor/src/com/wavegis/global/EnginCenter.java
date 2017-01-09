@@ -7,6 +7,7 @@ import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.CCTVEngin;
 import com.wavegis.engin.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.qpesums.QpesumsReadEngin;
 import com.wavegis.engin.ws.taoyuan.ConvertToBeanEngin;
 import com.wavegis.engin.warn.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.warn.sms.SMSSendEngin;
@@ -24,7 +25,8 @@ public class EnginCenter {
 			new ConvertToBeanEngin(),
 			new CenterWSEngin(),
 			new AlertAnalysisEngin(),
-			new SMSSendEngin()
+			new SMSSendEngin(),
+			new QpesumsReadEngin()
 	};
 
 	@SuppressWarnings("serial")
