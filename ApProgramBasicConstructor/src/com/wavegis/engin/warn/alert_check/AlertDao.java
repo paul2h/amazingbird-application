@@ -38,8 +38,18 @@ public class AlertDao {
 	// #[[ 建置用Method
 	public AlertDao() throws IOException {
 		Resources.setCharset(Charset.forName("UTF-8"));
-		reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);// Reader會自動關掉 若有多個Connector要重複讀取
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
+		try {
+			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
+		} catch (Exception e) {
+			// 若匯出後要吃這個路徑
+			try {
+				reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path_Output);
+			} catch (IOException e1) {
+				System.out.println("DAO設定檔取得錯誤!!");
+				e1.printStackTrace();
+			}
+		}
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "AlertDaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
 		daoConnector = sqlSession.getMapper(AlertDaoConnector.class);
 	}

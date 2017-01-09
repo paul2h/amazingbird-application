@@ -8,7 +8,6 @@ import javax.swing.JTextArea;
 
 import com.wavegis.engin.EnginView;
 
-
 @SuppressWarnings("serial")
 public class AlertAnalysisEnginView extends JPanel implements EnginView {
 
@@ -42,6 +41,7 @@ public class AlertAnalysisEnginView extends JPanel implements EnginView {
 		messageCount++;
 		if (messageCount > 100) {
 			messageArea.setText(null);
+			messageCount = 0;
 		}
 		messageArea.append(message + "\n");
 		messageArea.setCaretPosition(messageArea.getText().length());

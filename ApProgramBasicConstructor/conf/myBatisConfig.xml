@@ -9,8 +9,35 @@
 	</settings>
 
 	<environments default="DaoEnvironment">
-		<!-- 本機端DB (Postgres locator4) -->
 		<environment id="DaoEnvironment">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="org.postgresql.Driver" />
+				<property name="url"
+					value="jdbc:postgresql://192.168.1.20:5430/procal_chiayi" />
+				<property name="username" value="postgres" />
+				<property name="password" value="postgres" />
+				<property name="poolMaximumActiveConnections" value="10" />
+				<property name="poolMaximumIdleConnections" value="5" />
+				<property name="poolPingEnabled" value="true" />
+				<property name="poolPingQuery" value="select 1" />
+			</dataSource>
+		</environment>
+		<environment id="ConfigDaoEnvironment">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="org.postgresql.Driver" />
+				<property name="url"
+					value="jdbc:postgresql://192.168.1.20:5430/locator4_chiayi_county_water" />
+				<property name="username" value="postgres" />
+				<property name="password" value="postgres" />
+				<property name="poolMaximumActiveConnections" value="10" />
+				<property name="poolMaximumIdleConnections" value="5" />
+				<property name="poolPingEnabled" value="true" />
+				<property name="poolPingQuery" value="select 1" />
+			</dataSource>
+		</environment>
+		<environment id="AlertDaoEnvironment">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="org.postgresql.Driver" />
@@ -28,6 +55,6 @@
 	<mappers>
 		<mapper resource="Dao.xml" />
 		<mapper resource="com/wavegis/engin/db/DBDao.xml" />
-		<mapper resource="com/wavegis/engin/warn/alert_check/AlertDao.xml"/>
+		<mapper resource="com/wavegis/engin/warn/alert_check/AlertDao.xml" />
 	</mappers>
 </configuration>

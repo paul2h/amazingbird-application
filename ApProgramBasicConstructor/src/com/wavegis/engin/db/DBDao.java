@@ -49,7 +49,7 @@ public class DBDao {
 				e1.printStackTrace();
 			}
 		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "ConfigDaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
 		daoConnector = sqlSession.getMapper(DBDaoConnector.class);
 		instance = this;
