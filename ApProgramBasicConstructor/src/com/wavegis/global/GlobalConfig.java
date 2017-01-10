@@ -3,6 +3,7 @@ package com.wavegis.global;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
 
@@ -18,19 +19,8 @@ public class GlobalConfig {
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-	public static int TimerPeriod = 1000;
-	public static int TimerPeriod_DB = 3600000;
-	public static int TimerPeriod_SMS = 1000;
-	public static String TrayPassword = "123";
-	public static String KillBATPath = "D:/kill.bat";
-	// CCTV
 	public static List<CCTVData> CCTV_DATA_LIST = new ArrayList<CCTVData>();
-	public static String CCTVImagePath = "D:/";
-	// 圖片
-	public static String ImageDirPath = "D:/";
-	public static String ImageNewDirPath = "D:/";
-	// 簡訊發送
-	public static String SMS_Account = "11562";
-	public static String SMS_Password = "11562";
+	
+	public static Properties XML_CONFIG = new Properties();
 
 }

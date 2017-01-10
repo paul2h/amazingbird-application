@@ -69,7 +69,7 @@ public class SMSSendEngin implements Engin {
 				checkSend();
 			}
 		};
-		new Timer().schedule(timerTask, 1000, GlobalConfig.TimerPeriod_SMS);
+		new Timer().schedule(timerTask, 1000, Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_SMS")));
 		isStarted = true;
 		showMessage("Engin已啟動");
 		return true;
@@ -94,8 +94,8 @@ public class SMSSendEngin implements Engin {
 		showMessage("send alert " + alertData.getStid());
 		// #[[ 第一封
 		showMessage("傳送警界簡訊第一封(共2封)...");
-		String account = GlobalConfig.SMS_Account;
-		String password = GlobalConfig.SMS_Password;
+		String account = GlobalConfig.XML_CONFIG.getProperty("SMS_Account");
+		String password = GlobalConfig.XML_CONFIG.getProperty("SMS_Password");
 		String message = String.format("水位站警訊訊息:(%s)\n%s\n", alertData.getStnm(), alertData.getMessage());
 		String urlString = "http://imsp.emome.net:8008/imsp/sms/servlet/SubmitSM?account=" + account
 				+ "&password=" + password

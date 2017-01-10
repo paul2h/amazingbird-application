@@ -7,6 +7,7 @@ import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.CCTVEngin;
 import com.wavegis.engin.db.DBEngin;
 import com.wavegis.engin.image.ImageEngin;
+import com.wavegis.engin.qpesums.QpesumsReadEngin;
 import com.wavegis.engin.warn.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.warn.sms.SMSSendEngin;
 
@@ -17,7 +18,8 @@ public class EnginCenter {
 			new ImageEngin(),
 			new DBEngin(),
 			new AlertAnalysisEngin(),
-			new SMSSendEngin()
+			new SMSSendEngin(),
+			new QpesumsReadEngin()
 	};
 
 	@SuppressWarnings("serial")

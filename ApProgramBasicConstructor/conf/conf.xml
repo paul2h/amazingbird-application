@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SETTING>
-	<TrayPassword>0921393905</TrayPassword>
-	<KillBATPath>./kill.bat</KillBATPath>
-	<TimerPeriod>60000</TimerPeriod>
-	<TimerPeriod_DB>3600000</TimerPeriod_DB>
-	<TimerPeriod_SMS>3600000</TimerPeriod_SMS>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment></comment>
+	<entry key="TrayPassword">0921393905</entry>
+	<entry key="KillBATPath">./kill.bat</entry>
+	<entry key="WebServiceURL">http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</entry>
+	
+	<entry key="TimerPeriod">60000</entry>
+	<entry key="TimerPeriod_DB">3600000</entry>
+	<entry key="TimerPeriod_SMS">3600000</entry>
 	
 	<!-- CCTV介接 -->
 	<!-- 	圖片儲存位置 -->
-	<CCTVImagePath>D:/pic/</CCTVImagePath>
+	<entry key="CCTVImagePath">D:/pic/</entry>
+	
 	<!-- 圖片介接 -->
 	<!-- 	圖片來源位置 -->
-	<ImageDirPath>D:/pic/</ImageDirPath>
+	<entry key="ImageDirPath">D:/pic/</entry>
 	<!-- 	圖片儲存位置 -->
-	<ImageNewDirPath>D:/pic/</ImageNewDirPath>
+	<entry key="ImageNewDirPath">D:/pic/</entry>
 	
-	<SMS_Account>11562</SMS_Account>
-	<SMS_Password>11562</SMS_Password>
-</SETTING>
+	<!-- 簡訊發送 -->
+	<entry key="SMS_Account">11562</entry>
+	<entry key="SMS_Password">11562</entry>
+	
+	<!-- QPESUMS解讀 -->
+	<entry key=""></entry>
+</properties>
