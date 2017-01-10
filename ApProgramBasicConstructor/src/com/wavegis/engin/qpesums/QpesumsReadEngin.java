@@ -15,6 +15,11 @@ public class QpesumsReadEngin extends TimerEngin {
 	private static final String enginName = "QpesumsEngin";
 	private static final QpesumsReadEnginView enginView = new QpesumsReadEnginView();
 	private Logger logger = LogTool.getLogger(QpesumsReadEngin.class.getName());
+	
+	private static String pngFilePath = "D:/QP/png/original2.png";
+	private static String outputResultPath = "D:/QP/jpg/result2.jpg";
+	private static String map_image_path = "D:/QP/resource/map.jpg";
+	private static String boundaryMapImagePath = "D:/QP/resource/county_map.png";
 
 	public QpesumsReadEngin() {
 		setTimeout(1000 * 30);
@@ -40,7 +45,7 @@ public class QpesumsReadEngin extends TimerEngin {
 		showMessage("開始取得QPESUMS資料...");
 		String gzFilePath = getLastFile("D:\\QP\\original");
 		showMessage("開始分析產圖 : " + gzFilePath);
-		QPESUMSTool.transDataProcess(gzFilePath);
+		QPESUMSTool.transDataProcess(gzFilePath, pngFilePath, map_image_path, boundaryMapImagePath, outputResultPath);
 		showMessage("資料讀取完成.");
 	}
 

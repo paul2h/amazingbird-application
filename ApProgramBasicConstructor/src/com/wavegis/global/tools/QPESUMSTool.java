@@ -16,11 +16,6 @@ import javax.imageio.ImageIO;
 
 public class QPESUMSTool {
 
-	private static String pngFilePath = "D:/QP/png/original2.png";
-	private static String outputResultPath = "D:/QP/jpg/result2.jpg";
-	private static String map_image_path = "D:/QP/resource/map.jpg";
-	private static String boundaryMapImagePath = "D:/QP/resource/county_map.png";
-
 	private static int image_width = 0;
 	private static int image_height = 0;
 
@@ -58,13 +53,13 @@ public class QPESUMSTool {
 			(255 << 16 | 255 << 8 | 255)
 	};
 
-	public static void transDataProcess(String gzFilePath) {
-		checkFoldExist();
-		extract_gz(gzFilePath);
-		mergeImage(gzFilePath);
+	public static void transDataProcess(String gzFilePath, String pngFilePath , String map_image_path , String boundaryMapImagePath, String outputResultPath) {
+		checkFoldExist(pngFilePath, outputResultPath);
+		extract_gz(gzFilePath, pngFilePath);
+		mergeImage(map_image_path, pngFilePath, pngFilePath, boundaryMapImagePath, outputResultPath);
 	}
 
-	private static void checkFoldExist() {
+	private static void checkFoldExist(String pngFilePath, String outputResultPath) {
 		File pngFold = new File(pngFilePath).getParentFile();
 		if (!pngFold.exists()) {
 			pngFold.mkdirs();
@@ -86,7 +81,7 @@ public class QPESUMSTool {
 	 * @return true : success <br>
 	 *         false : fail
 	 */
-	public static boolean extract_gz(String fileName) {
+	public static boolean extract_gz(String fileName, String outputPngFilePath) {
 		boolean result = false;
 		int nRadars = 0;
 		int x = 0, y = 0;
@@ -196,7 +191,7 @@ public class QPESUMSTool {
 
 			bmp.flush();
 
-			File outputfile = new File(pngFilePath);
+			File outputfile = new File(outputPngFilePath);
 			ImageIO.write(bmp, "png", outputfile);
 
 			result = true;
@@ -272,8 +267,8 @@ public class QPESUMSTool {
 
 		return result;
 	}
-	
-	private static void mergeImage(String originalFileString) {
+
+	private static void mergeImage(String map_image_path, String originalFileString, String pngFilePath , String boundaryMapImagePath , String outputResultPath) {
 		try {
 			// #[[ 讀入所需資訊
 			/* 底圖圖層 */
