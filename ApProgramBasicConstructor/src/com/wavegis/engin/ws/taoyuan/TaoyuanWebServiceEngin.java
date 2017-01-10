@@ -6,28 +6,33 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.beanutils.DynaBean;
+import org.apache.commons.beanutils.DynaProperty;
 import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.EnginView;
 import com.wavegis.engin.TimerEngin;
+import com.wavegis.engin.ws.ConvertXMLAnalysisEngin;
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.WaterData;
 
-public class ConvertXMLEngin extends TimerEngin {
+public class TaoyuanWebServiceEngin extends TimerEngin {
 
-	private static final String enginID = "ConvertXMLEngin";
-	private static final String enginName = "WS轉換資料Engin";
-	private static final ConvertXMLEnginView enginView = new ConvertXMLEnginView();
+	private static final String enginID = "TaoyuanWebService";
+	private static final String enginName = "桃園WebService";
+	private static final TaoyuanWebServiceEnginView enginView = new TaoyuanWebServiceEnginView();
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	
-	public ConvertXMLEngin(){
-		setTimeout(GlobalConfig.WS_Time_Period);
+	public TaoyuanWebServiceEngin(){
+		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("WS_Time_Period"));
 	}
 	
 	@Override
@@ -49,7 +54,7 @@ public class ConvertXMLEngin extends TimerEngin {
 	public void timerAction(){
 		showMessage("開始轉換資料...");
 		try {
-			URL url = new URL(GlobalConfig.WebServiceURL);
+			URL url = new URL(GlobalConfig.CONFPIG_PROPERTIES.getProperty("TaoyuanWebServiceURL"));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			String line;
 			StringBuffer sb = new StringBuffer();
@@ -65,7 +70,20 @@ public class ConvertXMLEngin extends TimerEngin {
 			if(greaterIndex > 0){
 				line = line.substring(greaterIndex + 2);
 			}
-			List<DynaBean> beanList = new ConvertXMLAnalysisEngin().analysisOriginalData(line);
+			DynaProperty[] dynaPropertys = new DynaProperty[]{
+				new DynaProperty("DATATIME")
+				, new DynaProperty("LON")
+				, new DynaProperty("LAT")
+				, new DynaProperty("STATION")
+				, new DynaProperty("STATION_ID")
+				, new DynaProperty("TOWN")
+				, new DynaProperty("REVETMENT_M")
+				, new DynaProperty("WATERHEIGHT_M")
+				, new DynaProperty("PHOTO_PATH")
+				, new DynaProperty("STREAM_HTML")
+				, new DynaProperty("STATUS")
+			};
+			List<DynaBean> beanList = new ConvertXMLAnalysisEngin("WaterLevel", dynaPropertys).analysisOriginalData(line);
 			
 			if(beanList != null){
 				for(DynaBean bean : beanList){
@@ -79,10 +97,11 @@ public class ConvertXMLEngin extends TimerEngin {
 							waterData.setStname(bean.get("STATION").toString());
 						}
 						if(bean.get("DATATIME") != null){
-							waterData.setLasttime(new Timestamp(((Date)bean.get("DATATIME")).getTime()));
+							Date datetime = new SimpleDateFormat("yyyy/MM/dd a hh:mm:ss", Locale.TAIWAN).parse(bean.get("DATATIME").toString());
+							waterData.setLasttime(new Timestamp(datetime.getTime()));
 						}
 						if(bean.get("WATERHEIGHT_M") != null){
-							waterData.setWaterlevel((double)bean.get("WATERHEIGHT_M"));
+							waterData.setWaterlevel(Double.parseDouble(bean.get("WATERHEIGHT_M").toString()));
 						}
 						ProxyData.WATER_INSERT_QUEUE.offer(waterData);
 					}
@@ -94,6 +113,10 @@ public class ConvertXMLEngin extends TimerEngin {
 			
 			showMessage("資料轉換失敗...");
 		} catch(IOException e){
+			e.printStackTrace();
+			
+			showMessage("資料轉換失敗...");
+		} catch(ParseException e){
 			e.printStackTrace();
 			
 			showMessage("資料轉換失敗...");

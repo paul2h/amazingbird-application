@@ -22,7 +22,7 @@ public class RawDataInsertEngin extends TimerEngin {
 	private Logger logger;
 
 	public RawDataInsertEngin() {
-		setTimeout(GlobalConfig.INSERT_Time_Period);
+		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("INSERT_Time_Period"));
 		logger = LogTool.getLogger(RawDataInsertEngin.class.getName());
 	}
 

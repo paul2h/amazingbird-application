@@ -3,9 +3,9 @@ package com.wavegis.engin.ws.taoyuan;
 import com.wavegis.engin.SimpleEnginView;
 
 @SuppressWarnings("serial")
-public class ConvertXMLEnginView extends SimpleEnginView{
+public class TaoyuanWebServiceEnginView extends SimpleEnginView{
 
-	private static final String enginID = "ConvertXMLEngin";
+	private static final String enginID = "TaoyuanWebService";
 	
 	@Override
 	public String getEnginID() {
