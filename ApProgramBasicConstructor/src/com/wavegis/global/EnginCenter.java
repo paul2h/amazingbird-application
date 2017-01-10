@@ -5,6 +5,8 @@ import java.util.HashMap;
 import com.wavegis.engin.Engin;
 import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.CCTVEngin;
+import com.wavegis.engin.cctv.FakeImageEngin;
+import com.wavegis.engin.cctv.ImageEngin;
 import com.wavegis.engin.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.qpesums.QpesumsReadEngin;
@@ -26,7 +28,9 @@ public class EnginCenter {
 			new CenterWSEngin(),
 			new AlertAnalysisEngin(),
 			new SMSSendEngin(),
-			new QpesumsReadEngin()
+			new QpesumsReadEngin(),
+			new ImageEngin(),
+			new FakeImageEngin()
 	};
 
 	@SuppressWarnings("serial")
