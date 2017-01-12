@@ -1,4 +1,4 @@
-package com.wavegis.engin.db;
+package com.wavegis.engin.db.select;
 
 import java.util.Date;
 import java.util.List;
@@ -11,18 +11,18 @@ import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.CCTVData;
 
-public class DBEngin implements Engin{
+public class DBConfigEngin implements Engin{
 
-	private static final String enginID = "DB";
-	private static final String enginName = "DB讀取Engin";
-	private static final DBEnginView enginView = new DBEnginView();
+	private static final String enginID = "DBConfig";
+	private static final String enginName = "DB設定檔讀取Engin";
+	private static final DBConfigEnginView enginView = new DBConfigEnginView();
 	
-	private DBDao dao;
+	private DBConfigDao dao;
 	private Logger logger;
 
-	public DBEngin(){
-		logger = LogTool.getLogger(DBEngin.class.getName());
-		dao = new DBDao();
+	public DBConfigEngin(){
+		logger = LogTool.getLogger(DBConfigEngin.class.getName());
+		dao = new DBConfigDao();
 	}
 	
 	@Override

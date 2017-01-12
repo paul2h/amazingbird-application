@@ -26,4 +26,7 @@
 	
 	<!-- QPESUMS解讀 -->
 	<entry key=""></entry>
+	
+	<!-- 感測器接受 -->
+	<entry key="SensorReceivingPort">9999</entry>
 </properties>

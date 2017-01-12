@@ -1,4 +1,4 @@
-package com.wavegis.engin.db;
+package com.wavegis.engin.db.select;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -19,14 +19,14 @@ import com.wavegis.model.CCTVData;
  * <pre>
  * 使用方法:mybatis
  */
-public class DBDao {
-	static DBDao instance;
+public class DBConfigDao {
+	static DBConfigDao instance;
 
 	/* 取得config檔的reader */
 	private Reader reader;
 
 	// #[[DaoConnector List
-	private DBDaoConnector daoConnector;
+	private DBConfigDaoConnector daoConnector;
 	// ]] Dao List */
 
 	// #[[ myBatis物件
@@ -36,7 +36,7 @@ public class DBDao {
 	// ]]myBatis物件
 
 	// #[[ 建置用Method
-	public DBDao() {
+	public DBConfigDao() {
 		Resources.setCharset(Charset.forName("UTF-8"));
 		try {
 			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
@@ -51,13 +51,13 @@ public class DBDao {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "ConfigDaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
-		daoConnector = sqlSession.getMapper(DBDaoConnector.class);
+		daoConnector = sqlSession.getMapper(DBConfigDaoConnector.class);
 		instance = this;
 	}
 
-	public static DBDao getInstance() {
+	public static DBConfigDao getInstance() {
 		if (instance == null) {
-			instance = new DBDao();
+			instance = new DBConfigDao();
 		}
 		return instance;
 	}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wavegis.engin.db.insert.water.WaterDataDaoConnector">
+
+	<insert id="insertWaterData" parameterType="java.util.List">
+		INSERT INTO public.level_raw_ftp(
+			stno
+			, datatime
+			, ch1_avg
+			, ch2_avg
+		)VALUES
+		<foreach collection="list" item="element" index="index" open="("
+			separator="),(" close=");">
+			#{element.stid}
+			, #{element.lasttime}
+			, ${element.waterlevel}
+			, ${element.voltage}
+		</foreach>
+	</insert>
+	<insert id="insertRainData" parameterType="java.util.List">
+		INSERT INTO public.rain(
+			stid
+			, _time
+			, min_10
+			, rain
+			, hour_3
+			, hour_6
+			, hour_12
+			, hour_24
+			, hour_36
+			, hour_72
+		)VALUES
+		<foreach collection="list" item="element" index="index" open="("
+			separator="),(" close=");">
+			#{element.stid}
+			, SUBSTRING(#{element.time}, 1, 12)
+			, ${element.min_10}
+			, ${element.hour_1}
+			, ${element.hour_3}
+			, ${element.hour_6}
+			, ${element.hour_12}
+			, ${element.hour_24}
+			, ${element.hour_36}
+			, ${element.hour_72}
+		</foreach>
+	</insert>
+
+</mapper>
