@@ -270,10 +270,10 @@ public class WGWebServiceSOAPTool {
 				String tagName = dataElement.getTagName();
 				switch (tagName) {
 				case "stno":
-					rainData.setStno(dataElement.getValue());
+					rainData.setStid(dataElement.getValue());
 					break;
 				case "stnm":
-					rainData.setStnm(dataElement.getValue());
+					rainData.setStname(dataElement.getValue());
 					break;
 				case "time":
 					try {
@@ -287,7 +287,7 @@ public class WGWebServiceSOAPTool {
 					rainData.setMin_10(Double.valueOf(dataElement.getValue()));
 					break;
 				case "rain":
-					rainData.setRain(Double.valueOf(dataElement.getValue()));
+					rainData.setRain_current(Double.valueOf(dataElement.getValue()));
 					break;
 				case "hour_3":
 					rainData.setHour_3(Double.valueOf(dataElement.getValue()));
