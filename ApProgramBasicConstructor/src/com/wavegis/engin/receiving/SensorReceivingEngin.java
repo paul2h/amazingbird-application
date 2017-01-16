@@ -105,12 +105,10 @@ public class SensorReceivingEngin implements Engin{
 					while(isStarted){
     					Socket socket = serverSocket.accept();
     					
-    					if (executorService == null) {
+    					if(executorService == null){
     						executorService = Executors.newCachedThreadPool();
-    						
-    						executorService.execute(new DataReceiving(engin, socket));
     					}
-    					
+    					executorService.execute(new DataReceiving(engin, socket));
 					}
 				} catch(IOException e){
 					e.printStackTrace();

@@ -55,6 +55,11 @@ public class WaterDataInsertEngin extends TimerEngin {
 				if(rainData.getRain_current() >= 0){
 					//showMessage("放入準備待寫入清單 : " + rainData.getStid() + ", " + rainData.getLasttime());
 					
+					if(rainData.getStid() == null){
+						continue;
+					} else if(rainData.getLasttime() == null){
+						continue;
+					}
 					if(rainData.getVoltage() == 0){
 						rainData.setVoltage(15);
 					}
@@ -69,6 +74,11 @@ public class WaterDataInsertEngin extends TimerEngin {
 				if(waterData.getWaterlevel() >= 0){
 					//showMessage("放入準備待寫入清單 : " + waterData.getStid() + ", " + waterData.getLasttime());
 					
+					if(waterData.getStid() == null){
+						continue;
+					} else if(waterData.getLasttime() == null){
+						continue;
+					}
 					if(waterData.getVoltage() == 0){
 						waterData.setVoltage(15);
 					}
