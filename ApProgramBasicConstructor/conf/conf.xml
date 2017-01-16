@@ -17,6 +17,7 @@
 	<!-- 圖片介接 -->
 	<!-- 	圖片來源位置 -->
 	<entry key="ImageDirPath">D:/pic/</entry>
+	
 	<!-- 	圖片儲存位置 -->
 	<entry key="ImageNewDirPath">D:/pic/</entry>
 	
