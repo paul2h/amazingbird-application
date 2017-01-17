@@ -5,29 +5,38 @@
 	<entry key="TrayPassword">0921393905</entry>
 	<entry key="KillBATPath">./kill.bat</entry>
 	<entry key="WebServiceURL">http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</entry>
-	
+
 	<entry key="TimerPeriod">60000</entry>
 	<entry key="TimerPeriod_DB">3600000</entry>
 	<entry key="TimerPeriod_SMS">3600000</entry>
-	
+
 	<!-- CCTV介接 -->
-	<!-- 	圖片儲存位置 -->
+	<!-- 圖片儲存位置 -->
 	<entry key="CCTVImagePath">D:/pic/</entry>
-	
+
 	<!-- 圖片介接 -->
-	<!-- 	圖片來源位置 -->
+	<!-- 圖片來源位置 -->
 	<entry key="ImageDirPath">D:/pic/</entry>
-	
-	<!-- 	圖片儲存位置 -->
+
+	<!-- 圖片儲存位置 -->
 	<entry key="ImageNewDirPath">D:/pic/</entry>
-	
+
 	<!-- 簡訊發送 -->
 	<entry key="SMS_Account">11562</entry>
 	<entry key="SMS_Password">11562</entry>
-	
+
 	<!-- QPESUMS解讀 -->
-	<entry key=""></entry>
-	
+	<entry key="gzDirPath">D:/QP/original</entry>
+	<entry key="map_image_path">D:/QP/resource/map.jpg</entry>
+	<entry key="boundaryMapImagePath">D:/QP/resource/county_map.png</entry>
+
+	<entry key="qp_pngFilePath">D:/QP/png/qpfqpe_060min.png</entry>
+	<entry key="qp_outputResultPath">D:/QP/jpg/result2.jpg</entry>
+
+	<entry key="oneHR_pngFilePath">D:/QP/png/CB_GC_PCP_1H_RAD.png</entry>
+	<entry key="oneHR_outputResultPath">D:/QP/jpg/result3.jpg</entry>
+
+
 	<!-- 感測器接受 -->
 	<entry key="SensorReceivingPort">9999</entry>
 </properties>
