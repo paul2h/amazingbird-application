@@ -39,4 +39,5 @@
 
 	<!-- 感測器接受 -->
 	<entry key="SensorReceivingPort">9999</entry>
+	<entry key="SensorAckMessage">ACK</entry>
 </properties>

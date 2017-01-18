@@ -4,10 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.ImageIcon;
 
 import com.wavegis.model.CCTVData;
+import com.wavegis.model.WaterData;
 
 public class GlobalConfig {
 
@@ -20,6 +22,7 @@ public class GlobalConfig {
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	public static List<CCTVData> CCTV_DATA_LIST = new ArrayList<CCTVData>();
+	public static ConcurrentHashMap<String, WaterData> RIVER_BOTTOM_DATAS = new ConcurrentHashMap<>();
 	
 	public static Properties XML_CONFIG = new Properties();
 
