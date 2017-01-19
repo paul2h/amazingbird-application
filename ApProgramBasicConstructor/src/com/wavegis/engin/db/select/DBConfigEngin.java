@@ -50,6 +50,7 @@ public class DBConfigEngin implements Engin {
 		GlobalConfig.CCTV_DATA_LIST.clear();
 
 		for (CCTVData cctvData : cctvDataList) {
+			showMessage("讀取CCTV資料 : " + cctvData.getStname());
 			GlobalConfig.CCTV_DATA_LIST.add(cctvData);
 		}
 		showMessage(GlobalConfig.dateFormat.format(new Date()) + " CCTV資料取得結束.");
