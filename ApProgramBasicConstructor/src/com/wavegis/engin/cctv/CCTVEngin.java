@@ -42,7 +42,7 @@ public class CCTVEngin extends TimerEngin {
 	public void timerAction() {
 		showMessage("開始取得影像...");
 		for (CCTVData cctvData : new ArrayList<CCTVData>()) {// TODO 需放入實際CCTV清單資料
-			showMessage(cctvData.getStname() + "...");
+			showMessage(cctvData.getStname() + "..." + cctvData.getURL());
 			try {
 				if (cctvData.isNeedLogin()) {
 					HttpImageTool.getAuthorizedImage(cctvData.getURL(), cctvData.getAccount(), cctvData.getPassword(), cctvData.getSavePath());
