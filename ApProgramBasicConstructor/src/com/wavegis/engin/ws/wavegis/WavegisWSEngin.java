@@ -46,7 +46,7 @@ public class WavegisWSEngin extends TimerEngin {
 			showMessage("雨量:");
 			List<RainData> rainDatas = WGWebServiceSOAPTool.getRainData("http://210.69.166.179/ChiayiCounty/ws/WaterLevelAppService");
 			for (RainData rainData : rainDatas) {
-				showMessage(rainData.getStno()+" "+rainData.getMin_10()+" "+rainData.getLasttime()+" "+rainData.getRain());
+				showMessage(rainData.getStid()+" "+rainData.getMin_10()+" "+rainData.getLasttime()+" "+rainData.getRain_current());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
