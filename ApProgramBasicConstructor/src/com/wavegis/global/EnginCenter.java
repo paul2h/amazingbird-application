@@ -6,7 +6,7 @@ import com.wavegis.engin.Engin;
 import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.hsinchu.HsinchuCCTVEngin;
 import com.wavegis.engin.cctv.maoli.MaoliCCTVEngin;
-import com.wavegis.engin.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.ws.center.CenterWSEngin;
 import com.wavegis.engin.ws.hsinchu.HsinchuWebServiceEngin;
 import com.wavegis.engin.ws.maoli.MaoliWebSeriveEngin;
