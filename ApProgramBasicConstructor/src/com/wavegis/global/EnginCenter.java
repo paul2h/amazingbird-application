@@ -7,6 +7,8 @@ import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.CCTVEngin;
 import com.wavegis.engin.cctv.FakeImageEngin;
 import com.wavegis.engin.cctv.ImageEngin;
+import com.wavegis.engin.cctv.ImageTransClientEngin;
+import com.wavegis.engin.cctv.ImageTransServerEngin;
 import com.wavegis.engin.db.DBEngin;
 import com.wavegis.engin.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.insert.raw.RawDataInsertEngin;
@@ -32,7 +34,9 @@ public class EnginCenter {
 			new QpesumsReadEngin(),
 			new ImageEngin(),
 			new FakeImageEngin(),
-			new DBEngin()
+			new DBEngin(),
+			new ImageTransServerEngin(),
+			new ImageTransClientEngin()
 	};
 
 	@SuppressWarnings("serial")
