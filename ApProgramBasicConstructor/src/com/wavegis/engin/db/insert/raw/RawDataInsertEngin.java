@@ -1,4 +1,4 @@
-package com.wavegis.engin.insert.raw;
+package com.wavegis.engin.db.insert.raw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class RawDataInsertEngin extends TimerEngin {
 	private Logger logger;
 
 	public RawDataInsertEngin() {
-		setTimeout(GlobalConfig.INSERT_Time_Period);
+		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("INSERT_Time_Period"));
 		logger = LogTool.getLogger(RawDataInsertEngin.class.getName());
 	}
 
@@ -49,6 +49,7 @@ public class RawDataInsertEngin extends TimerEngin {
 			showMessage("放入準備INSERT清單 : " + waterData.getStname() + " " + waterData.getLasttime());
 			waterDatas.add(waterData);
 		}
+		
 		if (waterDatas.size() > 0) {
 			showMessage("寫入資料中...");
 			dao.insertRawData(waterDatas);

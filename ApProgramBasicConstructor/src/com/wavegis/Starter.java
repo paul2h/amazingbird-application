@@ -1,16 +1,13 @@
 package com.wavegis;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.w3c.dom.Document;
 
 import com.wavegis.basic_construction.Controller;
 import com.wavegis.global.GlobalConfig;
@@ -34,7 +31,7 @@ public class Starter {
 		try {
 			initXmlSetting();
 			initSpringConstruct();
-			createKillBatFile(GlobalConfig.KillBATPath);
+			createKillBatFile(GlobalConfig.CONFPIG_PROPERTIES.getProperty("KillBATPath"));
 			// 設定&顯現主視窗
 			controller = (Controller) context.getBean("Controller");
 			controller.startApplication(edition);
@@ -47,20 +44,13 @@ public class Starter {
 	private void initXmlSetting() {
 		try {
 			System.out.println("讀取Xml設定檔...");
-			// 讀取XML檔案
-			File xmlFile = new File(GlobalConfig.Conf_XML_path);
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(xmlFile);
-			// 讀取各設定
-			GlobalConfig.TrayPassword = doc.getElementsByTagName("TrayPassword").item(0).getFirstChild().getNodeValue();
-			System.out.println("TrayPassword : " + GlobalConfig.TrayPassword);
-			GlobalConfig.KillBATPath = doc.getElementsByTagName("KillBATPath").item(0).getFirstChild().getNodeValue();
-			System.out.println("KillBATPath : " + GlobalConfig.KillBATPath);
-			GlobalConfig.WS_Time_Period = Integer.valueOf(doc.getElementsByTagName("WS_Time_Period").item(0).getFirstChild().getNodeValue());
-			System.out.println("WS_Time_Period : " + GlobalConfig.WS_Time_Period);
-			GlobalConfig.INSERT_Time_Period = Integer.valueOf(doc.getElementsByTagName("INSERT_Time_Period").item(0).getFirstChild().getNodeValue());
-			System.out.println("INSERT_Time_Period : " + GlobalConfig.INSERT_Time_Period);
+			
+			FileInputStream fis = new FileInputStream(new File(GlobalConfig.Conf_XML_path));
+			
+			GlobalConfig.CONFPIG_PROPERTIES.loadFromXML(fis);
+			
+			fis.close();
+			
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
 			System.out.println("讀取Xml設定失敗.");

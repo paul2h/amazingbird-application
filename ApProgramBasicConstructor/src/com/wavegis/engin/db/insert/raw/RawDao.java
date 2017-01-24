@@ -1,4 +1,4 @@
-package com.wavegis.engin.insert.raw;
+package com.wavegis.engin.db.insert.raw;
 
 import java.io.IOException;
 import java.io.Reader;

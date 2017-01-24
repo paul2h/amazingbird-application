@@ -21,7 +21,7 @@ public class CenterWSEngin extends TimerEngin {
 	private Logger logger = LogTool.getLogger(CenterWSEngin.class.getName());
 	
 	public CenterWSEngin() {
-		setTimeout(GlobalConfig.WS_Time_Period);
+		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("WS_Time_Period"));
 	}
 
 	@Override

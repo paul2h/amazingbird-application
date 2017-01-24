@@ -58,7 +58,7 @@ public class MainUI extends JFrame implements ActionListener {
 	public void start(String edition) {
 		this.edition = edition;
 		initUI();
-		initTray(GlobalConfig.TrayPassword, edition);
+		initTray(GlobalConfig.CONFPIG_PROPERTIES.getProperty("TrayPassword"), edition);
 		initIcon();
 		setCloseConfirm();
 	}
