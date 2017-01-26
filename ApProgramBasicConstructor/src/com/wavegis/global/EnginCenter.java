@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.wavegis.engin.Engin;
 import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.hsinchu.HsinchuCCTVEngin;
+import com.wavegis.engin.cctv.image_trans.ImageTransClientEngin;
 import com.wavegis.engin.cctv.maoli.MaoliCCTVEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.ws.center.CenterWSEngin;
@@ -23,6 +24,7 @@ public class EnginCenter {
 			//, new HsinchuCityWebServiceEngin()
 			, new MaoliCCTVEngin()
 			, new HsinchuCCTVEngin()
+			, new ImageTransClientEngin()
 	};
 
 	@SuppressWarnings("serial")
