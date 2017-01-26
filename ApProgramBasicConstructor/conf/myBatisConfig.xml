@@ -28,5 +28,6 @@
 	<mappers>
 		<mapper resource="Dao.xml" />
 		<mapper resource="com/wavegis/engin/db/insert/raw/RawDao.xml" />
+		<mapper resource="com/wavegis/engin/db/query/preload/PreloadDao.xml" />
 	</mappers>
 </configuration>

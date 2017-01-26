@@ -6,6 +6,7 @@ import com.wavegis.model.WaterData;
 
 public interface RawDaoConnector {
 
-	public void insertRawData(List<WaterData> waterData);
-
+	public void insertRawLocatorData(List<WaterData> waterData);
+	
+	public void insertRawProcalData(List<WaterData> waterData);
 }

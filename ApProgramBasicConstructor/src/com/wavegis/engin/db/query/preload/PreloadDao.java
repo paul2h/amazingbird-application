@@ -1,4 +1,4 @@
-package com.wavegis.engin.db.insert.raw;
+package com.wavegis.engin.db.query.preload;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.WaterData;
+import com.wavegis.model.PreloadData;
 
 /**
  * 給Service取得Dao的Dao總管理物件
@@ -19,14 +19,14 @@ import com.wavegis.model.WaterData;
  * <pre>
  * 使用方法:mybatis
  */
-public class RawDao {
-	static RawDao instance;
+public class PreloadDao {
+	static PreloadDao instance;
 
 	/* 取得config檔的reader */
 	private Reader reader;
 
 	// #[[DaoConnector List
-	private RawDaoConnector daoConnector;
+	private PreloadDaoConnector daoConnector;
 	// ]] Dao List */
 
 	// #[[ myBatis物件
@@ -36,7 +36,7 @@ public class RawDao {
 	// ]]myBatis物件
 
 	// #[[ 建置用Method
-	public RawDao() {
+	public PreloadDao() {
 		Resources.setCharset(Charset.forName("UTF-8"));
 		try {
 			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
@@ -51,27 +51,22 @@ public class RawDao {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
-		daoConnector = sqlSession.getMapper(RawDaoConnector.class);
+		daoConnector = sqlSession.getMapper(PreloadDaoConnector.class);
 		instance = this;
 	}
 
-	public static RawDao getInstance() {
+	public static PreloadDao getInstance() {
 		if (instance == null) {
-			instance = new RawDao();
+			instance = new PreloadDao();
 		}
 		return instance;
 	}
 	// ]]
 
 	// #[[ 指令用Method
-	public void insertRawLocatorData(List<WaterData> waterData) {
-		daoConnector.insertRawLocatorData(waterData);
+	public List<PreloadData> getRawPreloadData(){
 		sqlSession.commit();
-	}
-	
-	public void insertRawProcalData(List<WaterData> waterData) {
-		daoConnector.insertRawProcalData(waterData);
-		sqlSession.commit();
+		return daoConnector.getRawPreloadData();
 	}
 	// ]]
 }

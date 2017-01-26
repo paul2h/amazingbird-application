@@ -8,6 +8,7 @@ import com.wavegis.engin.cctv.hsinchu.HsinchuCCTVEngin;
 import com.wavegis.engin.cctv.image_trans.ImageTransClientEngin;
 import com.wavegis.engin.cctv.maoli.MaoliCCTVEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.db.query.preload.PreloadEngin;
 import com.wavegis.engin.ws.center.CenterWSEngin;
 import com.wavegis.engin.ws.hsinchu.HsinchuWebServiceEngin;
 import com.wavegis.engin.ws.maoli.MaoliWebSeriveEngin;
@@ -16,7 +17,8 @@ import com.wavegis.engin.ws.taoyuan.TaoyuanWebServiceEngin;
 public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
 	public static final Engin[] Engins = {
-			new CenterWSEngin()
+			new PreloadEngin()
+			, new CenterWSEngin()
 			, new RawDataInsertEngin()
 			, new TaoyuanWebServiceEngin()
 			, new MaoliWebSeriveEngin()

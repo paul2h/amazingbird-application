@@ -43,17 +43,39 @@ public class RawDataInsertEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
-		List<WaterData> waterDatas = new ArrayList<>();
+		List<WaterData> locatorDataList = new ArrayList<WaterData>();
+		List<WaterData> procalDataList = new ArrayList<WaterData>();
 		WaterData waterData;
-		while ((waterData = ProxyData.WATER_INSERT_QUEUE.poll()) != null) {
-			showMessage("放入準備INSERT清單 : " + waterData.getStname() + " " + waterData.getLasttime());
-			waterDatas.add(waterData);
+		while((waterData = ProxyData.WATER_INSERT_QUEUE.poll()) != null){
+			String mapKey = waterData.getStid();
+			String tableName = String.valueOf(ProxyData.ENGIN_PRELOAD_MAP.get(mapKey));
+			
+			if(tableName == null){
+				continue;
+			} else if("level_raw_station".equals(tableName)){
+				locatorDataList.add(waterData);
+			} else if("level_raw_station1".equals(tableName)){
+				procalDataList.add(waterData);
+			}
+			//showMessage("放入準備INSERT清單 : " + waterData.getStname() + " " + waterData.getLasttime());
 		}
 		
-		if (waterDatas.size() > 0) {
+		if(locatorDataList.size() > 0 || procalDataList.size() > 0){
+			int count = 0;
+			
 			showMessage("寫入資料中...");
-			dao.insertRawData(waterDatas);
-			showMessage(String.format("寫入完成,共%d筆", waterDatas.size()));
+			
+			if(locatorDataList.size() > 0){
+				count += locatorDataList.size();
+				
+				dao.insertRawLocatorData(locatorDataList);
+			}
+			if(procalDataList.size() > 0){
+				count += procalDataList.size();
+				
+				dao.insertRawProcalData(procalDataList);
+			}
+			showMessage(String.format("寫入完成,共%d筆", count));
 		} else {
 			showMessage("目前無需寫入資料.");
 		}
