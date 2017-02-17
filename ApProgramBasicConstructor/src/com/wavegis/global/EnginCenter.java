@@ -16,6 +16,7 @@ import com.wavegis.engin.qpesums.QpesumsReadEngin;
 import com.wavegis.engin.ws.taoyuan.ConvertToBeanEngin;
 import com.wavegis.engin.warn.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.warn.sms.SMSSendEngin;
+import com.wavegis.engin.warn.web_check.WebPokeEngin;
 import com.wavegis.engin.ws.center.CenterWSEngin;
 
 import com.wavegis.engin.ws.wavegis.WavegisWSEngin;
@@ -36,7 +37,8 @@ public class EnginCenter {
 			new FakeImageEngin(),
 			new DBEngin(),
 			new ImageTransServerEngin(),
-			new ImageTransClientEngin()
+			new ImageTransClientEngin(),
+			new WebPokeEngin()
 	};
 
 	@SuppressWarnings("serial")
