@@ -1,4 +1,4 @@
-package com.wavegis.engin.image;
+package com.wavegis.engin.image.trans;
 
 import java.io.File;
 import java.io.FileInputStream;

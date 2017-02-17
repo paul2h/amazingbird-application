@@ -1,4 +1,4 @@
-package com.wavegis.engin.image;
+package com.wavegis.engin.image.cctv.mjpeg;
 
 import java.io.IOException;
 import java.util.ArrayList;

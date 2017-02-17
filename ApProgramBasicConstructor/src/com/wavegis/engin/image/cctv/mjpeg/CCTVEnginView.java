@@ -1,4 +1,4 @@
-package com.wavegis.engin.image;
+package com.wavegis.engin.image.cctv.mjpeg;
 
 import com.wavegis.engin.prototype.SimpleEnginView;
 

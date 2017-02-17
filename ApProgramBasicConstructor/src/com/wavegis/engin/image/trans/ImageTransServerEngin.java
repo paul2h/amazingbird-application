@@ -1,4 +1,4 @@
-package com.wavegis.engin.image;
+package com.wavegis.engin.image.trans;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
