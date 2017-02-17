@@ -2,24 +2,23 @@ package com.wavegis.global;
 
 import java.util.HashMap;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.cctv.CCTVEngin;
-import com.wavegis.engin.cctv.FakeImageEngin;
-import com.wavegis.engin.cctv.ImageEngin;
-import com.wavegis.engin.cctv.ImageTransClientEngin;
-import com.wavegis.engin.cctv.ImageTransServerEngin;
-import com.wavegis.engin.db.DBEngin;
-import com.wavegis.engin.insert.rain.RainDataInsertEngin;
-import com.wavegis.engin.insert.raw.RawDataInsertEngin;
-import com.wavegis.engin.qpesums.QpesumsReadEngin;
-import com.wavegis.engin.ws.taoyuan.ConvertToBeanEngin;
-import com.wavegis.engin.warn.alert_check.AlertAnalysisEngin;
-import com.wavegis.engin.warn.sms.SMSSendEngin;
-import com.wavegis.engin.warn.web_check.WebPokeEngin;
-import com.wavegis.engin.ws.center.CenterWSEngin;
-
-import com.wavegis.engin.ws.wavegis.WavegisWSEngin;
+import com.wavegis.engin.connection.web_check.WebPokeEngin;
+import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
+import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
+import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
+import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
+import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
+import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.db.read_conf.DBEngin;
+import com.wavegis.engin.image.CCTVEngin;
+import com.wavegis.engin.image.FakeImageEngin;
+import com.wavegis.engin.image.ImageEngin;
+import com.wavegis.engin.image.ImageTransClientEngin;
+import com.wavegis.engin.image.ImageTransServerEngin;
+import com.wavegis.engin.image.qpesums.QpesumsReadEngin;
+import com.wavegis.engin.notification.sms.SMSSendEngin;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 
 public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */

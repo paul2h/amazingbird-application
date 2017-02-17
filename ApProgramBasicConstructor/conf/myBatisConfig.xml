@@ -41,9 +41,9 @@
 	</environments>
 	<mappers>
 		<mapper resource="Dao.xml" />
-		<mapper resource="com/wavegis/engin/insert/rain/RainDao.xml" />
-		<mapper resource="com/wavegis/engin/insert/raw/RawDao.xml" />
-		<mapper resource="com/wavegis/engin/warn/alert_check/AlertDao.xml" />
-		<mapper resource="com/wavegis/engin/db/DBDao.xml" />
+		<mapper resource="com/wavegis/engin/db/insert/rain/RainDao.xml" />
+		<mapper resource="com/wavegis/engin/db/insert/raw/RawDao.xml" />
+		<mapper resource="com/wavegis/engin/db/alert_check/AlertDao.xml" />
+		<mapper resource="com/wavegis/engin/db/read_conf/DBDao.xml" />
 	</mappers>
 </configuration>
