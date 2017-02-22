@@ -29,6 +29,7 @@
 			, hour_24
 			, hour_36
 			, hour_72
+			, now
 		)VALUES
 		<foreach collection="list" item="element" index="index" open="("
 			separator="),(" close=");">
@@ -42,6 +43,7 @@
 			, ${element.hour_24}
 			, ${element.hour_36}
 			, ${element.hour_72}
+			, ${element.rain_current}
 		</foreach>
 	</insert>
 

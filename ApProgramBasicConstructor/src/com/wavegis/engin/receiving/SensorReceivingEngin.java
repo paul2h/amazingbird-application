@@ -98,7 +98,6 @@ public class SensorReceivingEngin implements Engin{
 					if(serverSocket == null){
 						int serverPort = Integer.parseInt(GlobalConfig.XML_CONFIG.getProperty("SensorReceivingPort", "9999"));
 						
-						
 						serverSocket = new ServerSocket(serverPort);
 						
 						showMessage("開始接收資料...");

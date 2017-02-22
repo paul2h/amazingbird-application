@@ -81,7 +81,16 @@ public class ConvertToWaterData {
 					break;
 				case "DI1":
 					double rainfall = 0;
-
+					
+					ConcurrentSkipListMap<String, Double> accumulatedRainfallData = accumulatedRainfallDatas.get(stid);
+					if (accumulatedRainfallData == null) {
+						accumulatedRainfallData = new ConcurrentSkipListMap<String, Double>();
+					}
+					String finalTime = formatDatetime(dataTime);
+					
+					if(accumulatedRainfallData.containsKey(finalTime)){
+						continue;
+					}
 					if (lastTimeRainData.containsKey(stid)) {// 如果該雨量站前面已經有收到資料(此筆資料不是第一筆資料)
 						// 建華的雨量累積方式較不同 by kiwi
 						double lastRainData = lastTimeRainData.get(stid);
@@ -90,17 +99,10 @@ public class ConvertToWaterData {
 							rainfall = data - lastRainData;
 						}
 					}
-					lastTimeRainData.put(stid, data);
-
 					rainData.setRain_current(rainfall);
+					lastTimeRainData.put(stid, rainfall);
+					accumulatedRainfallData.put(finalTime, rainfall);
 					// 計算累積雨量
-					String finalTime = formatDatetime(dataTime);
-					ConcurrentSkipListMap<String, Double> accumulatedRainfallData = accumulatedRainfallDatas.get(stid);
-					if (accumulatedRainfallData == null) {
-						accumulatedRainfallData = new ConcurrentSkipListMap<String, Double>();
-					}
-					accumulatedRainfallData.put(finalTime, (double) data);
-
 					String tenMinutesAgo = formatDatetime(getAddTime(dataTime, Calendar.MINUTE, -10));
 					String anHourAgo = formatDatetime(getAddTime(dataTime, Calendar.HOUR_OF_DAY, -1));
 					String threeHourAgo = formatDatetime(getAddTime(dataTime, Calendar.HOUR_OF_DAY, -3));
@@ -110,7 +112,6 @@ public class ConvertToWaterData {
 					String oneDayAgo = formatDatetime(getAddTime(dataTime, Calendar.DATE, -1));
 					String oneAndAHalfDaysAgo = formatDatetime(getAddTime(dataTime, Calendar.HOUR_OF_DAY, -36));
 					String threeDaysAgo = formatDatetime(getAddTime(dataTime, Calendar.DATE, -3));
-
 					double rainfall_10min = getAccumulatedRainfall(accumulatedRainfallData, tenMinutesAgo, finalTime, 0, true); // 累積雨量(10分鐘)
 					double rainfall_hour = getAccumulatedRainfall(accumulatedRainfallData, anHourAgo, tenMinutesAgo, rainfall_10min, false); // 累積雨量(1小時)
 					double rainfall_3hr = getAccumulatedRainfall(accumulatedRainfallData, threeHourAgo, anHourAgo, rainfall_hour, false); // 累積雨量(3小時)
@@ -120,7 +121,7 @@ public class ConvertToWaterData {
 					double rainfall_24hr = getAccumulatedRainfall(accumulatedRainfallData, oneDayAgo, eighteenHoursAgo, rainfall_18hr, false); // 累積雨量(24小時)
 					double rainfall_36hr = getAccumulatedRainfall(accumulatedRainfallData, oneAndAHalfDaysAgo, oneDayAgo, rainfall_24hr, false); // 累積雨量(48小時)
 					double rainfall_72hr = getAccumulatedRainfall(accumulatedRainfallData, threeDaysAgo, oneAndAHalfDaysAgo, rainfall_36hr, false); // 累積雨量(72小時)
-
+					
 					rainData.setMin_10(rainfall_10min);
 					rainData.setHour_1(rainfall_hour);
 					rainData.setHour_3(rainfall_3hr);
@@ -250,11 +251,14 @@ public class ConvertToWaterData {
 		if (subAccumulatedRainfallData == null || subAccumulatedRainfallData.isEmpty()) {
 			return accumulatedRainfall;
 		}
+		System.out.println(firstKey + " ~ " + lastKey);
+		System.out.println("first: " + accumulatedRainfall);
 		for (String mapKey : subAccumulatedRainfallData.keySet()) {
 			double rainfall = subAccumulatedRainfallData.get(mapKey);
-
+			System.out.println("=== " + mapKey + ", " + rainfall);
 			accumulatedRainfall += rainfall;
 		}
+		System.out.println("return: " + accumulatedRainfall);
 		return accumulatedRainfall;
 	}
 
