@@ -53,7 +53,7 @@ public class WaterDataInsertEngin extends TimerEngin {
 			
 			while((rainData = ProxyData.WATER_INSERT_RAIN_QUEUE.poll()) != null){
 				if(rainData.getRain_current() >= 0){
-					//showMessage("放入準備待寫入清單 : " + rainData.getStid() + ", " + rainData.getLasttime());
+					showMessage("放入雨量待寫入清單 : " + rainData.getStid() + ", " + rainData.getLasttime() + ", min10 = " + rainData.getMin_10() + " , hour_1 = " + rainData.getHour_1());
 					
 					if(rainData.getStid() == null){
 						continue;
@@ -72,7 +72,7 @@ public class WaterDataInsertEngin extends TimerEngin {
 			
 			while((waterData = ProxyData.WATER_INSERT_WATER_QUEUE.poll()) != null){
 				if(waterData.getWaterlevel() >= 0){
-					//showMessage("放入準備待寫入清單 : " + waterData.getStid() + ", " + waterData.getLasttime());
+					showMessage("放入水位待寫入清單 : " + waterData.getStid() + ", " + waterData.getLasttime());
 					
 					if(waterData.getStid() == null){
 						continue;

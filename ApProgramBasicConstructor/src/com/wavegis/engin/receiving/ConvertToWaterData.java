@@ -12,7 +12,6 @@ import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.global.ProxyData;
 import com.wavegis.model.RainData;
 import com.wavegis.model.WaterData;
 
