@@ -26,8 +26,8 @@ import javax.swing.JTextArea;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.EnginCenter;
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.tools.LogTool;
@@ -58,7 +58,7 @@ public class MainUI extends JFrame implements ActionListener {
 	public void start(String edition) {
 		this.edition = edition;
 		initUI();
-		initTray(GlobalConfig.TrayPassword, edition);
+		initTray(GlobalConfig.XML_CONFIG.getProperty("TrayPassword"), edition);
 		initIcon();
 		setCloseConfirm();
 	}

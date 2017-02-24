@@ -1,12 +1,12 @@
 package com.wavegis.global;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.demo.DemoEngin;
+import com.wavegis.model.CCTVData;
 
 public class GlobalConfig {
 
@@ -17,8 +17,7 @@ public class GlobalConfig {
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 
-
-	public static String TrayPassword = "123";
-	public static String KillBATPath = "D:/kill.bat";
+	public static Properties XML_CONFIG = new Properties();
+	public static List<CCTVData> CCTV_DATA_LIST = new ArrayList<CCTVData>();
 
 }

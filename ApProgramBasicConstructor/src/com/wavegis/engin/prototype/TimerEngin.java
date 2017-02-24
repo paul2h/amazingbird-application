@@ -1,4 +1,4 @@
-package com.wavegis.engin;
+package com.wavegis.engin.prototype;
 
 import java.util.Timer;
 import java.util.TimerTask;
