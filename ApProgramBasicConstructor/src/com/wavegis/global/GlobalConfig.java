@@ -1,12 +1,8 @@
 package com.wavegis.global;
 
-import java.util.HashMap;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
-
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.demo.DemoEngin;
 
 public class GlobalConfig {
 
@@ -18,7 +14,5 @@ public class GlobalConfig {
 	public static final ImageIcon FrameIconImage = new ImageIcon("./conf/icon.png");
 
 
-	public static String TrayPassword = "123";
-	public static String KillBATPath = "D:/kill.bat";
-
+	public static Properties XML_CONFIG = new Properties();
 }
