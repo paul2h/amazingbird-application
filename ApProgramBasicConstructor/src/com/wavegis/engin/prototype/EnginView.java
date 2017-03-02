@@ -1,4 +1,4 @@
-package com.wavegis.engin;
+package com.wavegis.engin.prototype;
 
 public interface EnginView {
 	

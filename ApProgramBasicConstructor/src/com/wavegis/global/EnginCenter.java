@@ -2,9 +2,9 @@ package com.wavegis.global;
 
 import java.util.HashMap;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
 import com.wavegis.engin.demo.DemoEngin;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 
 
 public class EnginCenter {

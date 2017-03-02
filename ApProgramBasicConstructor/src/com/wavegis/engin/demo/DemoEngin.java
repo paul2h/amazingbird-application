@@ -2,8 +2,8 @@ package com.wavegis.engin.demo;
 
 import org.apache.logging.log4j.Logger;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.tools.LogTool;
 
 public class DemoEngin implements Engin {

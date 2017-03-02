@@ -1,7 +1,7 @@
 package com.wavegis.engin.demo;
 
 
-import com.wavegis.engin.SimpleEnginView;
+import com.wavegis.engin.prototype.SimpleEnginView;
 
 @SuppressWarnings("serial")
 public class DemoEnginView extends SimpleEnginView {
