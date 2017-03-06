@@ -1,6 +1,6 @@
-package com.wavegis.engin.cctv;
+package com.wavegis.engin.image.cctv.mjpeg;
 
-import com.wavegis.engin.SimpleEnginView;
+import com.wavegis.engin.prototype.SimpleEnginView;
 
 @SuppressWarnings("serial")
 public class CCTVEnginView extends SimpleEnginView{

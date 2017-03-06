@@ -1,12 +1,12 @@
-package com.wavegis.engin.qpesums;
+package com.wavegis.engin.image.qpesums;
 
 import java.io.File;
 import java.io.FilenameFilter;
 
 import org.apache.logging.log4j.Logger;
 
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.TimerEngin;
+import com.wavegis.engin.prototype.EnginView;
+import com.wavegis.engin.prototype.TimerEngin;
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.global.tools.QPESUMSTool;

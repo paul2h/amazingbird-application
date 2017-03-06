@@ -14,7 +14,7 @@ import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "2017水情介接-嘉義市5.5";
+	private static final String edition = "2017水情介接-嘉義市5.6";
 	private ApplicationContext context;
 	private Controller controller;
 

@@ -1,6 +1,6 @@
 package com.wavegis.engin.db.select;
 
-import com.wavegis.engin.SimpleEnginView;
+import com.wavegis.engin.prototype.SimpleEnginView;
 
 @SuppressWarnings("serial")
 public class DBConfigEnginView extends SimpleEnginView{

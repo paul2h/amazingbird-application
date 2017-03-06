@@ -1,4 +1,4 @@
-package com.wavegis.engin.receiving;
+package com.wavegis.engin.connection.tcp.socket.jian_hua;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,8 +8,8 @@ import java.util.concurrent.Executors;
 
 import org.apache.logging.log4j.Logger;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.tools.LogTool;
 

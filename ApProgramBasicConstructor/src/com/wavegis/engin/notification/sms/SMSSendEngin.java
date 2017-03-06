@@ -1,4 +1,4 @@
-package com.wavegis.engin.warn.sms;
+package com.wavegis.engin.notification.sms;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,8 +13,8 @@ import java.util.TimerTask;
 
 import org.apache.logging.log4j.Logger;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;

@@ -1,4 +1,4 @@
-package com.wavegis.engin.warn.alert_check;
+package com.wavegis.engin.notification.alert_check;
 
 import java.util.List;
 

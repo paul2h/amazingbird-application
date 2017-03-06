@@ -1,4 +1,4 @@
-package com.wavegis.engin.warn.alert_check;
+package com.wavegis.engin.notification.alert_check;
 
 import java.awt.BorderLayout;
 
@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.EnginView;
 
 @SuppressWarnings("serial")
 public class AlertAnalysisEnginView extends JPanel implements EnginView {

@@ -2,16 +2,16 @@ package com.wavegis.global;
 
 import java.util.HashMap;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.cctv.CCTVEngin;
+import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
 import com.wavegis.engin.db.select.DBConfigEngin;
-import com.wavegis.engin.image.ImageEngin;
-import com.wavegis.engin.qpesums.QpesumsReadEngin;
-import com.wavegis.engin.receiving.SensorReceivingEngin;
-import com.wavegis.engin.warn.alert_check.AlertAnalysisEngin;
-import com.wavegis.engin.warn.sms.SMSSendEngin;
+import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
+import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
+import com.wavegis.engin.image.qpesums.QpesumsReadEngin;
+import com.wavegis.engin.notification.alert_check.AlertAnalysisEngin;
+import com.wavegis.engin.notification.sms.SMSSendEngin;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 
 public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */

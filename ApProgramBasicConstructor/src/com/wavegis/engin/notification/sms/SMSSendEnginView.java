@@ -1,4 +1,4 @@
-package com.wavegis.engin.warn.sms;
+package com.wavegis.engin.notification.sms;
 
 import java.awt.BorderLayout;
 
@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.EnginView;
 
 @SuppressWarnings("serial")
 public class SMSSendEnginView extends JPanel implements EnginView {

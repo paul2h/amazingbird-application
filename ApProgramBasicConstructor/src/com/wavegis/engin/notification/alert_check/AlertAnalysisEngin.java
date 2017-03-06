@@ -1,4 +1,4 @@
-package com.wavegis.engin.warn.alert_check;
+package com.wavegis.engin.notification.alert_check;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -8,8 +8,8 @@ import java.util.TimerTask;
 
 import org.apache.logging.log4j.Logger;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.SMSAlertData;

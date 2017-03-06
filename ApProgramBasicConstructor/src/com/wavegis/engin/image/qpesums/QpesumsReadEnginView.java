@@ -1,6 +1,6 @@
-package com.wavegis.engin.qpesums;
+package com.wavegis.engin.image.qpesums;
 
-import com.wavegis.engin.SimpleEnginView;
+import com.wavegis.engin.prototype.SimpleEnginView;
 
 @SuppressWarnings("serial")
 public class QpesumsReadEnginView extends SimpleEnginView{
