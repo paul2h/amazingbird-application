@@ -85,6 +85,6 @@
 		<mapper resource="com/wavegis/engin/db/select/DBConfigDao.xml" />
 		<mapper resource="com/wavegis/engin/db/select/ProcalDBConfigDao.xml" />
 		<mapper resource="com/wavegis/engin/db/insert/water/WaterDataDao.xml" />
-		<mapper resource="com/wavegis/engin/warn/alert_check/AlertDao.xml" />
+		<mapper resource="com/wavegis/engin/notification/alert_check/AlertDao.xml" />
 	</mappers>
 </configuration>

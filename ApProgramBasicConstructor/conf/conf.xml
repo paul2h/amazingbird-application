@@ -13,6 +13,8 @@
 	<!-- CCTV介接 -->
 	<!-- 圖片儲存位置 -->
 	<entry key="CCTVImagePath">D:/pic/</entry>
+	<!-- 圖片抓取Thread數 -->
+	<entry key="CCTVThreadNumber">5</entry>
 
 	<!-- 圖片介接 -->
 	<!-- 圖片來源位置 -->

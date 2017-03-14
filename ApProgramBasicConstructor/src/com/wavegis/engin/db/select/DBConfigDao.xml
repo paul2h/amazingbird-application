@@ -13,9 +13,9 @@
 				, a._password AS password
 			FROM 
 				vr.vr_data a
+			WHERE   url_suffix IS NOT NULL
 			ORDER BY 
 				a._vr_no
-			;
 	</select>
 	
 </mapper>

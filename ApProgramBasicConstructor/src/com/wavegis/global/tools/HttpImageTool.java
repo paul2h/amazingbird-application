@@ -39,19 +39,23 @@ public class HttpImageTool {
 	 * @param saveImagePath
 	 * @throws IOException
 	 */
-	public static void getAuthorizedImage(String urlString, String username, String password, String saveImagePath)
-			throws IOException {
-		URL url = new URL(urlString);
+	public static void getAuthorizedImage(String urlString, String username, String password, String saveImagePath) throws IOException {
+		URL url;
+
+		url = new URL(urlString);
+
 		HttpURLConnection connection = null;
 		// 設定帳密並加密
 		String authStr = username + ":" + password;
 		byte[] bytesEncoded = Base64.encodeBase64(authStr.getBytes());
 		String authEncoded = new String(bytesEncoded);
 		connection = (HttpURLConnection) url.openConnection();
+		connection.setConnectTimeout(5000);
 		connection.setRequestProperty("Authorization", "Basic " + authEncoded);
 
 		BufferedImage image = ImageIO.read(connection.getInputStream());
 		ImageIO.write(image, "jpg", new File(saveImagePath));
+    
 	}
 
 	/** 取得flash檔 (未完成) */
