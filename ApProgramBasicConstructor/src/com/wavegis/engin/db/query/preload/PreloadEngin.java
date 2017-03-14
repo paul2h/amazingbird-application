@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.PreloadData;

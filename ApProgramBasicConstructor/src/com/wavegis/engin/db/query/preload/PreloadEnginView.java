@@ -1,6 +1,6 @@
 package com.wavegis.engin.db.query.preload;
 
-import com.wavegis.engin.SimpleEnginView;
+import com.wavegis.engin.prototype.SimpleEnginView;
 
 @SuppressWarnings("serial")
 public class PreloadEnginView extends SimpleEnginView{

@@ -2,17 +2,17 @@ package com.wavegis.global;
 
 import java.util.HashMap;
 
-import com.wavegis.engin.Engin;
-import com.wavegis.engin.EnginView;
-import com.wavegis.engin.cctv.hsinchu.HsinchuCCTVEngin;
-import com.wavegis.engin.cctv.image_trans.ImageTransClientEngin;
-import com.wavegis.engin.cctv.maoli.MaoliCCTVEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.HsinchuWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.maoli.MaoliWebSeriveEngin;
+import com.wavegis.engin.connection.ws.others.taoyuan.TaoyuanWebServiceEngin;
+import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.query.preload.PreloadEngin;
-import com.wavegis.engin.ws.center.CenterWSEngin;
-import com.wavegis.engin.ws.hsinchu.HsinchuWebServiceEngin;
-import com.wavegis.engin.ws.maoli.MaoliWebSeriveEngin;
-import com.wavegis.engin.ws.taoyuan.TaoyuanWebServiceEngin;
+import com.wavegis.engin.image.cctv.hsinchu.HsinchuCCTVEngin;
+import com.wavegis.engin.image.cctv.maoli.MaoliCCTVEngin;
+import com.wavegis.engin.image.trans.ImageTransClientEngin;
+import com.wavegis.engin.prototype.Engin;
+import com.wavegis.engin.prototype.EnginView;
 
 public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
