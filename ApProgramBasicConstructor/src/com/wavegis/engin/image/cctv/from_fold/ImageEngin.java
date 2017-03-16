@@ -50,6 +50,8 @@ public class ImageEngin extends TimerEngin {
 	@Override
 	public void timerAction() {
 		showMessage(GlobalConfig.dateFormat.format(new Date()) + " 開始取得圖片...");
+
+		// #[[ 找出資料夾內各個 ID 最新的圖片檔案
 		File dir = new File(GlobalConfig.XML_CONFIG.getProperty("ImageDirPath"));
 
 		if (!dir.exists() || !dir.isDirectory()) {
@@ -60,8 +62,7 @@ public class ImageEngin extends TimerEngin {
 		File[] images = dir.listFiles();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd_HHmmss");
-
-		// #[[ 找出資料夾內各個 ID 最新的圖片檔案
+		
 		for (File image : images) {
 			if (!image.exists() || !image.isFile()) {
 				continue;
@@ -89,6 +90,9 @@ public class ImageEngin extends TimerEngin {
 			}
 		}
 		// ]]
+
+		// #[[ 搬移圖片到指定資料夾
+
 		if (map.size() > 0) {
 			File newDir = new File(GlobalConfig.XML_CONFIG.getProperty("ImageNewDirPath"));
 
@@ -96,7 +100,7 @@ public class ImageEngin extends TimerEngin {
 				newDir.mkdirs();
 			}
 		}
-		// #[[ 搬移圖片到指定資料夾
+
 		for (String key : map.keySet()) {
 			// #[[ 圖片增加時間文字
 			try {
@@ -129,6 +133,7 @@ public class ImageEngin extends TimerEngin {
 			// ]]
 		}
 		// ]]
+
 		showMessage(GlobalConfig.dateFormat.format(new Date()) + " 圖片取得結束.");
 	}
 
