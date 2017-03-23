@@ -104,6 +104,7 @@ public class ImageEngin extends TimerEngin {
 		for (String key : map.keySet()) {
 			// #[[ 圖片增加時間文字
 			try {
+				System.out.println("flag key = " + key + " ,map = " + map) ;
 				Date imageDate = (Date) map.get(key);
 				String dateStr = sdf.format(imageDate);
 				Image image = ImageIO.read(new File(GlobalConfig.XML_CONFIG.getProperty("ImageDirPath") + key + dateStr + ".jpg"));

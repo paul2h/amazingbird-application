@@ -100,7 +100,7 @@ public class ConvertToWaterData {
 						}
 					}
 					rainData.setRain_current(rainfall);
-					lastTimeRainData.put(stid, rainfall);
+					lastTimeRainData.put(stid, data);
 					accumulatedRainfallData.put(finalTime, rainfall);
 					// 計算累積雨量
 					String tenMinutesAgo = formatDatetime(getAddTime(dataTime, Calendar.MINUTE, -10));
