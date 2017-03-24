@@ -28,7 +28,7 @@ public class ImageEngin extends TimerEngin {
 	private Logger logger;
 
 	public ImageEngin() {
-		setTimeout(Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod")));
+		setTimeout(Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_ImageEngin")));
 		logger = LogTool.getLogger(ImageEngin.class.getName());
 	}
 
@@ -104,11 +104,15 @@ public class ImageEngin extends TimerEngin {
 		for (String key : map.keySet()) {
 			// #[[ 圖片增加時間文字
 			try {
-				System.out.println("flag key = " + key + " ,map = " + map) ;
 				Date imageDate = (Date) map.get(key);
 				String dateStr = sdf.format(imageDate);
-				Image image = ImageIO.read(new File(GlobalConfig.XML_CONFIG.getProperty("ImageDirPath") + key + dateStr + ".jpg"));
-
+				String imageFilePath = GlobalConfig.XML_CONFIG.getProperty("ImageDirPath") + key + dateStr + ".jpg";
+				Image image = ImageIO.read(new File(imageFilePath));
+				
+				if(image == null){
+					showMessage("圖片讀取失敗 : " + imageFilePath);
+					continue;
+				}
 				int imageWidth = image.getWidth(null);
 				int imageHeight = image.getHeight(null);
 				BufferedImage bufferedImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);

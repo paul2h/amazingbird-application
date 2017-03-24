@@ -7,6 +7,7 @@
 	<entry key="WebServiceURL">http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</entry>
 
 	<entry key="TimerPeriod">60000</entry>
+	<entry key="TimerPeriod_ImageEngin">60000</entry>
 	<entry key="TimerPeriod_DB">3600000</entry>
 	<entry key="TimerPeriod_SMS">3600000</entry>
 
