@@ -7,6 +7,7 @@ import com.wavegis.engin.EnginView;
 import com.wavegis.engin.cctv.hsinchu.HsinchuCCTVEngin;
 import com.wavegis.engin.cctv.image_trans.ImageTransClientEngin;
 import com.wavegis.engin.cctv.maoli.MaoliCCTVEngin;
+import com.wavegis.engin.connection.ftp.FTPFileTransEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.ws.center.CenterWSEngin;
 import com.wavegis.engin.ws.hsinchu.HsinchuWebServiceEngin;
@@ -21,10 +22,10 @@ public class EnginCenter {
 			, new TaoyuanWebServiceEngin()
 			, new MaoliWebSeriveEngin()
 			, new HsinchuWebServiceEngin()
-			//, new HsinchuCityWebServiceEngin()
 			, new MaoliCCTVEngin()
 			, new HsinchuCCTVEngin()
 			, new ImageTransClientEngin()
+			, new FTPFileTransEngin()
 	};
 
 	@SuppressWarnings("serial")
