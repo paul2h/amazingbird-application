@@ -18,6 +18,7 @@ public class FTPFileTransEngin extends TimerEngin {
 	public FTPFileTransEngin() {
 		setTimeout(1000 * 60);
 	}
+
 	@Override
 	public String getEnginID() {
 		return enginID;
@@ -38,12 +39,17 @@ public class FTPFileTransEngin extends TimerEngin {
 		String FtpSendDir = GlobalConfig.CONFPIG_PROPERTIES.getProperty("FtpSendDir");
 		String[] FtpSendFiles = GlobalConfig.CONFPIG_PROPERTIES.getProperty("FtpSendFiles").split(",");
 		for (int i = 0; i < FtpSendFiles.length; i++) {
-			String fileName = FtpSendFiles[i];
-			String filePath = FtpSendDir + "/" + fileName;
+			try {
+				String fileName = FtpSendFiles[i];
+				String filePath = FtpSendDir + "/" + fileName;
 
-			showMessage("發送檔案..." + filePath);
-			FTPTool.UploadFile("13.76.255.253", "/", "wra02", "wavegis", filePath, fileName, true);
-			showMessage("發送完成 :" + filePath);
+				showMessage("發送檔案..." + filePath);
+				FTPTool.UploadFile("13.76.255.253", "/", "wra02", "wavegis", filePath, fileName, true);
+				showMessage("發送完成 :" + filePath);
+			} catch (Exception e) {
+				e.printStackTrace();
+				showMessage("圖片傳送錯誤!!");
+			}
 		}
 	}
 
