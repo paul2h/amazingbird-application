@@ -7,6 +7,7 @@ import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
 import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
+import com.wavegis.engin.db.data_check.PokerDBEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.read_conf.DBEngin;
@@ -37,7 +38,8 @@ public class EnginCenter {
 			new DBEngin(),
 			new ImageTransServerEngin(),
 			new ImageTransClientEngin(),
-			new WebPokeEngin()
+			new WebPokeEngin(),
+			new PokerDBEngin()
 	};
 
 	@SuppressWarnings("serial")
