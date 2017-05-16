@@ -38,6 +38,20 @@
 				<property name="poolPingQuery" value="select 1" />
 			</dataSource>
 		</environment>
+		<environment id="PokerDaoEnvironment">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="org.postgresql.Driver" />
+				<property name="url"
+					value="jdbc:postgresql://192.168.1.20:5430/locator4_ping_dong" />
+				<property name="username" value="postgres" />
+				<property name="password" value="postgres" />
+				<property name="poolMaximumActiveConnections" value="10" />
+				<property name="poolMaximumIdleConnections" value="5" />
+				<property name="poolPingEnabled" value="true" />
+				<property name="poolPingQuery" value="select 1" />
+			</dataSource>
+		</environment>
 	</environments>
 	<mappers>
 		<mapper resource="Dao.xml" />
@@ -45,5 +59,6 @@
 		<mapper resource="com/wavegis/engin/db/insert/raw/RawDao.xml" />
 		<mapper resource="com/wavegis/engin/db/alert_check/AlertDao.xml" />
 		<mapper resource="com/wavegis/engin/db/read_conf/DBDao.xml" />
+		<mapper resource="com/wavegis/engin/db/data_check/PokerDao.xml" />
 	</mappers>
 </configuration>

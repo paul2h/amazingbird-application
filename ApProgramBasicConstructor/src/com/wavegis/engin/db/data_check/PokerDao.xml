@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wavegis.engin.db.data_check.PokerDaoConnector">
+
+	<select id="getData" resultType="com.wavegis.model.CheckDBData">
+		SELECT
+			table_name,
+			column_name,
+			column_value,
+			update_time
+		FROM poker_client.focus_list
+		WHERE current_timestamp - time '01:00' > update_time AND need_report = true
+		ORDER BY table_name,column_value, update_time
+	</select>
+
+</mapper>
