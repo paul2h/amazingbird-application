@@ -22,12 +22,12 @@ public class HttpImageTool {
 	 * 
 	 * @throws IOException
 	 */
-	public static void getImage(String urlString, String saveImagePath) throws IOException {
+	public static synchronized void getImage(String urlString, String saveImagePath) throws IOException {
 		URL url = new URL(urlString);
 		url.openConnection();
 		BufferedImage image = ImageIO.read(url);
 		ImageIO.write(image, "jpg", new File(saveImagePath));
-		System.out.println("finished");
+		url = null;
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class HttpImageTool {
 	 * @param saveImagePath
 	 * @throws IOException
 	 */
-	public static void getAuthorizedImage(String urlString, String username, String password, String saveImagePath)
+	public static synchronized void getAuthorizedImage(String urlString, String username, String password, String saveImagePath)
 			throws IOException {
 		URL url = new URL(urlString);
 		HttpURLConnection connection = null;
@@ -55,7 +55,7 @@ public class HttpImageTool {
 	}
 
 	/** 取得flash檔 (未完成) */
-	public static void getFlashFile() throws IOException {
+	public static synchronized void getFlashFile() throws IOException {
 		URL url = new URL("http://fhy.wra.gov.tw/PUB_WEB_2011/Flash/reservoir/ReservoirWarning.swf");
 		// url.openConnection();
 		InputStream is = url.openStream();

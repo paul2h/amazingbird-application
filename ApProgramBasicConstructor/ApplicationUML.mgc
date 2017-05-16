@@ -77,27 +77,6 @@
             endpointName="daoConnector" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.engin.insert.rain.RainDaoConnector"/>
     </Class>
-    <Class name="com.wavegis.engin.insert.rain.RainDataInsertEnginView"
-        x="8" y="195">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.SimpleEnginView"/>
-    </Class>
-    <Class name="com.wavegis.engin.cctv.CCTVEnginView" x="-240" y="191">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.SimpleEnginView"/>
-    </Class>
     <Class name="com.wavegis.engin.insert.rain.RainDaoConnector" x="-45" y="1089">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"

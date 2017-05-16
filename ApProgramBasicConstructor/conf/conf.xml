@@ -5,4 +5,14 @@
 	<entry key="TrayPassword">0921393905</entry>
 	<entry key="KillBATPath">./kill.bat</entry>
 	<entry key="WebServiceURL">http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</entry>
+
+	<entry key="RawDataSendPort">9999</entry>
+
+	<entry key="RawDataTransRegisteredKey">#ID#</entry>
+	<entry key="RawDataTransRegisteredSuccessKey">#Registered_Success#</entry>
+	<entry key="RawDataTransTestConnectionKey">#TEST#</entry>
+
+	<entry key="RawDataReceiveID">TEST</entry>
+	<entry key="RawDataReceiveTargetIP">127.0.0.1</entry>
+	<entry key="RawDataReceiveTargetPort">9999</entry>
 </properties>
