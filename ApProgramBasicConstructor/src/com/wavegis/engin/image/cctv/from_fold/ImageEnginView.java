@@ -1,4 +1,4 @@
-package com.wavegis.engin.cctv.from_fold;
+package com.wavegis.engin.image.cctv.from_fold;
 
 import com.wavegis.engin.prototype.SimpleEnginView;
 

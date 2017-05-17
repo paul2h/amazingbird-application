@@ -5,4 +5,14 @@
 	<entry key="TrayPassword">0921393905</entry>
 	<entry key="KillBATPath">./kill.bat</entry>
 	<entry key="CCTV_GET_TIME_PERIOD">600000</entry>
+
+	<entry key="RawDataTransRegisteredKey">#ID#</entry>
+	<entry key="RawDataTransRegisteredSuccessKey">#Registered_Success#</entry>
+	<entry key="RawDataTransTestConnectionKey">#TEST#</entry>
+
+	<entry key="RawDataReceiveID">CHANGHUA_TEST</entry>
+	<entry key="RawDataReceiveTargetIP">127.0.0.1</entry>
+	<entry key="RawDataReceiveTargetPort">9999</entry>
+	
+	<entry key="KenkulRawDataHeader">##KENKUL##</entry>
 </properties>
