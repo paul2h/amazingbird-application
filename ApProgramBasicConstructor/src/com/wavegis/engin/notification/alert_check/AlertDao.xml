@@ -28,6 +28,8 @@
 				e.member_id IS NOT NULL 
  			AND
 				w.waterlevel > a.alert_value
+			AND
+				w.change_rate < 1
  			GROUP BY
 				a.stid,
 				w.stname,
