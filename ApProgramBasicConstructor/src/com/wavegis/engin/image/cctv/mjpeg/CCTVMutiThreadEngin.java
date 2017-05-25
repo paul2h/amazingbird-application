@@ -130,8 +130,15 @@ public class CCTVMutiThreadEngin extends TimerEngin {
 									showMessage(threadName + " : " + cctvData.getStname() + " 影像取得成功.");
 
 								} catch (IOException e) {
-									showMessage(threadName + " : " + cctvData.getStname() + " 影像取得失敗.");
 									e.printStackTrace();
+									
+									try {
+										ImageIO.write(ImageIO.read(new URL("http://13.76.255.253/cctv_error.jpg")), "jpg", new File(imagePath));
+									} catch(IOException e1){
+										e1.printStackTrace();
+									} finally {
+										showMessage(threadName + " : " + cctvData.getStname() + " 影像取得失敗.");
+									}
 								}
 							} else {
 								try {
