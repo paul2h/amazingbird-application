@@ -67,6 +67,8 @@ public class RawDataReceiveEngin implements Engin {
 					startCheckConnectionTimer(socketChannel);
 				} catch (IOException e) {
 					e.printStackTrace();
+					showMessage("連線異常,進入重連程序");
+					startRestartEnginProcess();
 				}
 			}
 		}).start();
@@ -115,11 +117,16 @@ public class RawDataReceiveEngin implements Engin {
 					String originalData;
 					try {
 						originalData = listenMessage(socketChannel);
-						checkHeaderProcess(originalData);
+						if (originalData != null) {
+							checkHeaderProcess(originalData);
+						}
 					} catch (IOException e) {
 						e.printStackTrace();
-						showMessage("連線 or 資料判斷錯誤  進入重連程序");
-						startRestartEnginProcess();
+						if (started) {
+							showMessage("連線 or 資料判斷錯誤  進入重連程序");
+							startRestartEnginProcess();
+						}
+						break;
 					}
 				}
 				showMessage("資料接收結束.");
@@ -131,7 +138,7 @@ public class RawDataReceiveEngin implements Engin {
 		ByteBuffer buffer = ByteBuffer.allocate(4096 * 1024);
 		String stringMessage = null;
 		int numRead = -1;
-		while ((numRead = socketChannel.read(buffer)) > 0) {
+		if ((numRead = socketChannel.read(buffer)) > 0) {
 			byte[] data = new byte[numRead];
 			System.arraycopy(buffer.array(), 0, data, 0, numRead);
 			stringMessage = new String(data);
@@ -162,13 +169,18 @@ public class RawDataReceiveEngin implements Engin {
 						ByteBuffer buffer = ByteBuffer.wrap(GlobalConfig.XML_CONFIG.getProperty("RawDataTransTestConnectionKey").getBytes());
 						try {
 							socketChannel.write(buffer);
+							waitingForReturnMessage = true;
 						} catch (IOException e) {
 							showMessage("連線測試錯誤 準備重連...");
+							showMessage("連線Timer關閉.");
 							e.printStackTrace();
+							this.cancel();
 							startRestartEnginProcess();
 						}
 					} else {
 						showMessage("過久無回傳資訊   準備重連...");
+						showMessage("連線Timer關閉.");
+						this.cancel();
 						startRestartEnginProcess();
 					}
 				} else {
@@ -184,10 +196,11 @@ public class RawDataReceiveEngin implements Engin {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				showMessage("開始重連程序...");
-				stopEngin();
-				restartingEngin = true;
 				try {
+					showMessage("1秒後開始重連程序...");
+					Thread.sleep(1000);
+					stopEngin();
+					restartingEngin = true;
 					showMessage("60秒後開始重連...");
 					Thread.sleep(1000 * 60);
 				} catch (InterruptedException e) {
