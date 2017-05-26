@@ -36,15 +36,16 @@ public class KenkulDataEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
-		showMessage("開始分析資料...");
 		String rawData;
 		List<OriginalWaterData<Double>> totalWaterDatas = new ArrayList<>();
 		while ((rawData = ProxyDatas.KENKUL_RAW_DATA.poll()) != null) {
 			List<OriginalWaterData<Double>> originalWaterDatas = originalDataAnalysisEngin.analysisOriginalData(rawData);
 			totalWaterDatas.addAll(originalWaterDatas);
 		}
-		showMessage(String.format("共 %d 筆資料分析完成,放入待Insert Queue中", totalWaterDatas.size()));
-		ProxyDatas.WATER_DATA_INSERT_QUEUE.addAll(totalWaterDatas);
+		if (!totalWaterDatas.isEmpty()) {
+			showMessage(String.format("共 %d 筆資料分析完成,放入待Insert Queue中", totalWaterDatas.size()));
+			ProxyDatas.WATER_DATA_INSERT_QUEUE.addAll(totalWaterDatas);
+		}
 	}
 
 	@Override

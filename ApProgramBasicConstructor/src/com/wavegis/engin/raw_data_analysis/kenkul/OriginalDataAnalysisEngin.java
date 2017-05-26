@@ -112,7 +112,6 @@ public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterDat
 						OriginalWaterData<Double> waterData = new KenkulWaterData();
 						String dataString = dataStrings[i];
 						String stid = stidHead + dataString.subSequence(0, 3);
-						System.out.println("stid = " + stid);
 						waterData.setStid(stid);
 						waterData.setDatatime(datatime);
 						waterData.setOriginalDataString(originalMessage);

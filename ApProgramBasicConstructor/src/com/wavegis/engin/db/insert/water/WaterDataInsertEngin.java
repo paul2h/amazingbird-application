@@ -62,14 +62,17 @@ public class WaterDataInsertEngin extends TimerEngin {
 				waterData.setRainfall6hour(datas[9]);
 				waterData.setRainfall12hour(datas[10]);
 				waterData.setRainfall24hour(datas[11]);
-				
+
 				waterDatas.add(waterData);
 			}
 		}
-		showMessage("寫入資料中...");
-		dao.insertWaterData(waterDatas);
-		dao.insertRainData(waterDatas);
-		showMessage(String.format("寫入完成,共%d筆", waterDatas.size()));
+		if (waterDatas.size() > 0) {
+			showMessage("寫入資料中...");
+			dao.insertWaterData(waterDatas);
+			dao.insertRainData(waterDatas);
+			showMessage(String.format("寫入完成,共%d筆", waterDatas.size()));
+		}
+		
 	}
 
 	@Override

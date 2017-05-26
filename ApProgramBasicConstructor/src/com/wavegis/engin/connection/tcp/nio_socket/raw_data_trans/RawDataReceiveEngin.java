@@ -60,7 +60,6 @@ public class RawDataReceiveEngin implements Engin {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-
 				try {
 					socketChannel = connect();
 					regist(socketChannel);
@@ -112,33 +111,45 @@ public class RawDataReceiveEngin implements Engin {
 			@Override
 			public void run() {
 				showMessage("資料接收開始...");
-				ByteBuffer buffer = ByteBuffer.allocate(4096 * 1024);
 				while (started) {
+					String originalData;
 					try {
-						int numRead = -1;
-						while ((numRead = socketChannel.read(buffer)) > 0) {
-							byte[] data = new byte[numRead];
-							System.arraycopy(buffer.array(), 0, data, 0, numRead);
-							String originalData = new String(data);
-							if (originalData.equals(GlobalConfig.XML_CONFIG.getProperty("RawDataTransTestConnectionKey").toString())) {
-								showMessage("取得測試連線回傳 : " + originalData);
-							} else if (originalData.indexOf(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader").toString()) >= 0) {
-								showMessage("取得塏固資料 : " + originalData);
-								ProxyDatas.KENKUL_RAW_DATA.offer(originalData.replaceAll(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader"), ""));
-							} else {
-								showMessage("取得無法辨識資料 : " + originalData);
-							}
-							System.out.println(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader"));
-							waitingForReturnMessage = false;
-							buffer.clear();
-						}
+						originalData = listenMessage(socketChannel);
+						checkHeaderProcess(originalData);
 					} catch (IOException e) {
 						e.printStackTrace();
+						showMessage("連線 or 資料判斷錯誤  進入重連程序");
+						startRestartEnginProcess();
 					}
 				}
 				showMessage("資料接收結束.");
 			}
 		}).start();
+	}
+
+	private String listenMessage(SocketChannel socketChannel) throws IOException {
+		ByteBuffer buffer = ByteBuffer.allocate(4096 * 1024);
+		String stringMessage = null;
+		int numRead = -1;
+		while ((numRead = socketChannel.read(buffer)) > 0) {
+			byte[] data = new byte[numRead];
+			System.arraycopy(buffer.array(), 0, data, 0, numRead);
+			stringMessage = new String(data);
+			waitingForReturnMessage = false;
+			buffer.clear();
+		}
+		return stringMessage;
+	}
+
+	private void checkHeaderProcess(String originalData) {
+		if (originalData.equals(GlobalConfig.XML_CONFIG.getProperty("RawDataTransTestConnectionKey").toString())) {
+			showMessage("取得測試連線回傳 : " + originalData);
+		} else if (originalData.indexOf(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader").toString()) >= 0) {
+			showMessage("取得塏固資料 : " + originalData);
+			ProxyDatas.KENKUL_RAW_DATA.offer(originalData.replaceAll(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader"), ""));
+		} else {
+			showMessage("取得無法辨識資料 : " + originalData);
+		}
 	}
 
 	private void startCheckConnectionTimer(final SocketChannel socketChannel) {
@@ -177,6 +188,7 @@ public class RawDataReceiveEngin implements Engin {
 				stopEngin();
 				restartingEngin = true;
 				try {
+					showMessage("60秒後開始重連...");
 					Thread.sleep(1000 * 60);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
