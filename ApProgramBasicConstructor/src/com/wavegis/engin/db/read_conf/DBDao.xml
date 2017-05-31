@@ -10,7 +10,7 @@
 				, a._cctv_name AS stname
 				, a._cctv_ip AS ip
 				, 'http://' || a._cctv_ip || '/play/jpg.php?devid=' || a._id || '&L=98066b3bebdc3aea801089f383b417ee' AS "URL"
-				, 'D://' || a._channel || '.jpg' AS "savePath"
+				, 'C://Program Files/Apache Software Foundation/Tomcat 7.0/webapps/ROOT/' || a._channel || '.jpg' AS "savePath"
 			FROM 
 				vr.cctv_data a
 			WHERE 
@@ -21,7 +21,7 @@
 					,a._cctv_name AS stname
 					, a._cctv_ip AS ip
 					, 'http://' || a._cctv_ip || '/' || a._id  AS url
-					, 'D://' || a._channel || '.jpg' AS "savePath"
+					, 'C://Program Files/Apache Software Foundation/Tomcat 7.0/webapps/ROOT/' || a._channel || '.jpg' AS "savePath"
 				FROM
 					vr.cctv_data a
 				WHERE _vr_status = 1
