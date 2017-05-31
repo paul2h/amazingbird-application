@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ClassDiagram>
-    <Class name="com.wavegis.Starter" x="831" y="447">
+    <Class name="com.wavegis.Starter" x="633" y="334">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -13,7 +13,7 @@
             endpointName="controller" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.basic_construction.Controller"/>
     </Class>
-    <Class name="com.wavegis.basic_construction.DaoConnector" x="589" y="938">
+    <Class name="com.wavegis.basic_construction.DaoConnector" x="408" y="774">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -22,7 +22,7 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="com.wavegis.basic_construction.MainUI" x="551" y="19">
+    <Class name="com.wavegis.basic_construction.MainUI" x="373" y="65">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -30,7 +30,8 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
-        <Association destinationClassName="com.wavegis.engin.EnginView"
+        <Association
+            destinationClassName="com.wavegis.engin.prototype.EnginView"
             endpointName="enginViews" kind="Simple"/>
         <Association
             destinationClassName="com.wavegis.basic_construction.Controller"
@@ -38,19 +39,10 @@
         <Association
             destinationClassName="com.wavegis.basic_construction.MainUI"
             endpointName="instance" kind="Simple"/>
-        <Communication destinationClassName="com.wavegis.engin.Engin"/>
+        <Communication destinationClassName="com.wavegis.engin.prototype.Engin"/>
         <Communication destinationClassName="com.wavegis.basic_construction.Controller"/>
     </Class>
-    <Class name="com.wavegis.engin.EnginView" x="232" y="91">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-    </Class>
-    <Class name="com.wavegis.basic_construction.Service" x="608" y="624">
+    <Class name="com.wavegis.basic_construction.Service" x="419" y="505">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -63,7 +55,7 @@
             endpointName="dao" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.basic_construction.Dao"/>
     </Class>
-    <Class name="com.wavegis.engin.demo.DemoEnginView" x="35" y="352">
+    <Class name="com.wavegis.engin.prototype.TimerEngin" x="-134" y="462">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -71,9 +63,9 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.SimpleEnginView"/>
+        <Extension destinationClassName="com.wavegis.engin.prototype.Engin"/>
     </Class>
-    <Class name="com.wavegis.engin.Engin" x="254" y="468">
+    <Class name="com.wavegis.engin.prototype.Engin" x="74" y="322">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -82,7 +74,16 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="com.wavegis.basic_construction.Controller" x="577" y="437">
+    <Class name="com.wavegis.engin.prototype.EnginView" x="59" y="112">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.wavegis.basic_construction.Controller" x="393" y="322">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -96,22 +97,13 @@
         <Association
             destinationClassName="com.wavegis.basic_construction.Service"
             endpointName="service" kind="Simple"/>
-        <Association destinationClassName="com.wavegis.engin.Engin"
+        <Association
+            destinationClassName="com.wavegis.engin.prototype.Engin"
             endpointName="engins" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.basic_construction.MainUI"/>
-        <Communication destinationClassName="com.wavegis.engin.Engin"/>
+        <Communication destinationClassName="com.wavegis.engin.prototype.Engin"/>
     </Class>
-    <Class name="com.wavegis.engin.TimerEngin" x="236" y="609">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.Engin"/>
-    </Class>
-    <Class name="com.wavegis.basic_construction.Dao" x="565" y="752">
+    <Class name="com.wavegis.basic_construction.Dao" x="379" y="622">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -124,7 +116,7 @@
             endpointName="daoConnector" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.basic_construction.DaoConnector"/>
     </Class>
-    <Class name="com.wavegis.engin.SimpleEnginView" x="230" y="236">
+    <Class name="com.wavegis.engin.prototype.SimpleEnginView" x="-144" y="206">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -132,21 +124,7 @@
             private-accepted="false" protected-accepted="false"
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.EnginView"/>
+        <Extension destinationClassName="com.wavegis.engin.prototype.EnginView"/>
     </Class>
-    <Class name="com.wavegis.engin.demo.DemoEngin" x="20" y="608">
-        <AttributesDisplayFilter public-accepted="true"
-            private-accepted="true" protected-accepted="true"
-            default-accepted="true" static-accepted="false"/>
-        <MethodDisplayFilter public-accepted="true"
-            private-accepted="false" protected-accepted="false"
-            default-accepted="false" static-accepted="false"
-            accessors-accepted="false" constructors-accepted="false"/>
-        <Extension destinationClassName="com.wavegis.engin.Engin"/>
-        <Association
-            destinationClassName="com.wavegis.engin.demo.DemoEnginView"
-            endpointName="demoEnginView" kind="Simple"/>
-        <Communication destinationClassName="com.wavegis.engin.SimpleEnginView"/>
-    </Class>
-    <Note x="889" y="396">程式起始</Note>
+    <Note x="687" y="288">程式起始點</Note>
 </ClassDiagram>
