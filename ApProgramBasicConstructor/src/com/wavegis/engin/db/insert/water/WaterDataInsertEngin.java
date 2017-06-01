@@ -53,7 +53,11 @@ public class WaterDataInsertEngin extends TimerEngin {
 
 			Double[] datas = originalWaterData.getDatas();
 			if (datas.length >= 12) {// TODO 目前針對塏固 需要再行修正成多種可用的運算方式
-				waterData.setWaterlevel(datas[0] * 0.0001 * 4 * 0.0004);
+				if (datas[0] > 5000) {
+					waterData.setWaterlevel(datas[0] * 0.0001 * 4 * 0.0004);
+				} else {
+					waterData.setWaterlevel(0);
+				}
 				waterData.setRainfallCounter(datas[2]);
 				waterData.setVoltage(datas[4]);
 				waterData.setRainfall10min(datas[6]);
@@ -72,7 +76,7 @@ public class WaterDataInsertEngin extends TimerEngin {
 			dao.insertRainData(waterDatas);
 			showMessage(String.format("寫入完成,共%d筆", waterDatas.size()));
 		}
-		
+
 	}
 
 	@Override
