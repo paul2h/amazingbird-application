@@ -9,15 +9,17 @@ import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.raw_data_analysis.kenkul.KenkulDataEngin;
+import com.wavegis.engin.raw_data_analysis.text_read.RawDataTextReadEngin;
 
 public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
 	public static final Engin[] Engins = {
-			new CCTVEngin(),
-			new DBEngin(),
-			new RawDataReceiveEngin(),
-			new KenkulDataEngin(),
-			new WaterDataInsertEngin()
+			new CCTVEngin()
+			,new DBEngin()
+			,new RawDataReceiveEngin()
+			,new KenkulDataEngin()
+			,new WaterDataInsertEngin()
+			,new RawDataTextReadEngin()
 	};
 
 	@SuppressWarnings("serial")

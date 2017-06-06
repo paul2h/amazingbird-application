@@ -18,6 +18,7 @@ import com.wavegis.model.water.OriginalWaterData;
 
 public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterData<Double>> {
 
+	public static final String enginID = "AnalysisEngin1.0";
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
 	private static HashMap<String, Double> lastTimeRainData = new HashMap<String, Double>();
 	private static ConcurrentHashMap<String, ConcurrentSkipListMap<String, Double>> accumulatedRainfallDatas = new ConcurrentHashMap<String, ConcurrentSkipListMap<String, Double>>();
@@ -134,36 +135,33 @@ public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterDat
 						String finalTime = dateString;
 
 						if (accumulatedRainfallData.containsKey(finalTime)) {
+							System.out.println("已有此筆資料,跳過不處理 : " + stid + "  " + finalTime);
 							continue;
 						}
 						if (lastTimeRainData.containsKey(stid)) {// 如果該雨量站前面已經有收到資料(此筆資料不是第一筆資料)
-							
+
 							double lastRainData = lastTimeRainData.get(stid);
-							System.out.println("lastRainData = " + lastRainData);
 							if (rainCount - lastRainData >= 0) {// 新的資料比舊資料大或一樣 -> 降雨量為 "新資料減舊資料"
 								rainfall = rainCount - lastRainData;
 							}
 						}
 						lastTimeRainData.put(stid, rainCount);
 						accumulatedRainfallData.put(finalTime, rainfall);
+						accumulatedRainfallDatas.put(stid, accumulatedRainfallData);
 						// 計算累積雨量
 						String tenMinutesAgo = formatDatetime(getAddTime(dateString, Calendar.MINUTE, -10));
 						String anHourAgo = formatDatetime(getAddTime(dateString, Calendar.HOUR_OF_DAY, -1));
 						String threeHourAgo = formatDatetime(getAddTime(dateString, Calendar.HOUR_OF_DAY, -3));
 						String sixHourAgo = formatDatetime(getAddTime(dateString, Calendar.HOUR_OF_DAY, -6));
 						String halfOfDayAgo = formatDatetime(getAddTime(dateString, Calendar.HOUR_OF_DAY, -12));
-						String eighteenHoursAgo = formatDatetime(getAddTime(dateString, Calendar.HOUR_OF_DAY, -18));
 						String oneDayAgo = formatDatetime(getAddTime(dateString, Calendar.DATE, -1));
 						double rainfall_10min = getAccumulatedRainfall(accumulatedRainfallData, tenMinutesAgo, finalTime, 0, true); // 累積雨量(10分鐘)
-						double rainfall_hour = getAccumulatedRainfall(accumulatedRainfallData, anHourAgo, tenMinutesAgo, rainfall_10min, false); // 累積雨量(1小時)
-						double rainfall_3hr = getAccumulatedRainfall(accumulatedRainfallData, threeHourAgo, anHourAgo, rainfall_hour, false); // 累積雨量(3小時)
-						double rainfall_6hr = getAccumulatedRainfall(accumulatedRainfallData, sixHourAgo, threeHourAgo, rainfall_3hr, false); // 累積雨量(6小時)
-						double rainfall_12hr = getAccumulatedRainfall(accumulatedRainfallData, halfOfDayAgo, sixHourAgo, rainfall_6hr, false); // 累積雨量(12小時)
-						double rainfall_18hr = getAccumulatedRainfall(accumulatedRainfallData, eighteenHoursAgo, halfOfDayAgo, rainfall_12hr, false); // 累積雨量(18小時)
-						double rainfall_24hr = getAccumulatedRainfall(accumulatedRainfallData, oneDayAgo, eighteenHoursAgo, rainfall_18hr, false); // 累積雨量(24小時)
-
+						double rainfall_hour = getAccumulatedRainfall(accumulatedRainfallData, anHourAgo, finalTime, 0, true); // 累積雨量(1小時)
+						double rainfall_3hr = getAccumulatedRainfall(accumulatedRainfallData, threeHourAgo, finalTime, 0, true); // 累積雨量(3小時)
+						double rainfall_6hr = getAccumulatedRainfall(accumulatedRainfallData, sixHourAgo, finalTime, 0, true); // 累積雨量(6小時)
+						double rainfall_12hr = getAccumulatedRainfall(accumulatedRainfallData, halfOfDayAgo, finalTime, 0, true); // 累積雨量(12小時)
+						double rainfall_24hr = getAccumulatedRainfall(accumulatedRainfallData, oneDayAgo, finalTime, 0, true); // 累積雨量(24小時)
 						// ]]
-
 						// #[[ 放入清單
 						Double[] datas = { data01, data02, rainCount, temperature, voltage, RSSISignal,
 								rainfall_10min, rainfall_hour, rainfall_3hr, rainfall_6hr, rainfall_12hr, rainfall_24hr };
@@ -196,37 +194,14 @@ public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterDat
 	 * @return
 	 */
 	private double getAccumulatedRainfall(ConcurrentSkipListMap<String, Double> accumulatedRainfallData, String start, String end, double accumulatedRainfall, boolean isCalSatart) {
-		String firstKey = start;
-		String lastKey = end;
 		ConcurrentNavigableMap<String, Double> subAccumulatedRainfallData = null;
 
 		if (accumulatedRainfallData == null || accumulatedRainfallData.size() == 0) {
 			return accumulatedRainfall;
 		}
-		if (!accumulatedRainfallData.containsKey(start)) {
-			// 回傳一個最接近輸入時間但不小於的時間Key值
-			firstKey = accumulatedRainfallData.higherKey(start);
 
-			isCalSatart = true;
-		}
-		if (!accumulatedRainfallData.containsKey(end)) {
-			// 回傳一個最接近輸入時間但不大於的時間Key值
-			lastKey = accumulatedRainfallData.lowerKey(end);
-		}
-		if (firstKey == null) {
-			// 取得 end 前的所有雨量
-			// subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>)accumulatedRainfallData.headMap(end, true);
+		subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>) accumulatedRainfallData.tailMap(start, isCalSatart).headMap(end, true);
 
-			return accumulatedRainfall;
-		} else if (lastKey == null) {
-			// 取得 start 後的所有雨量
-			// subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>)accumulatedRainfallData.tailMap(start, isCalSatart);
-
-			return accumulatedRainfall;
-		} else {
-			// 取得start ~ end 內的所有雨量
-			subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>) accumulatedRainfallData.subMap(firstKey, isCalSatart, lastKey, true);
-		}
 		if (subAccumulatedRainfallData == null || subAccumulatedRainfallData.isEmpty()) {
 			return accumulatedRainfall;
 		}

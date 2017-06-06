@@ -29,7 +29,7 @@
 			hour_6 , 
 			hour_12 , 
 			hour_24 , 
-			now 
+			now
 		)VALUES		
 		<foreach collection="list" item="element" index="index" open="("
 			separator="),(" close=")">

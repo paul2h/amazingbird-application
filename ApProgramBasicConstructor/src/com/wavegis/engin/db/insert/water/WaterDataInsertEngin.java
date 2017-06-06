@@ -1,5 +1,6 @@
 package com.wavegis.engin.db.insert.water;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,17 +10,17 @@ import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
 import com.wavegis.global.ProxyDatas;
 import com.wavegis.global.tools.LogTool;
-import com.wavegis.model.water.OriginalWaterData;
 import com.wavegis.model.water.WaterData;
 
 public class WaterDataInsertEngin extends TimerEngin {
 
 	public static final String enginID = "WaterDataInsert";
-	private static final String enginName = "水情資料寫入Engin";
+	private static final String enginName = "水情資料寫入2.0";
 	private static final WaterDataInsertEnginView enginView = new WaterDataInsertEnginView();
 	private static final WaterDao dao = WaterDao.getInstance();
 
 	private Logger logger;
+	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public WaterDataInsertEngin() {
 		setTimeout(1000 * 30);
@@ -45,30 +46,9 @@ public class WaterDataInsertEngin extends TimerEngin {
 	public void timerAction() {
 		List<WaterData> waterDatas = new ArrayList<>();
 		WaterData waterData;
-		OriginalWaterData<Double> originalWaterData;
-		while ((originalWaterData = ProxyDatas.WATER_DATA_INSERT_QUEUE.poll()) != null) {
-			waterData = new WaterData();
-			waterData.setLasttime(originalWaterData.getDatatime());
-			waterData.setStid(originalWaterData.getStid());
-
-			Double[] datas = originalWaterData.getDatas();
-			if (datas.length >= 12) {// TODO 目前針對塏固 需要再行修正成多種可用的運算方式
-				if (datas[0] > 5000) {
-					waterData.setWaterlevel(datas[0] * 0.0001 * 4 * 0.0004);
-				} else {
-					waterData.setWaterlevel(0);
-				}
-				waterData.setRainfallCounter(datas[2]);
-				waterData.setVoltage(datas[4]);
-				waterData.setRainfall10min(datas[6]);
-				waterData.setRainfall1hour(datas[7]);
-				waterData.setRainfall3hour(datas[8]);
-				waterData.setRainfall6hour(datas[9]);
-				waterData.setRainfall12hour(datas[10]);
-				waterData.setRainfall24hour(datas[11]);
-
-				waterDatas.add(waterData);
-			}
+		while ((waterData = ProxyDatas.WATER_DATA_INSERT_QUEUE.poll()) != null) {
+			showMessage("從INSERT QUEUE取得資料 : " + waterData.getStid() + " " + simpleDateFormat.format(waterData.getLasttime()));
+			waterDatas.add(waterData);
 		}
 		if (waterDatas.size() > 0) {
 			showMessage("寫入資料中...");
@@ -76,7 +56,8 @@ public class WaterDataInsertEngin extends TimerEngin {
 			dao.insertRainData(waterDatas);
 			showMessage(String.format("寫入完成,共%d筆", waterDatas.size()));
 		}
-
+		waterDatas.clear();
+		waterDatas = null;
 	}
 
 	@Override
