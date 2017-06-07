@@ -81,15 +81,15 @@ public class ConvertToWaterData {
 					break;
 				case "DI1":
 					double rainfall = 0;
-					
+
 					ConcurrentSkipListMap<String, Double> accumulatedRainfallData = accumulatedRainfallDatas.get(stid);
 					if (accumulatedRainfallData == null) {
 						accumulatedRainfallData = new ConcurrentSkipListMap<String, Double>();
 					}
 					String finalTime = formatDatetime(dataTime);
-					
-					if(accumulatedRainfallData.containsKey(finalTime)){
-						continue;
+
+					if (accumulatedRainfallData.containsKey(finalTime)) {
+						return new Object[0];//判斷已經有同樣資料過  回傳一個無意義物件
 					}
 					if (lastTimeRainData.containsKey(stid)) {// 如果該雨量站前面已經有收到資料(此筆資料不是第一筆資料)
 						// 建華的雨量累積方式較不同 by kiwi
@@ -121,7 +121,7 @@ public class ConvertToWaterData {
 					double rainfall_24hr = getAccumulatedRainfall(accumulatedRainfallData, oneDayAgo, eighteenHoursAgo, rainfall_18hr, false); // 累積雨量(24小時)
 					double rainfall_36hr = getAccumulatedRainfall(accumulatedRainfallData, oneAndAHalfDaysAgo, oneDayAgo, rainfall_24hr, false); // 累積雨量(48小時)
 					double rainfall_72hr = getAccumulatedRainfall(accumulatedRainfallData, threeDaysAgo, oneAndAHalfDaysAgo, rainfall_36hr, false); // 累積雨量(72小時)
-					
+
 					rainData.setMin_10(rainfall_10min);
 					rainData.setHour_1(rainfall_hour);
 					rainData.setHour_3(rainfall_3hr);
@@ -224,41 +224,14 @@ public class ConvertToWaterData {
 		if (accumulatedRainfallData == null || accumulatedRainfallData.size() == 0) {
 			return accumulatedRainfall;
 		}
-		if (!accumulatedRainfallData.containsKey(start)) {
-			// 回傳一個最接近輸入時間但不小於的時間Key值
-			firstKey = accumulatedRainfallData.higherKey(start);
-
-			isCalSatart = true;
-		}
-		if (!accumulatedRainfallData.containsKey(end)) {
-			// 回傳一個最接近輸入時間但不大於的時間Key值
-			lastKey = accumulatedRainfallData.lowerKey(end);
-		}
-		if (firstKey == null) {
-			// 取得 end 前的所有雨量
-			// subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>)accumulatedRainfallData.headMap(end, true);
-
-			return accumulatedRainfall;
-		} else if (lastKey == null) {
-			// 取得 start 後的所有雨量
-			// subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>)accumulatedRainfallData.tailMap(start, isCalSatart);
-
-			return accumulatedRainfall;
-		} else {
-			// 取得start ~ end 內的所有雨量
-			subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>) accumulatedRainfallData.subMap(firstKey, isCalSatart, lastKey, true);
-		}
+		subAccumulatedRainfallData = (ConcurrentNavigableMap<String, Double>) accumulatedRainfallData.subMap(firstKey, isCalSatart, lastKey, true);
 		if (subAccumulatedRainfallData == null || subAccumulatedRainfallData.isEmpty()) {
 			return accumulatedRainfall;
 		}
-		System.out.println(firstKey + " ~ " + lastKey);
-		System.out.println("first: " + accumulatedRainfall);
 		for (String mapKey : subAccumulatedRainfallData.keySet()) {
 			double rainfall = subAccumulatedRainfallData.get(mapKey);
-			System.out.println("=== " + mapKey + ", " + rainfall);
 			accumulatedRainfall += rainfall;
 		}
-		System.out.println("return: " + accumulatedRainfall);
 		return accumulatedRainfall;
 	}
 

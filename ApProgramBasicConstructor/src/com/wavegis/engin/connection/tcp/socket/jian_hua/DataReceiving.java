@@ -50,8 +50,10 @@ public class DataReceiving implements Runnable {
 				Object[] objs = ConvertToWaterData.analysisNewData(receiveingMessage);
 
 				if (objs.length < 2) {
-					break;
+					System.out.println("不處理的資料 : " + receiveingMessage);
+					continue;
 				}
+				
 				RainData rainData = (RainData) objs[0];
 				WaterData waterData = (WaterData) objs[1];
 				StringBuffer sb = new StringBuffer();
@@ -67,7 +69,6 @@ public class DataReceiving implements Runnable {
 
 				if (rainData.getRain_current() >= 0) {
 					sb.append("rainfall: " + rainData.getRain_current() + ", voltage: " + rainData.getVoltage() + " ");
-
 					ProxyData.WATER_INSERT_RAIN_QUEUE.offer(rainData);
 				}
 				if (waterData.getWaterlevel() >= 0) {
