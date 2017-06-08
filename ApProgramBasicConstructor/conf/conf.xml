@@ -25,8 +25,9 @@
 	<entry key="ImageNewDirPath">D:/pic/</entry>
 
 	<!-- 簡訊發送 -->
-	<entry key="SMS_Account">11562</entry>
-	<entry key="SMS_Password">11562</entry>
+	<entry key="SMS_SERVER_URL_PREFIX">http://smexpress.mitake.com.tw:9600/SmSendPost.asp</entry>
+	<entry key="SMS_Account">80680205</entry>
+	<entry key="SMS_Password">wavegis25983</entry>
 
 	<!-- QPESUMS解讀 -->
 	<entry key="gzDirPath">D:/QP/original</entry>
