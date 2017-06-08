@@ -7,14 +7,16 @@
 		stno,
 		datatime,
 		ch1_avg,
-		ch2_avg
+		ch2_avg,
+		ch3_avg
 		)VALUES
 		<foreach collection="list" item="element" index="index" open="("
 			separator="),(" close=")">
 			#{element.stid},
 			#{element.lasttime},
 			#{element.waterlevel},
-			#{element.voltage}
+			#{element.voltage},
+			#{element.temperature}
 		</foreach>
 	</insert>
 	<insert id="insertRainData" parameterType="java.util.List">
@@ -23,26 +25,26 @@
 			stid , 
 			_time , 
 			elev , 
+			now,
 			rain , 
 			min_10 , 
 			hour_3 , 
 			hour_6 , 
 			hour_12 , 
-			hour_24 , 
-			now
+			hour_24 
 		)VALUES		
 		<foreach collection="list" item="element" index="index" open="("
 			separator="),(" close=")">
 			#{element.stid},
 			to_char(#{element.lasttime}::timestamp, 'YYYYMMDDHH24MI'::text),
 			#{element.voltage},
+			#{element.rainfallCounter},
 			#{element.rainfall1hour},
 			#{element.rainfall10min},
 			#{element.rainfall3hour},
 			#{element.rainfall6hour},
 			#{element.rainfall12hour},
-			#{element.rainfall24hour},
-			#{element.rainfallCounter}
+			#{element.rainfall24hour}
 		</foreach>
 	</insert>	
 

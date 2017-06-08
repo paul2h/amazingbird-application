@@ -173,6 +173,7 @@ public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterDat
 					System.out.println("資料宣稱長度與實際長度不符!!");
 				}
 			} catch (Exception e) {
+				System.err.println(originalMessage);
 				e.printStackTrace();
 			}
 		}

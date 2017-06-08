@@ -60,16 +60,26 @@ public class RawDataTextReadEngin implements Engin {
 		return true;
 	}
 
-	String LogPath = "C:\\temp\\";// TODO
+	String LogPath = "D:\\temp\\";// TODO
 
 	private void insertProcess() {
 		boolean success = false;
 
 		List<String> logFileList;
 		logFileList = scanLogDatas(LogPath);
+		int count = 0;
 		for (String logFile : logFileList) {
 			showMessage("開始檔案讀取&寫入 : " + logFile);
 			success = readTxtAndInsert(logFile);
+			count++;
+			if(count == 48){
+				count = 0;
+				try {
+					Thread.sleep(1000*30);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		if (!success) {
 			showMessage("讀取寫入失敗");

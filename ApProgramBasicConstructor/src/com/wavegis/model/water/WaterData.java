@@ -9,6 +9,7 @@ public class WaterData {
 	private Timestamp lasttime;
 	private double voltage;
 	private double waterlevel;
+	private double 	temperature;
 	private double rainfall10min;
 	private double rainfall1hour;
 	private double rainfall3hour;
@@ -120,5 +121,13 @@ public class WaterData {
 
 	public void setRainfallCounter(double rainfallCounter) {
 		this.rainfallCounter = rainfallCounter;
+	}
+
+	public double getTemperature() {
+		return temperature;
+	}
+
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
 	}
 }

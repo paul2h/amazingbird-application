@@ -1,5 +1,6 @@
 package com.wavegis.engin.raw_data_analysis.kenkul;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class KenkulDataEngin extends TimerEngin {
 						waterData.setWaterlevel(0);
 					}
 					waterData.setRainfallCounter(datas[2]);
+					waterData.setTemperature(calculateTemperature(datas[3]));
 					waterData.setVoltage(datas[4]);
 					waterData.setRainfall10min(datas[6]);
 					waterData.setRainfall1hour(datas[7]);
@@ -73,6 +75,13 @@ public class KenkulDataEngin extends TimerEngin {
 				}
 			}
 		}
+	}
+
+	/** 塏固溫度換算 */
+	private double calculateTemperature(double value) {
+		BigDecimal bd = new BigDecimal((-22.693211603) * Math.log10(value) / Math.log10(Math.E) + 207.328842909);
+		bd = bd.setScale(3, BigDecimal.ROUND_HALF_UP);// 小數後面三位 四捨五入
+		return bd.doubleValue();
 	}
 
 	@Override
