@@ -36,6 +36,7 @@ public class SMSSendEngin implements Engin {
 	private static final String encoding = "Big5";
 	private static final String serverEncoding = "Big5";// Server回傳的編碼,此為固定值
 	private static String SMS_SERVER_URL = String.format("%s?username=%s&password=%s&encoding=%s", SMS_SERVER_URL_PREFIX, SMS_Account, SMS_Password, encoding);
+	private static final char enterCode = (char) 6;// ASCII Code
 
 	@Override
 	public String getEnginID() {
@@ -63,6 +64,7 @@ public class SMSSendEngin implements Engin {
 				for (String stid : ProxyData.SMS_SEND_LIST.keySet()) {
 					alertData = ProxyData.SMS_SEND_LIST.get(stid);
 					if (!alertData.HasSend()) {
+						showMessage("傳送警戒簡訊 : "+ alertData.getStnm());
 						try {
 							sendSMSProcess(alertData);
 							alertData.setHasSend(true);// 傳送過了做記號
@@ -100,12 +102,12 @@ public class SMSSendEngin implements Engin {
 		boolean isSuccess = false;
 
 		String[] phoneNumbers = alertData.getPhones().replaceAll("\\{", "").replaceAll("\\}", "").split(",");
-		
+
 		// 第一封
-		String message = String.format("水位站警訊訊息:(%s)\n%s\n", alertData.getStnm(), alertData.getMessage());
+		String message = String.format("水位站警訊訊息:%s(%s)%s%s%s", "" + enterCode, alertData.getStnm(), "" + enterCode, alertData.getMessage(), "" + enterCode);
 		String responseMessage = send(phoneNumbers, message);// TODO 回傳成功確認
 		// 第二封
-		message = String.format("水位站警界資訊:(%s)\n最新資料時間:%s\n最新水位:%s\n警戒水位:%s", alertData.getStnm(), sdf.format(alertData.getDatatime()), "" + alertData.getWaterlv(), "" + alertData.getAlert_value());
+		message = String.format("水位站警界資訊:%s(%s)%s最新資料時間:%s%s最新水位:%s%s警戒水位:%s", "" + enterCode, alertData.getStnm(), enterCode, sdf.format(alertData.getDatatime()), enterCode, "" + alertData.getWaterlv(), enterCode, "" + alertData.getAlert_value());
 		responseMessage += send(phoneNumbers, message);// TODO 回傳成功確認
 
 		System.out.println(responseMessage);
