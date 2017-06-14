@@ -17,7 +17,7 @@ import com.wavegis.model.CCTVData;
 public class CCTVEngin extends TimerEngin {
 
 	private static final String enginID = "CCTV";
-	private static final String enginName = "CCTV讀取Engin";
+	private static final String enginName = "CCTV讀取1.0";
 	private static final CCTVEnginView enginView = new CCTVEnginView();
 	private Logger logger;
 	private ConcurrentHashMap<String, Integer> threadCounts = new ConcurrentHashMap<>();

@@ -13,7 +13,7 @@ import com.wavegis.model.CCTVData;
 public class DBEngin implements Engin {
 
 	private static final String enginID = "DB";
-	private static final String enginName = "DB讀取Engin";
+	private static final String enginName = "DB讀取1.0";
 	private static final DBEnginView enginView = new DBEnginView();
 
 	
@@ -46,7 +46,6 @@ public class DBEngin implements Engin {
 
 		List<CCTVData> cctvDataList = dao.getCCTVData();
 
-		
 		GlobalConfig.CCTV_DATA_LIST.clear();
 
 		for (CCTVData cctvData : cctvDataList) {
