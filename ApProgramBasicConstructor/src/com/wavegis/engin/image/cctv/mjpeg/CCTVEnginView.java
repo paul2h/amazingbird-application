@@ -3,10 +3,9 @@ package com.wavegis.engin.image.cctv.mjpeg;
 import com.wavegis.engin.prototype.SimpleEnginView;
 
 @SuppressWarnings("serial")
-public class CCTVMutiThreadEnginView extends SimpleEnginView {
+public class CCTVEnginView extends SimpleEnginView{
 
-	public static final String enginID = CCTVMutiThreadEngin.enginID;
-
+	private static final String enginID = "CCTV";
 	@Override
 	public String getEnginID() {
 		return enginID;

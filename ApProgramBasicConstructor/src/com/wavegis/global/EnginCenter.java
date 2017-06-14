@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
-import com.wavegis.engin.db.select.DBConfigEngin;
+import com.wavegis.engin.db.read_conf.DBConfigEngin;
 import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
-import com.wavegis.engin.image.cctv.mjpeg.CCTVMutiThreadEngin;
+import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
 import com.wavegis.engin.image.qpesums.QpesumsReadEngin;
 import com.wavegis.engin.notification.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
@@ -17,7 +17,7 @@ public class EnginCenter {
 	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
 	public static final Engin[] Engins = {
 			new DBConfigEngin()
-			, new CCTVMutiThreadEngin()
+			, new CCTVEngin()
 			, new ImageEngin()
 			, new AlertAnalysisEngin()
 			, new SMSSendEngin()

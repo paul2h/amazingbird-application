@@ -3,12 +3,12 @@ package com.wavegis.model;
 public class CCTVData {
 	private String stid;
 	private String stname;
-	private String ip;
-	private String url_suffix;
 	private String account;
 	private String password;
 	private String savePath;
 	private String filename;
+	private boolean need_login = false;
+	private String URL;
 
 	public String getStid(){
 		return stid;
@@ -26,22 +26,6 @@ public class CCTVData {
 		this.stname = stname;
 	}
 	
-	public String getIp(){
-		return ip;
-	}
-
-	public void setIp(String ip){
-		this.ip = ip;
-	}
-
-	public String getUrl_suffix(){
-		return url_suffix;
-	}
-
-	public void setUrl_suffix(String url_suffix){
-		this.url_suffix = url_suffix;
-	}
-
 	public String getAccount(){
 		return account;
 	}
@@ -72,5 +56,21 @@ public class CCTVData {
 
 	public void setFilename(String filename){
 		this.filename = filename;
+	}
+
+	public boolean isNeed_login() {
+		return need_login;
+	}
+
+	public void setNeed_login(boolean need_login) {
+		this.need_login = need_login;
+	}
+
+	public String getURL() {
+		return URL;
+	}
+
+	public void setURL(String uRL) {
+		URL = uRL;
 	}
 }

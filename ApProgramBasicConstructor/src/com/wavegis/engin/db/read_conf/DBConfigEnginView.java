@@ -1,4 +1,4 @@
-package com.wavegis.engin.db.select;
+package com.wavegis.engin.db.read_conf;
 
 import com.wavegis.engin.prototype.SimpleEnginView;
 
