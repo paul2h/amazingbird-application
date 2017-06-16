@@ -1,9 +1,8 @@
-package com.wavegis.engin.db.alert_check;
+package com.wavegis.engin.db.fake;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.Charset;
-import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.SMSAlertData;
 
 /**
  * 給Service取得Dao的Dao總管理物件
@@ -19,14 +17,14 @@ import com.wavegis.model.SMSAlertData;
  * <pre>
  * 使用方法:mybatis
  */
-public class AlertDao {
-	static AlertDao instance;
+public class FakeGpsDao {
+	static FakeGpsDao instance;
 
 	/* 取得config檔的reader */
 	private Reader reader;
 
 	// #[[DaoConnector List
-	private AlertDaoConnector daoConnector;
+	private FakeGpsDaoConnector daoConnector;
 	// ]] Dao List */
 
 	// #[[ myBatis物件
@@ -36,7 +34,7 @@ public class AlertDao {
 	// ]]myBatis物件
 
 	// #[[ 建置用Method
-	public AlertDao() throws IOException {
+	public FakeGpsDao() {
 		Resources.setCharset(Charset.forName("UTF-8"));
 		try {
 			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
@@ -45,18 +43,19 @@ public class AlertDao {
 			try {
 				reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path_Output);
 			} catch (IOException e1) {
+				System.out.println("DAO設定檔取得錯誤!!");
 				e1.printStackTrace();
-				System.out.println("DAO初始化錯誤!!");
 			}
 		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "FakeDataDaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
-		daoConnector = sqlSession.getMapper(AlertDaoConnector.class);
+		daoConnector = sqlSession.getMapper(FakeGpsDaoConnector.class);
+		instance = this;
 	}
 
-	public static AlertDao getInstance() throws IOException {
+	public static FakeGpsDao getInstance() {
 		if (instance == null) {
-			instance = new AlertDao();
+			instance = new FakeGpsDao();
 		}
 		return instance;
 	}
@@ -64,9 +63,10 @@ public class AlertDao {
 
 	// #[[ 指令用Method
 
-	public List<SMSAlertData> getAlertData() {
-		sqlSession.clearCache();// 要加這個才會清除暫存
-		return daoConnector.getData();
+	public void updateGpsData() {
+		daoConnector.updateGpsData();
+		sqlSession.commit();
 	}
+
 	// ]]
 }

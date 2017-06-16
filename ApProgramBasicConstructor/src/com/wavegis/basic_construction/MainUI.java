@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -37,7 +38,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 	private static final int frameWidth = 600;
 	private static final int frameHeight = 600;
-	private EnginView[] enginViews = EnginCenter.EnginViews;
+	private List<EnginView> enginViews =EnginCenter.EnginViews;
 	private JTextArea messageArea;
 	private JButton startAllButton, stopAllButton;
 	private JTabbedPane mainEnginViewPanel;
@@ -57,10 +58,11 @@ public class MainUI extends JFrame implements ActionListener {
 
 	public void start(String edition) {
 		this.edition = edition;
+		String trayPassword = GlobalConfig.XML_CONFPIG.getProperty("TrayPassword");
 		initUI();
-		initTray(GlobalConfig.XML_CONFPIG.getProperty("TrayPassword"), edition);
+		initTray(trayPassword, edition);
 		initIcon();
-		setCloseConfirm();
+		setCloseConfirm(trayPassword);
 	}
 
 	/** 初始化UI介面 */
@@ -129,7 +131,7 @@ public class MainUI extends JFrame implements ActionListener {
 	}
 
 	/** 點選右上叉叉時顯現確認訊息 */
-	private void setCloseConfirm() {
+	private void setCloseConfirm(final String password) {
 		// 系統關閉按鈕
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -137,12 +139,16 @@ public class MainUI extends JFrame implements ActionListener {
 				int result = JOptionPane.showOptionDialog(null, "確定要結束程式嗎？", "詢問", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if (result == 0) {
-					tray.remove(tray_icon); // 清除系統列圖示
-					System.exit(0);
+					if (checkExitPassword(password)) {
+						tray.remove(tray_icon); // 清除系統列圖示
+						System.exit(0);
+					} else {
+						JOptionPane.showMessageDialog(instance, "縮小到右下角系統列");
+					}
 				}
 			}
 		});
-		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+		instance.setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}
 
 	private void initTray(final String password, String trayName) {
@@ -151,8 +157,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 				ActionListener exitListener = new ActionListener() {// Tray 操作區
 					public void actionPerformed(ActionEvent e) {
-						String result = (String) JOptionPane.showInputDialog("Password", "請輸入密碼");
-						if (result != null && result.equals(password)) {
+						if (checkExitPassword(password)) {
 							System.exit(0);
 						}
 					}
@@ -208,6 +213,17 @@ public class MainUI extends JFrame implements ActionListener {
 
 	private void initIcon() {
 		this.setIconImage(GlobalConfig.FrameIconImage.getImage());
+	}
+
+	private boolean checkExitPassword(String password) {
+		boolean canExit = false;
+		String result = (String) JOptionPane.showInputDialog("Password", "請輸入密碼");
+		if (result != null && result.equals(password)) {
+			canExit = true;
+		} else {
+			JOptionPane.showMessageDialog(instance, "密碼錯誤!");
+		}
+		return canExit;
 	}
 
 	/** 訊息視窗呈現 */

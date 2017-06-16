@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wavegis.engin.db.fake.FakeGpsDaoConnector">
+
+	<update id="updateGpsData" parameterType="java.util.List">
+		UPDATE 
+			gps._gps_list 
+		SET 
+			datatime = (now() - ((TRUNC(RANDOM() * 60) * 2)::TEXT || ' minutes')::interval)
+		WHERE 
+			DATE_PART('day' , datatime) != DATE_PART('day' , now())
+	</update>
+
+</mapper>

@@ -1,5 +1,7 @@
 package com.wavegis.basic_construction;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.wavegis.engin.prototype.Engin;
@@ -7,7 +9,7 @@ import com.wavegis.global.EnginCenter;
 
 public class Controller {
 
-	Engin[] engins = EnginCenter.Engins;
+	private List<Engin> engins = EnginCenter.Engins;
 
 	@Autowired
 	MainUI mainUI;

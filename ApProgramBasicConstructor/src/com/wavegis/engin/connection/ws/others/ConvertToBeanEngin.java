@@ -17,7 +17,7 @@ import com.wavegis.global.tools.LogTool;
 
 public class ConvertToBeanEngin extends TimerEngin {
 
-	private static final String enginID = "ConvertToBeanEngin";
+	public static final String enginID = "ConvertToBeanEngin";
 	private static final String enginName = "WS轉換成BeanEngin";
 	private static final ConvertToBeanEnginView enginView = new ConvertToBeanEnginView();
 	private Logger logger = LogTool.getLogger(this.getClass().getName());

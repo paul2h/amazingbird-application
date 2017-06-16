@@ -14,7 +14,7 @@ import com.wavegis.model.WaterData;
 
 public class WavegisWSEngin extends TimerEngin {
 
-	private static final String enginID = "WavegisWS";
+	public static final String enginID = "WavegisWS";
 	private static final String enginName = "昕傳WS讀取Engin";
 	private static final WavegisWSEnginView enginView = new WavegisWSEnginView();
 	private Logger logger = LogTool.getLogger(this.getClass().getName());

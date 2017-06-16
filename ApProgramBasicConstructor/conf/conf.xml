@@ -6,6 +6,11 @@
 	<entry key="KillBATPath">./kill.bat</entry>
 	<entry key="WebServiceURL">http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</entry>
 
+	<entry key="TimePeriod_Fake_GPS">1800000</entry>
+	
+	<!-- 指定幾點更新假資料 -->
+	<entry key="Fake_GPS_Target_Run_hour">8</entry>
+	
 	<entry key="RawDataSendPort">9999</entry>
 
 	<entry key="RawDataTransRegisteredKey">#ID#</entry>

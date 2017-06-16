@@ -1,6 +1,9 @@
 package com.wavegis.global;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
@@ -13,6 +16,7 @@ import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.db.data_check.PokerDBEngin;
+import com.wavegis.engin.db.fake.FakeGpsCarUpdateEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.read_conf.DBEngin;
@@ -29,44 +33,69 @@ import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
 
 public class EnginCenter {
-	/** 掛入的Engin清單(增減Engin改這個就好 View會自己變) */
-	public static final Engin[] Engins = {
-			new CCTVEngin(),
-			new WavegisWSEngin(),
-			new RainDataInsertEngin(),
-			new RawDataInsertEngin(),
-			new ConvertToBeanEngin(),
-			new CenterWSEngin(),
-			new AlertAnalysisEngin(),
-			new SMSSendEngin(),
-			new QpesumsReadEngin(),
-			new ImageEngin(),
-			new FakeImageEngin(),
-			new DBEngin(),
-			new ImageTransServerEngin(),
-			new ImageTransClientEngin(),
-			new WebPokeEngin(),
-			new HttpImageGetEngin(),
-			new CWBTyphoonTextEngin(),
-			new CWBDataFileGetEngin(),
-			new KenkulLORAReceiveEngin(),
-			new RawDataReceiveEngin(),
-			new RawDataSendEngin(),
-			new ScreemSaveEngin(),
-			new PokerDBEngin()
 
+	/** 所有的Engin清單(增減Engin改這個就好 View會自己變) */
+	private static final Engin[] ALL_Engins = {
+			new CCTVEngin()
+			, new WavegisWSEngin()
+			, new RainDataInsertEngin()
+			, new RawDataInsertEngin()
+			, new ConvertToBeanEngin()
+			, new CenterWSEngin()
+			, new AlertAnalysisEngin()
+			, new SMSSendEngin()
+			, new QpesumsReadEngin()
+			, new ImageEngin()
+			, new FakeImageEngin()
+			, new DBEngin()
+			, new ImageTransServerEngin()
+			, new ImageTransClientEngin()
+			, new WebPokeEngin()
+			, new HttpImageGetEngin()
+			, new CWBTyphoonTextEngin()
+			, new CWBDataFileGetEngin()
+			, new KenkulLORAReceiveEngin()
+			, new RawDataReceiveEngin()
+			, new RawDataSendEngin()
+			, new ScreemSaveEngin()
+			, new PokerDBEngin()
+			, new FakeGpsCarUpdateEngin()
 	};
+	
 
+	/**
+	 * 設定要使用的Engin
+	 * */
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_ChiayiCounty;
+	
 	@SuppressWarnings("serial")
-	public static final HashMap<String, EnginView> EnginViewMap = new HashMap<String, EnginView>() {
+	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){
 		{
-			for (Engin engin : Engins) {
-				put(engin.getEnginID(), engin.getEnginView());
+			for(Engin engin : ALL_Engins){
+				if (standbyEnginIDs.contains(engin.getEnginID())) {
+					add( engin);
+				}				
 			}
 		}
 	};
 
-	public static final EnginView[] EnginViews = (EnginView[]) EnginViewMap.values()
-			.toArray(new EnginView[Engins.length]);
+	@SuppressWarnings("serial")
+	private static final HashMap<String, EnginView> EnginViewMap = new HashMap<String, EnginView>() {
+		{
+			for (Engin engin : Engins) {
+				if (standbyEnginIDs.contains(engin.getEnginID())) {
+					put(engin.getEnginID(), engin.getEnginView());
+				}
+			}
+		}
+	};
+
+	@SuppressWarnings("serial")
+	public static final List<EnginView> EnginViews = new ArrayList<EnginView>(){
+		{
+			addAll(EnginViewMap.values());
+		}
+	};
+
 
 }

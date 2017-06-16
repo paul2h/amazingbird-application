@@ -13,7 +13,7 @@ import com.wavegis.model.WaterData;
 
 public class RainDataInsertEngin extends TimerEngin {
 
-	private static final String enginID = "RainDataInsert";
+	public static final String enginID = "RainDataInsert";
 	private static final String enginName = "雨量資料寫入Engin";
 	private static final RainDataInsertEnginView enginView = new RainDataInsertEnginView();
 	private static final RainDao dao = RainDao.getInstance();

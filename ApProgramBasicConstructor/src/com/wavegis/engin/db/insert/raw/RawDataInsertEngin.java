@@ -13,7 +13,7 @@ import com.wavegis.model.WaterData;
 
 public class RawDataInsertEngin extends TimerEngin {
 
-	private static final String enginID = "RawDataInsert";
+	public static final String enginID = "RawDataInsert";
 	private static final String enginName = "水位資料寫入Engin";
 	private static final RawDataInsertEnginView enginView = new RawDataInsertEnginView();
 	private static final RawDao dao = RawDao.getInstance();

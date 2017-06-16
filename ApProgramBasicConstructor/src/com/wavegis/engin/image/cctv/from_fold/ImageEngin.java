@@ -32,7 +32,7 @@ import com.wavegis.global.tools.LogTool;
  *
  */
 public class ImageEngin extends TimerEngin {
-	private static final String enginID = "Image";
+	public static final String enginID = "Image";
 	private static final String enginName = "Image讀取Engin";
 	private static final ImageEnginView enginView = new ImageEnginView();
 	private Logger logger;

@@ -12,7 +12,7 @@ import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.WaterData;
 
 public class CenterWSEngin extends TimerEngin {
-	private static final String enginID = "CenterWS";
+	public static final String enginID = "CenterWS";
 	private static final String enginName = "中央WS接收Engin";
 	private static final CenterWSEnginView enginView = new CenterWSEnginView();
 
