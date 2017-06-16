@@ -58,7 +58,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 	public void start(String edition) {
 		this.edition = edition;
-		String trayPassword = GlobalConfig.XML_CONFPIG.getProperty("TrayPassword");
+		String trayPassword = GlobalConfig.XML_CONFIG.getProperty("TrayPassword");
 		initUI();
 		initTray(trayPassword, edition);
 		initIcon();
@@ -236,9 +236,31 @@ public class MainUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == startAllButton) {
-			showMessage("開啟所有Engin...尚未完成");
+			showMessage("開啟所有Engin...");
+			for (Engin engin : EnginCenter.Engins) {
+				if (!engin.isStarted()) {
+					showMessage("開啟Engin : " + engin.getEnginName() + "...");
+					if (engin.startEngin()) {
+						showMessage(engin.getEnginName() + " 開啟完成");
+					} else {
+						showMessage(engin.getEnginName() + " 開啟失敗!!");
+					}
+				}
+			}
+			showMessage("所有Engin開啟完成.");
 		} else if (e.getSource() == stopAllButton) {
-			showMessage("關閉所有Engin...尚未完成");
+			showMessage("關閉所有Engin...");
+			for (Engin engin : EnginCenter.Engins) {
+				if (engin.isStarted()) {
+					showMessage("關閉Engin : " + engin.getEnginName() + "...");
+					if (engin.stopEngin()) {
+						showMessage(engin.getEnginName() + " 關閉完成");
+					} else {
+						showMessage(engin.getEnginName() + " 關閉失敗!!");
+					}
+				}
+			}
+			showMessage("所有Engin關閉完成.");
 		} else {
 			String actionCommand = e.getActionCommand();
 			boolean isEnginStarted = controller.isEnginStarted(actionCommand);

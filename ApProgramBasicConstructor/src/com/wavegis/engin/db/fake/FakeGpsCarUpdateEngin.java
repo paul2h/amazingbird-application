@@ -19,7 +19,7 @@ public class FakeGpsCarUpdateEngin extends TimerEngin {
 
 	public FakeGpsCarUpdateEngin() {
 		super();
-		setTimeout(Integer.valueOf(GlobalConfig.XML_CONFPIG.getProperty("TimePeriod_Fake_GPS")));
+		setTimeout(Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("TimePeriod_Fake_GPS")));
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class FakeGpsCarUpdateEngin extends TimerEngin {
 
 	@Override
 	public boolean startEngin() {
-		int targetRunHour = Integer.valueOf(GlobalConfig.XML_CONFPIG.getProperty("Fake_GPS_Target_Run_hour"));
+		int targetRunHour = Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("Fake_GPS_Target_Run_hour"));
 		showMessage(String.format("每日 %d到 %d點進行假資料更新.", (targetRunHour - 1), targetRunHour));
 		return super.startEngin();
 	}
@@ -47,7 +47,7 @@ public class FakeGpsCarUpdateEngin extends TimerEngin {
 	@Override
 	public void timerAction() {
 		Calendar calendar = Calendar.getInstance();
-		if (calendar.get(Calendar.HOUR_OF_DAY) == Integer.valueOf(GlobalConfig.XML_CONFPIG.getProperty("Fake_GPS_Target_Run_hour"))) {
+		if (calendar.get(Calendar.HOUR_OF_DAY) == Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("Fake_GPS_Target_Run_hour"))) {
 			showMessage("進行假資料更新..." + simpleDateFormat.format(calendar.getTime()));
 			FakeGpsDao.getInstance().updateGpsData();
 		}

@@ -44,7 +44,7 @@ public class ConvertToBeanEngin extends TimerEngin {
 	@Override
 	public void timerAction(){
 		try {
-			URL url = new URL(GlobalConfig.XML_CONFPIG.getProperty("WebServiceURL"));
+			URL url = new URL(GlobalConfig.XML_CONFIG.getProperty("WebServiceURL"));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			String line;
 			StringBuffer sb = new StringBuffer();

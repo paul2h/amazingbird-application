@@ -31,7 +31,7 @@ public class Starter {
 		try {
 			initXmlSetting();
 			initSpringConstruct();
-			createKillBatFile(GlobalConfig.XML_CONFPIG.getProperty("KillBATPath"));
+			createKillBatFile(GlobalConfig.XML_CONFIG.getProperty("KillBATPath"));
 			// 設定&顯現主視窗
 			controller = (Controller) context.getBean("Controller");
 			controller.startApplication(edition);
@@ -44,13 +44,13 @@ public class Starter {
 	private void initXmlSetting() {
 		try {
 			System.out.println("讀取Xml設定檔...");
-			
+			// 讀取XML檔案
 			FileInputStream fis = new FileInputStream(new File(GlobalConfig.Conf_XML_path));
-			
-			GlobalConfig.XML_CONFPIG.loadFromXML(fis);
-			
+
+			GlobalConfig.XML_CONFIG.loadFromXML(fis);
+
 			fis.close();
-			
+
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
 			System.out.println("讀取Xml設定失敗.");

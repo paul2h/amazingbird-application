@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wavegis.engin.db.read_conf.DBConfigDaoConnector">
+
+	<select id="getCCTVData" resultType="com.wavegis.model.CCTVData">
+			SELECT 
+				a._vr_no AS stid
+				, a._vr_name AS stname
+				, a._user AS account
+				, a._password AS password
+				, 'C://temp/' || a._vr_no || '.jpg' AS "SavePath"
+				, true AS need_login
+				, 'http://' || a._vr_ip || a.url_suffix AS "URL" 
+			FROM 
+				vr.vr_data a
+			WHERE   url_suffix IS NOT NULL
+			ORDER BY 
+				a._vr_no
+	</select>
+	
+</mapper>

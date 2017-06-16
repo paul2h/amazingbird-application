@@ -80,8 +80,8 @@ public class RawDataReceiveEngin implements Engin {
 
 	private SocketChannel connect() throws IOException {
 		// 依照設定的清單開啟連線
-		String address = GlobalConfig.XML_CONFPIG.getProperty("RawDataReceiveTargetIP");
-		int port = Integer.valueOf(GlobalConfig.XML_CONFPIG.getProperty("RawDataReceiveTargetPort"));
+		String address = GlobalConfig.XML_CONFIG.getProperty("RawDataReceiveTargetIP");
+		int port = Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("RawDataReceiveTargetPort"));
 		InetSocketAddress hostAddress = new InetSocketAddress(address, port);
 		try {
 			SocketChannel socketChannel = SocketChannel.open(hostAddress);
@@ -96,8 +96,8 @@ public class RawDataReceiveEngin implements Engin {
 
 	/** 向對方註冊自己ID 對方才會開始傳資料 */
 	private void regist(SocketChannel clientChannel) {
-		String registKey = GlobalConfig.XML_CONFPIG.getProperty("RawDataTransRegisteredKey");
-		String registID = GlobalConfig.XML_CONFPIG.getProperty("RawDataReceiveID");
+		String registKey = GlobalConfig.XML_CONFIG.getProperty("RawDataTransRegisteredKey");
+		String registID = GlobalConfig.XML_CONFIG.getProperty("RawDataReceiveID");
 		String registString = registKey + "," + registID;
 		ByteBuffer buffer = ByteBuffer.wrap(registString.getBytes());
 		try {
@@ -124,7 +124,7 @@ public class RawDataReceiveEngin implements Engin {
 							System.arraycopy(buffer.array(), 0, data, 0, numRead);
 							String originalData = new String(data);
 							System.out.println(originalData);
-							if (originalData.equals(GlobalConfig.XML_CONFPIG.getProperty("RawDataTransTestConnectionKey"))) {
+							if (originalData.equals(GlobalConfig.XML_CONFIG.getProperty("RawDataTransTestConnectionKey"))) {
 								showMessage("取得測試連線回傳 : " + originalData);
 							} else {
 								showMessage("取得資料 : " + originalData);
@@ -149,7 +149,7 @@ public class RawDataReceiveEngin implements Engin {
 			public void run() {
 				if (started) {
 					if (!waitingForReturnMessage) {
-						ByteBuffer buffer = ByteBuffer.wrap(GlobalConfig.XML_CONFPIG.getProperty("RawDataTransTestConnectionKey").getBytes());
+						ByteBuffer buffer = ByteBuffer.wrap(GlobalConfig.XML_CONFIG.getProperty("RawDataTransTestConnectionKey").getBytes());
 						try {
 							socketChannel.write(buffer);
 						} catch (IOException e) {

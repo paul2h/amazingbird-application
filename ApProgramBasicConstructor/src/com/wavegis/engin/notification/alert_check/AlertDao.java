@@ -1,4 +1,4 @@
-package com.wavegis.basic_construction;
+package com.wavegis.engin.notification.alert_check;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.DataModel;
+import com.wavegis.model.SMSAlertData;
 
 /**
  * 給Service取得Dao的Dao總管理物件
@@ -19,14 +19,14 @@ import com.wavegis.model.DataModel;
  * <pre>
  * 使用方法:mybatis
  */
-public class Dao {
-	static Dao instance;
+public class AlertDao {
+	static AlertDao instance;
 
 	/* 取得config檔的reader */
 	private Reader reader;
 
 	// #[[DaoConnector List
-	private DaoConnector daoConnector;
+	private AlertDaoConnector daoConnector;
 	// ]] Dao List */
 
 	// #[[ myBatis物件
@@ -36,7 +36,7 @@ public class Dao {
 	// ]]myBatis物件
 
 	// #[[ 建置用Method
-	public Dao() {
+	public AlertDao() throws IOException {
 		Resources.setCharset(Charset.forName("UTF-8"));
 		try {
 			reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path);
@@ -45,35 +45,27 @@ public class Dao {
 			try {
 				reader = Resources.getResourceAsReader(GlobalConfig.MyBatisConfig_XML_Path_Output);
 			} catch (IOException e1) {
+				System.out.println("DAO設定檔取得錯誤!!");
 				e1.printStackTrace();
-				System.out.println("DAO初始化失敗!!");
 			}
 		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "DaoEnvironment");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "AlertDaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
-		daoConnector = sqlSession.getMapper(DaoConnector.class);
+		daoConnector = sqlSession.getMapper(AlertDaoConnector.class);
 	}
 
-	public static Dao getInstance() {
+	public static AlertDao getInstance() throws IOException {
 		if (instance == null) {
-			instance = new Dao();
+			instance = new AlertDao();
 		}
 		return instance;
 	}
 	// ]]
 
 	// #[[ 指令用Method
-	public void creatTable() {
-		daoConnector.creatDemoTable();
-		sqlSession.commit();
-	}
 
-	public void insertData() {
-		daoConnector.insertData();
-		sqlSession.commit();
-	}
-
-	public List<DataModel> getData() {
+	public List<SMSAlertData> getAlertData() {
+		sqlSession.clearCache();// 要加這個才會清除暫存
 		return daoConnector.getData();
 	}
 	// ]]

@@ -1,6 +1,5 @@
 package com.wavegis.engin.db.insert.water;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,21 +7,24 @@ import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
+import com.wavegis.global.GlobalConfig;
+import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
+import com.wavegis.model.RainData;
 import com.wavegis.model.WaterData;
 
 public class WaterDataInsertEngin extends TimerEngin {
 
-	private static final String enginID = "WaterDataInsert";
-	private static final String enginName = "水情資料寫入Engin";
+	public static final String enginID = "WaterDataInsert";
+	private static final String enginName = "水位資料寫入Engin";
 	private static final WaterDataInsertEnginView enginView = new WaterDataInsertEnginView();
-	private static final WaterDao dao = WaterDao.getInstance();
-
+	private static final WaterDataDao dao = WaterDataDao.getInstance();
 	private Logger logger;
 
-	public WaterDataInsertEngin() {
-		setTimeout(1000 * 30);
+	public WaterDataInsertEngin(){
 		logger = LogTool.getLogger(WaterDataInsertEngin.class.getName());
+		
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_DB", "600000"));
 	}
 
 	@Override
@@ -41,20 +43,62 @@ public class WaterDataInsertEngin extends TimerEngin {
 	}
 
 	@Override
-	public void timerAction() {
-		// TODO 這邊只放假資料 需要放入真實資料
-		WaterData waterData = new WaterData();
-		waterData.setLasttime(new Timestamp(System.currentTimeMillis()));
-		waterData.setRainfall10min(0);
-		waterData.setStid("07_JIXIQ");
-		waterData.setStname("錦孝橋F");
-		waterData.setWaterlevel(12.1);
-		waterData.setVoltage(0);
-		List<WaterData> waterDatas = new ArrayList<>();
-		waterDatas.add(waterData);
+	public void timerAction(){
+		List<RainData> rainDataList = new ArrayList<RainData>();
+		List<WaterData> waterDataList = new ArrayList<WaterData>();
+		
+		if(!ProxyData.WATER_INSERT_RAIN_QUEUE.isEmpty()){
+			RainData rainData;
+			
+			while((rainData = ProxyData.WATER_INSERT_RAIN_QUEUE.poll()) != null){
+				if(rainData.getRain_current() >= 0){
+					showMessage("放入雨量待寫入清單 : " + rainData.getStid() + ", " + rainData.getLasttime() + ", min10 = " + rainData.getMin_10() + " , hour_1 = " + rainData.getHour_1());
+					
+					if(rainData.getStid() == null){
+						continue;
+					} else if(rainData.getLasttime() == null){
+						continue;
+					}
+					if(rainData.getVoltage() == 0){
+						rainData.setVoltage(15);
+					}
+					rainDataList.add(rainData);
+				}
+			}
+		}
+		if(!ProxyData.WATER_INSERT_WATER_QUEUE.isEmpty()){
+			WaterData waterData;
+			
+			while((waterData = ProxyData.WATER_INSERT_WATER_QUEUE.poll()) != null){
+				if(waterData.getWaterlevel() >= 0){
+					showMessage("放入水位待寫入清單 : " + waterData.getStid() + ", " + waterData.getLasttime());
+					
+					if(waterData.getStid() == null){
+						continue;
+					} else if(waterData.getLasttime() == null){
+						continue;
+					}
+					if(waterData.getVoltage() == 0){
+						waterData.setVoltage(15);
+					}
+					waterDataList.add(waterData);
+				}
+			}
+		}
+		if(rainDataList.isEmpty() && waterDataList.isEmpty()){
+			showMessage("目前無資料需寫入.");
+			
+			return ;
+		}
 		showMessage("寫入資料中...");
-		dao.insertWaterData(waterDatas);
-		showMessage(String.format("寫入完成,共%d筆", waterDatas.size()));
+		
+		if(rainDataList.size() > 0){
+			dao.insertRainData(rainDataList);
+		}
+		if(waterDataList.size() > 0){
+			dao.insertWaterData(waterDataList);
+		}
+		showMessage("寫入完畢.");
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.wavegis.engin.prototype;
+package com.wavegis.engin.notification.alert_check;
 
 import java.awt.BorderLayout;
 
@@ -6,31 +6,40 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-/**
- * 
- * 最基本的EnginView,只有文字訊息框
- * 
- * @author Kiwi
- *
- */
-@SuppressWarnings("serial")
-public abstract class SimpleEnginView extends JPanel implements EnginView {
+import com.wavegis.engin.prototype.EnginView;
 
+@SuppressWarnings("serial")
+public class AlertAnalysisEnginView extends JPanel implements EnginView {
+
+	private static final String enginID = AlertAnalysisEngin.enginID;
 	private JTextArea messageArea = new JTextArea();
 	private int messageCount = 0;
-	private static final int MessageMaxLine = 1000;
+	private static AlertAnalysisEnginView instance;
 
-	public SimpleEnginView() {
+	public AlertAnalysisEnginView() {
 		super();
+		instance = this;
 		this.setLayout(new BorderLayout());
 		messageArea = new JTextArea();
 		this.add(new JScrollPane(messageArea), BorderLayout.CENTER);
 	}
 
+	public static AlertAnalysisEnginView getInstance() {
+		if (instance == null) {
+			System.err.println("DemoEnginView物件尚未建置!!!");
+		}
+		return instance;
+	}
+
+	@Override
+	public String getEnginID() {
+		return enginID;
+	}
+
 	@Override
 	public void showMessage(String message) {
 		messageCount++;
-		if (messageCount > MessageMaxLine) {
+		if (messageCount > 100) {
 			messageArea.setText(null);
 			messageCount = 0;
 		}

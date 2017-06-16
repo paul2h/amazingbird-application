@@ -3,13 +3,11 @@ package com.wavegis.model;
 import java.sql.Timestamp;
 
 public class WaterData {
-
 	private String stid;
 	private String stname;
 	private Timestamp lasttime;
 	private double voltage;
 	private double waterlevel;
-	private double rainfall10min;
 	private double bottom_height;
 
 	public String getStid() {
@@ -36,14 +34,6 @@ public class WaterData {
 		this.waterlevel = waterlevel;
 	}
 
-	public double getRainfall10min() {
-		return rainfall10min;
-	}
-
-	public void setRainfall10min(double rainfall10min) {
-		this.rainfall10min = rainfall10min;
-	}
-
 	public String getStname() {
 		return stname;
 	}
@@ -67,4 +57,6 @@ public class WaterData {
 	public void setBottom_height(double bottom_height) {
 		this.bottom_height = bottom_height;
 	}
+
+
 }

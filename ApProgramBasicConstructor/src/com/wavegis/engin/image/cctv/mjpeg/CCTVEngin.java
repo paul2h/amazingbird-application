@@ -1,12 +1,15 @@
 package com.wavegis.engin.image.cctv.mjpeg;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
+import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.tools.HttpImageTool;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.CCTVData;
@@ -14,14 +17,15 @@ import com.wavegis.model.CCTVData;
 public class CCTVEngin extends TimerEngin {
 
 	public static final String enginID = "CCTV";
-	private static final String enginName = "CCTV讀取Engin";
+	private static final String enginName = "CCTV讀取1.1";
 	private static final CCTVEnginView enginView = new CCTVEnginView();
 	private Logger logger;
-
-	private Thread picGettingThread;
+	private ConcurrentHashMap<String, Integer> threadCounts = new ConcurrentHashMap<>();
+	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public CCTVEngin() {
-		setTimeout(1000 * 5);
+		int timeout = Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_CCTV"));
+		setTimeout(timeout);
 		logger = LogTool.getLogger(CCTVEngin.class.getName());
 	}
 
@@ -40,24 +44,22 @@ public class CCTVEngin extends TimerEngin {
 		return enginView;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void timerAction() {
-		if (picGettingThread != null || picGettingThread.isAlive()) {
-			showMessage("上次未跑完,殺掉Thread");
-			picGettingThread.destroy();// TODO 待找方法修改
-			picGettingThread = null;
-		}
-
-		showMessage("開始取得影像...");
-		picGettingThread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				for (CCTVData cctvData : new ArrayList<CCTVData>()) {// TODO 需放入實際CCTV清單資料
-					showMessage(cctvData.getStname() + "..." + cctvData.getURL());
+		showMessage("開始取得影像..." + simpleDateFormat.format(Calendar.getInstance().getTime()));
+		for (final CCTVData cctvData : GlobalConfig.CCTV_DATA_LIST) {
+			int threadCount = 0;
+			if (threadCounts.containsKey(cctvData.getStname())) {
+				threadCount = threadCounts.get(cctvData.getStname());
+			}
+			showMessage(String.format("開啟接收Thread : %s (之前剩餘Thread數 : %d) \n %s", cctvData.getStname(), threadCount, cctvData.getURL()));
+			threadCount++;
+			threadCounts.put(cctvData.getStname(), threadCount);
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
 					try {
-						if (cctvData.isNeedLogin()) {
+						if (cctvData.isNeed_login()) {
 							HttpImageTool.getAuthorizedImage(cctvData.getURL(), cctvData.getAccount(), cctvData.getPassword(), cctvData.getSavePath());
 						} else {
 							HttpImageTool.getImage(cctvData.getURL(), cctvData.getSavePath());
@@ -67,11 +69,11 @@ public class CCTVEngin extends TimerEngin {
 						showMessage(cctvData.getStname() + " 影像取得失敗.");
 						e.printStackTrace();
 					}
+					threadCounts.put(cctvData.getStname(), threadCounts.get(cctvData.getStname()) - 1);
 				}
-			}
-		});
-		picGettingThread.start();
-		showMessage("影像取得結束.");
+			}).start();
+		}
+
 	}
 
 	@Override

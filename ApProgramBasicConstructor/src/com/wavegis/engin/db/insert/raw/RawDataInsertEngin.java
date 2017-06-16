@@ -45,7 +45,6 @@ public class RawDataInsertEngin extends TimerEngin {
 		// TODO 這邊只放假資料 需要放入真實資料
 		WaterData waterData = new WaterData();
 		waterData.setLasttime(new Timestamp(System.currentTimeMillis()));
-		waterData.setRainfall10min(0);
 		waterData.setStid("07_JIXIQ");
 		waterData.setStname("錦孝橋F");
 		waterData.setWaterlevel(12.1);

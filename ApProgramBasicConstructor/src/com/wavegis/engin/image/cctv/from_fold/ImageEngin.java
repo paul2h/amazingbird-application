@@ -18,19 +18,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
+import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.tools.LogTool;
 
-/**
- * <pre>
- * 將圖片從資料夾移到另一個指定資料夾,並打上日期
- * 
- * (CCTV使用)
- * </pre>
- * 
- * 圖片檔日期格式 : 編號四碼數字+yyMMdd_HHmmss.jpg<br>
- * Ex:0001161019_213000.jpg
- *
- */
 public class ImageEngin extends TimerEngin {
 	public static final String enginID = "Image";
 	private static final String enginName = "Image讀取Engin";
@@ -38,6 +28,7 @@ public class ImageEngin extends TimerEngin {
 	private Logger logger;
 
 	public ImageEngin() {
+		setTimeout(Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_ImageEngin")));
 		logger = LogTool.getLogger(ImageEngin.class.getName());
 	}
 
@@ -56,23 +47,22 @@ public class ImageEngin extends TimerEngin {
 		return enginView;
 	}
 
-	private String ImageDirPath = "D://temp//";// TODO 待設定
-	private String ImageNewDirPath = "D://temp//";// TODO 待設定
-
 	@Override
 	public void timerAction() {
-		showMessage(" 開始取得圖片...");
-		File dir = new File(ImageDirPath);
+		showMessage(GlobalConfig.dateFormat.format(new Date()) + " 開始取得圖片...");
+
+		// #[[ 找出資料夾內各個 ID 最新的圖片檔案
+		File dir = new File(GlobalConfig.XML_CONFIG.getProperty("ImageDirPath"));
 
 		if (!dir.exists() || !dir.isDirectory()) {
 			showMessage("圖片存放資料夾有誤.");
+
 			return;
 		}
 		File[] images = dir.listFiles();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd_HHmmss");
-
-		// #[[ 找出資料夾內各個 ID 最新的圖片檔案
+		
 		for (File image : images) {
 			if (!image.exists() || !image.isFile()) {
 				continue;
@@ -100,21 +90,29 @@ public class ImageEngin extends TimerEngin {
 			}
 		}
 		// ]]
+
+		// #[[ 搬移圖片到指定資料夾
+
 		if (map.size() > 0) {
-			File newDir = new File(ImageNewDirPath);
+			File newDir = new File(GlobalConfig.XML_CONFIG.getProperty("ImageNewDirPath"));
 
 			if (!newDir.exists()) {
 				newDir.mkdirs();
 			}
 		}
-		// #[[ 搬移圖片到指定資料夾
+
 		for (String key : map.keySet()) {
 			// #[[ 圖片增加時間文字
 			try {
 				Date imageDate = (Date) map.get(key);
 				String dateStr = sdf.format(imageDate);
-				Image image = ImageIO.read(new File(ImageDirPath + key + dateStr + ".jpg"));
-
+				String imageFilePath = GlobalConfig.XML_CONFIG.getProperty("ImageDirPath") + key + dateStr + ".jpg";
+				Image image = ImageIO.read(new File(imageFilePath));
+				
+				if(image == null){
+					showMessage("圖片讀取失敗 : " + imageFilePath);
+					continue;
+				}
 				int imageWidth = image.getWidth(null);
 				int imageHeight = image.getHeight(null);
 				BufferedImage bufferedImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
@@ -126,10 +124,10 @@ public class ImageEngin extends TimerEngin {
 				g2d.setFont(new Font("標楷體", Font.BOLD, 24));
 				g2d.drawString(text, 30, 25);
 
-				if (ImageIO.write(bufferedImage, "jpg", new File(ImageNewDirPath + (Long.valueOf(key)) + ".jpg"))) {
+				if (ImageIO.write(bufferedImage, "jpg", new File(GlobalConfig.XML_CONFIG.getProperty("ImageNewDirPath") + (Long.valueOf(key)) + ".jpg"))) {
 					try {
 						// 刪除同ID 檔案
-						Runtime.getRuntime().exec("cmd /c del " + ImageDirPath.replace("/", "\\") + key + "*");
+						Runtime.getRuntime().exec("cmd /c del " + GlobalConfig.XML_CONFIG.getProperty("ImageDirPath").replace("/", "\\") + key + "*");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -140,7 +138,8 @@ public class ImageEngin extends TimerEngin {
 			// ]]
 		}
 		// ]]
-		showMessage("圖片取得結束.");
+
+		showMessage(GlobalConfig.dateFormat.format(new Date()) + " 圖片取得結束.");
 	}
 
 	@Override

@@ -45,6 +45,9 @@
             endpointName="dao" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.basic_construction.Dao"/>
     </Class>
+<<<<<<< HEAD
+    <Class name="com.wavegis.engin.Engin" x="254" y="468">
+=======
     <Class name="com.wavegis.engin.Engin" x="257" y="598">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
@@ -111,6 +114,7 @@
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
     <Class name="com.wavegis.engin.EnginView" x="232" y="91">
+>>>>>>> refs/remotes/origin/ApplicationAll_8.6
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>

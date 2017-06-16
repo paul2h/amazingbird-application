@@ -31,7 +31,7 @@ public class RawDataSendEngin extends TimerEngin {
 
 	private Thread connectionListenerThread;
 	private ServerSocketChannel serverChannel;
-	private int rawDataSendPort = Integer.valueOf(GlobalConfig.XML_CONFPIG.get("RawDataSendPort").toString());
+	private int rawDataSendPort = Integer.valueOf(GlobalConfig.XML_CONFIG.get("RawDataSendPort").toString());
 
 	private ConcurrentHashMap<String, RemoteEnginData> SEND_ENGINs = new ConcurrentHashMap<>();
 	private ConcurrentLinkedQueue<String> RAW_DATA_QUEUE = new ConcurrentLinkedQueue<>();
@@ -215,7 +215,7 @@ public class RawDataSendEngin extends TimerEngin {
 		buffer.clear();
 
 		/* 收到註冊ID */
-		if (getMessage.indexOf(GlobalConfig.XML_CONFPIG.getProperty("RawDataTransRegisteredKey").toString()) >= 0) {// ex: "#ID#,WRA"
+		if (getMessage.indexOf(GlobalConfig.XML_CONFIG.getProperty("RawDataTransRegisteredKey").toString()) >= 0) {// ex: "#ID#,WRA"
 			String id = getMessage.split(",")[1];
 			Socket socket = channel.socket();
 			SocketAddress remoteAddr = socket.getRemoteSocketAddress();
@@ -226,14 +226,14 @@ public class RawDataSendEngin extends TimerEngin {
 				remoteEngin.setRegestered(true);// 註冊完成
 				showMessage("註冊完成 : " + channel.getRemoteAddress() + "( ID =" + id);
 				// 註冊完成 回傳完成訊息
-				channel.write(ByteBuffer.wrap(GlobalConfig.XML_CONFPIG.getProperty("RawDataTransRegisteredSuccessKey").toString().getBytes()));
+				channel.write(ByteBuffer.wrap(GlobalConfig.XML_CONFIG.getProperty("RawDataTransRegisteredSuccessKey").toString().getBytes()));
 			} catch (Exception e) {
 			} // 若格式出問題就跳過 繼續執行
 		}
 		/* 收到測試訊息 回傳測試訊息 */
-		if (getMessage.indexOf(GlobalConfig.XML_CONFPIG.getProperty("RawDataTransTestConnectionKey").toString()) >= 0) {
+		if (getMessage.indexOf(GlobalConfig.XML_CONFIG.getProperty("RawDataTransTestConnectionKey").toString()) >= 0) {
 			showMessage("收到測試連線訊息..." + getMessage);
-			String returnMessage = GlobalConfig.XML_CONFPIG.getProperty("RawDataTransTestConnectionKey").toString();
+			String returnMessage = GlobalConfig.XML_CONFIG.getProperty("RawDataTransTestConnectionKey").toString();
 			showMessage("回傳訊息("+channel.getRemoteAddress()+")  : " + returnMessage);
 			channel.write(ByteBuffer.wrap(returnMessage.getBytes()));
 		}

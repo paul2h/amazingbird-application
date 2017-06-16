@@ -5,6 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
+import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
+import com.wavegis.engin.db.read_conf.DBConfigEngin;
+import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
+import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
+import com.wavegis.engin.image.qpesums.QpesumsReadEngin;
+import com.wavegis.engin.notification.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
@@ -14,18 +21,14 @@ import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
 import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
 import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
-import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.db.data_check.PokerDBEngin;
 import com.wavegis.engin.db.fake.FakeGpsCarUpdateEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.read_conf.DBEngin;
 import com.wavegis.engin.image.cctv.fake_image.FakeImageEngin;
-import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
-import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
 import com.wavegis.engin.image.cctv.screem_save.ScreemSaveEngin;
 import com.wavegis.engin.image.http_image.HttpImageGetEngin;
-import com.wavegis.engin.image.qpesums.QpesumsReadEngin;
 import com.wavegis.engin.image.trans.ImageTransClientEngin;
 import com.wavegis.engin.image.trans.ImageTransServerEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
@@ -36,30 +39,30 @@ public class EnginCenter {
 
 	/** 所有的Engin清單(增減Engin改這個就好 View會自己變) */
 	private static final Engin[] ALL_Engins = {
-			new CCTVEngin()
-			, new WavegisWSEngin()
-			, new RainDataInsertEngin()
-			, new RawDataInsertEngin()
-			, new ConvertToBeanEngin()
-			, new CenterWSEngin()
-			, new AlertAnalysisEngin()
-			, new SMSSendEngin()
-			, new QpesumsReadEngin()
-			, new ImageEngin()
-			, new FakeImageEngin()
-			, new DBEngin()
-			, new ImageTransServerEngin()
-			, new ImageTransClientEngin()
-			, new WebPokeEngin()
-			, new HttpImageGetEngin()
+			new AlertAnalysisEngin()
+			, new CCTVEngin()
 			, new CWBTyphoonTextEngin()
 			, new CWBDataFileGetEngin()
+			, new ConvertToBeanEngin()
+			, new CenterWSEngin()
+			, new DBEngin()
+			, new FakeImageEngin()
+			, new FakeGpsCarUpdateEngin()
+			, new HttpImageGetEngin()
+			, new ImageEngin()
+			, new ImageTransServerEngin()
+			, new ImageTransClientEngin()
 			, new KenkulLORAReceiveEngin()
+			, new PokerDBEngin()
+			, new QpesumsReadEngin()
+			, new RainDataInsertEngin()
+			, new RawDataInsertEngin()
 			, new RawDataReceiveEngin()
 			, new RawDataSendEngin()
 			, new ScreemSaveEngin()
-			, new PokerDBEngin()
-			, new FakeGpsCarUpdateEngin()
+			, new SMSSendEngin()
+			, new WavegisWSEngin()
+			, new WebPokeEngin()
 	};
 	
 

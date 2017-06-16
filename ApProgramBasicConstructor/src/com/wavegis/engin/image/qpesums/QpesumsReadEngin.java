@@ -1,7 +1,6 @@
 package com.wavegis.engin.image.qpesums;
 
 import java.io.File;
-
 import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.EnginView;
@@ -15,7 +14,7 @@ public class QpesumsReadEngin extends TimerEngin {
 	private static final String enginName = "QpesumsEngin";
 	private static final QpesumsReadEnginView enginView = new QpesumsReadEnginView();
 	private Logger logger = LogTool.getLogger(QpesumsReadEngin.class.getName());
-	
+
 	private static String pngFilePath = "D:/QP/png/original2.png";
 	private static String outputResultPath = "D:/QP/jpg/result2.jpg";
 	private static String map_image_path = "D:/QP/resource/map.jpg";

@@ -22,12 +22,12 @@ public class HttpImageTool {
 	 * 
 	 * @throws IOException
 	 */
-	public static synchronized void getImage(String urlString, String saveImagePath) throws IOException {
+	public static void getImage(String urlString, String saveImagePath) throws IOException {
 		URL url = new URL(urlString);
 		url.openConnection();
 		BufferedImage image = ImageIO.read(url);
 		ImageIO.write(image, "jpg", new File(saveImagePath));
-		url = null;
+		System.out.println("finished");
 	}
 
 	/**
@@ -39,23 +39,28 @@ public class HttpImageTool {
 	 * @param saveImagePath
 	 * @throws IOException
 	 */
-	public static synchronized void getAuthorizedImage(String urlString, String username, String password, String saveImagePath)
-			throws IOException {
-		URL url = new URL(urlString);
+	public static void getAuthorizedImage(String urlString, String username, String password, String saveImagePath) throws IOException {
+		URL url;
+
+		url = new URL(urlString);
+
 		HttpURLConnection connection = null;
 		// 設定帳密並加密
 		String authStr = username + ":" + password;
 		byte[] bytesEncoded = Base64.encodeBase64(authStr.getBytes());
 		String authEncoded = new String(bytesEncoded);
 		connection = (HttpURLConnection) url.openConnection();
+		connection.setConnectTimeout(5000);
 		connection.setRequestProperty("Authorization", "Basic " + authEncoded);
 
 		BufferedImage image = ImageIO.read(connection.getInputStream());
 		ImageIO.write(image, "jpg", new File(saveImagePath));
+
 	}
 
 	/** 取得flash檔 (未完成) */
-	public static synchronized void getFlashFile() throws IOException {
+	public static void getFlashFile() throws IOException {
+
 		URL url = new URL("http://fhy.wra.gov.tw/PUB_WEB_2011/Flash/reservoir/ReservoirWarning.swf");
 		// url.openConnection();
 		InputStream is = url.openStream();
