@@ -15,11 +15,10 @@ import com.wavegis.model.WaterData;
 
 public class WaterDataInsertEngin extends TimerEngin {
 
-	private static final String enginID = "WaterDataInsert";
+	public static final String enginID = "WaterDataInsert";
 	private static final String enginName = "水位資料寫入Engin";
 	private static final WaterDataInsertEnginView enginView = new WaterDataInsertEnginView();
 	private static final WaterDataDao dao = WaterDataDao.getInstance();
-
 	private Logger logger;
 
 	public WaterDataInsertEngin(){

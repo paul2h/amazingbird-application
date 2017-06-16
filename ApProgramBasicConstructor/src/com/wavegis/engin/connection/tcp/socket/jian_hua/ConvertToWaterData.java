@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
-
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.model.RainData;
 import com.wavegis.model.WaterData;
@@ -232,6 +231,7 @@ public class ConvertToWaterData {
 			double rainfall = subAccumulatedRainfallData.get(mapKey);
 			accumulatedRainfall += rainfall;
 		}
+
 		return accumulatedRainfall;
 	}
 

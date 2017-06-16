@@ -55,11 +55,12 @@ public class HttpImageTool {
 
 		BufferedImage image = ImageIO.read(connection.getInputStream());
 		ImageIO.write(image, "jpg", new File(saveImagePath));
-    
+
 	}
 
 	/** 取得flash檔 (未完成) */
 	public static void getFlashFile() throws IOException {
+
 		URL url = new URL("http://fhy.wra.gov.tw/PUB_WEB_2011/Flash/reservoir/ReservoirWarning.swf");
 		// url.openConnection();
 		InputStream is = url.openStream();

@@ -14,13 +14,6 @@ import java.util.zip.GZIPInputStream;
 
 import javax.imageio.ImageIO;
 
-/**
- * QPESUMS 解讀產圖工具
- * 
- * @author Kiwi
- * @version 1.0
- *
- */
 public class QPESUMSTool {
 
 	private static int image_width = 0;
@@ -60,7 +53,7 @@ public class QPESUMSTool {
 			(255 << 16 | 255 << 8 | 255)
 	};
 
-	public static void transDataProcess(String gzFilePath, String pngFilePath, String map_image_path, String boundaryMapImagePath, String outputResultPath) {
+	public static void transDataProcess(String gzFilePath, String pngFilePath , String map_image_path , String boundaryMapImagePath, String outputResultPath) {
 		checkFoldExist(pngFilePath, outputResultPath);
 		extract_gz(gzFilePath, pngFilePath);
 		mergeImage(map_image_path, pngFilePath, pngFilePath, boundaryMapImagePath, outputResultPath);
@@ -275,7 +268,7 @@ public class QPESUMSTool {
 		return result;
 	}
 
-	private static void mergeImage(String map_image_path, String originalFileString, String pngFilePath, String boundaryMapImagePath, String outputResultPath) {
+	private static void mergeImage(String map_image_path, String originalFileString, String pngFilePath , String boundaryMapImagePath , String outputResultPath) {
 		try {
 			// #[[ 讀入所需資訊
 			/* 底圖圖層 */

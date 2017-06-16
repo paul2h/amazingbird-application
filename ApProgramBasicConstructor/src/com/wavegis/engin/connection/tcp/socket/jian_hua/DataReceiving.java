@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.ProxyData;
 import com.wavegis.model.RainData;
@@ -53,7 +52,7 @@ public class DataReceiving implements Runnable {
 					System.out.println("不處理的資料 : " + receiveingMessage);
 					continue;
 				}
-				
+
 				RainData rainData = (RainData) objs[0];
 				WaterData waterData = (WaterData) objs[1];
 				StringBuffer sb = new StringBuffer();
@@ -83,11 +82,9 @@ public class DataReceiving implements Runnable {
 			}
 		} catch (IOException e) {
 			engin.showMessage(ipAddress + " 連線失敗");
-
 			e.printStackTrace();
 		} catch (Exception e) {
 			engin.showMessage(ipAddress + " 連線失敗");
-
 			e.printStackTrace();
 		}
 	}

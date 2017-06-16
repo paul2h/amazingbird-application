@@ -52,7 +52,7 @@ public class CCTVEngin extends TimerEngin {
 			if (threadCounts.containsKey(cctvData.getStname())) {
 				threadCount = threadCounts.get(cctvData.getStname());
 			}
-			showMessage(String.format("開啟接收Thread : %s (之前剩餘Thread數 : %d) \n %s", cctvData.getStname(), threadCount , cctvData.getURL()));
+			showMessage(String.format("開啟接收Thread : %s (之前剩餘Thread數 : %d) \n %s", cctvData.getStname(), threadCount, cctvData.getURL()));
 			threadCount++;
 			threadCounts.put(cctvData.getStname(), threadCount);
 			new Thread(new Runnable() {
@@ -73,6 +73,7 @@ public class CCTVEngin extends TimerEngin {
 				}
 			}).start();
 		}
+
 	}
 
 	@Override

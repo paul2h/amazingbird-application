@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
-
 import javax.swing.ImageIcon;
-
 import com.wavegis.model.CCTVData;
 import com.wavegis.model.WaterData;
 
 public class GlobalConfig {
-
 	public static final String Spring_conf_path = "./spring-config.xml";
 	public static final String Conf_XML_path = "./conf/conf.xml";
 	public static final String MyBatisConfig_XML_Path = "./myBatisConfig.xml";

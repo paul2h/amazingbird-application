@@ -40,4 +40,14 @@
 	<!-- 感測器接受 -->
 	<entry key="SensorReceivingPort">9999</entry>
 	<entry key="SensorAckMessage">ACK</entry>
+	
+	<entry key="RawDataSendPort">9999</entry>
+
+	<entry key="RawDataTransRegisteredKey">#ID#</entry>
+	<entry key="RawDataTransRegisteredSuccessKey">#Registered_Success#</entry>
+	<entry key="RawDataTransTestConnectionKey">#TEST#</entry>
+
+	<entry key="RawDataReceiveID">TEST</entry>
+	<entry key="RawDataReceiveTargetIP">127.0.0.1</entry>
+	<entry key="RawDataReceiveTargetPort">9999</entry>
 </properties>

@@ -54,7 +54,7 @@ public class Dao {
 		daoConnector = sqlSession.getMapper(DaoConnector.class);
 	}
 
-	public static Dao getInstance() throws IOException {
+	public static Dao getInstance() {
 		if (instance == null) {
 			instance = new Dao();
 		}
