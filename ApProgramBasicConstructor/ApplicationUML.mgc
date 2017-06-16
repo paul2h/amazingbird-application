@@ -119,7 +119,7 @@
             default-accepted="false" static-accepted="false"
             accessors-accepted="false" constructors-accepted="false"/>
     </Class>
-    <Class name="com.wavegis.basic_construction.Controller" x="577" y="437">
+    <Class name="com.wavegis.basic_construction.Controller" x="560" y="422">
         <AttributesDisplayFilter public-accepted="true"
             private-accepted="true" protected-accepted="true"
             default-accepted="true" static-accepted="false"/>
@@ -133,10 +133,7 @@
         <Association
             destinationClassName="com.wavegis.basic_construction.Service"
             endpointName="service" kind="Simple"/>
-        <Association destinationClassName="com.wavegis.engin.Engin"
-            endpointName="engins" kind="Simple"/>
         <Communication destinationClassName="com.wavegis.basic_construction.MainUI"/>
-        <Communication destinationClassName="com.wavegis.engin.Engin"/>
     </Class>
     <Class name="com.wavegis.basic_construction.Dao" x="565" y="895">
         <AttributesDisplayFilter public-accepted="true"
