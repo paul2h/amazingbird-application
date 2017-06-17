@@ -9,6 +9,8 @@
 			datatime = (now() - ((TRUNC(RANDOM() * 60) * 2)::TEXT || ' minutes')::interval)
 		WHERE 
 			DATE_PART('day' , datatime) != DATE_PART('day' , now())
+		AND
+			event_code != 'DD'
 	</update>
 
 </mapper>
