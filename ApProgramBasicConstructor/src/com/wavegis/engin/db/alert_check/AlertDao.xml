@@ -15,6 +15,7 @@
 				b.message,
 				array_agg(f.member_name) AS member_names,
 				array_agg(f.phone) AS phones
+				
  			FROM send.send_condition a
  			LEFT JOIN water.water_station w ON a.stid = w.stid
  			LEFT JOIN send.presetting_message b ON a.message_id = b.message_id
@@ -26,7 +27,10 @@
 				c.org_id IS NOT NULL
  			AND
 				e.member_id IS NOT NULL 
- 			
+			AND
+				w.waterlevel > alert_value
+ 			AND
+				w.change_rate < 1
  			GROUP BY
 				a.stid,
 				w.stname,

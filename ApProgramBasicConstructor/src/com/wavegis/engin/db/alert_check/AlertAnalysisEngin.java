@@ -5,18 +5,16 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
+import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.SMSAlertData;
 
 public class AlertAnalysisEngin implements Engin {
-
-	private static final ConcurrentHashMap<String, SMSAlertData> SMS_SEND_LIST = new ConcurrentHashMap<>();
 
 	public static final String enginID = "alertAnalysis";
 	private static final String enginName = "水位警戒分析Engin";
@@ -64,12 +62,12 @@ public class AlertAnalysisEngin implements Engin {
 					// 檢查該站是否已在待送清單中
 					Calendar before12hourCalendar = Calendar.getInstance();
 					before12hourCalendar.set(Calendar.HOUR_OF_DAY, before12hourCalendar.get(Calendar.HOUR_OF_DAY) - 12);
-					SMSAlertData dataInList = SMS_SEND_LIST.get(alertData.getStid());// TODO 正式上時List要移到Proxy class
+					SMSAlertData dataInList = ProxyData.SMS_SEND_LIST.get(alertData.getStid());
 					if (dataInList == null
 							|| dataInList.getAlert_value() < alertData.getAlert_value()
-							|| (dataInList.getDatatime().before(before12hourCalendar.getTime())) && alertData.getDatatime().after(before12hourCalendar.getTime())) {
+							|| ((dataInList.getDatatime().before(before12hourCalendar.getTime())) && alertData.getDatatime().after(before12hourCalendar.getTime()))){
 						showMessage("放入待送清單中 : " + alertData.getStnm() + " - 警戒值 : " + alertData.getAlert_value());
-						SMS_SEND_LIST.put(alertData.getStid(), alertData);
+						ProxyData.SMS_SEND_LIST.put(alertData.getStid(), alertData);
 					} else {
 						showMessage("已在待送清單 : " + alertData.getStnm());
 					}

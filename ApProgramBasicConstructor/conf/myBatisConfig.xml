@@ -119,6 +119,6 @@
 		<mapper resource="com/wavegis/engin/db/alert_check/AlertDao.xml" />
 		<mapper resource="com/wavegis/engin/db/data_check/PokerDao.xml" />
 		<mapper resource="com/wavegis/engin/db/fake/FakeGpsDao.xml" />
-		<mapper resource="com/wavegis/engin/notification/alert_check/AlertDao.xml" />
+		<mapper resource="com/wavegis/engin/db/alert_check/AlertDao.xml" />
 	</mappers>
 </configuration>

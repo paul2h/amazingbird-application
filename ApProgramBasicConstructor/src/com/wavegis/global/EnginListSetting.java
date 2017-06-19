@@ -18,6 +18,7 @@ import com.wavegis.engin.db.data_check.PokerDBEngin;
 import com.wavegis.engin.db.fake.FakeGpsCarUpdateEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
 import com.wavegis.engin.db.read_conf.DBConfigEngin;
 import com.wavegis.engin.db.read_conf.DBEngin;
 import com.wavegis.engin.image.cctv.fake_image.FakeImageEngin;
@@ -77,8 +78,7 @@ public class EnginListSetting {
 			add(DBConfigEngin.enginID);
 			add(ImageEngin.enginID);
 			add(QpesumsReadEngin.enginID);
-			add(RawDataInsertEngin.enginID);
-			add(RainDataInsertEngin.enginID);
+			add(WaterDataInsertEngin.enginID);
 			add(SMSSendEngin.enginID);
 			add(SensorReceivingEngin.enginID);
 		}

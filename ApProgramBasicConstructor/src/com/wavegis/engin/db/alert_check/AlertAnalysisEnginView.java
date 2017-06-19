@@ -1,50 +1,16 @@
 package com.wavegis.engin.db.alert_check;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-
-import com.wavegis.engin.prototype.EnginView;
+import com.wavegis.engin.prototype.SimpleEnginView;
 
 
 @SuppressWarnings("serial")
-public class AlertAnalysisEnginView extends JPanel implements EnginView {
+public class AlertAnalysisEnginView extends SimpleEnginView {
 
 	private static final String enginID = AlertAnalysisEngin.enginID;
-	private JTextArea messageArea = new JTextArea();
-	private int messageCount = 0;
-	private static AlertAnalysisEnginView instance;
-
-	public AlertAnalysisEnginView() {
-		super();
-		instance = this;
-		this.setLayout(new BorderLayout());
-		messageArea = new JTextArea();
-		this.add(new JScrollPane(messageArea), BorderLayout.CENTER);
-	}
-
-	public static AlertAnalysisEnginView getInstance() {
-		if (instance == null) {
-			System.err.println("DemoEnginView物件尚未建置!!!");
-		}
-		return instance;
-	}
-
+	
 	@Override
 	public String getEnginID() {
 		return enginID;
-	}
-
-	@Override
-	public void showMessage(String message) {
-		messageCount++;
-		if (messageCount > 100) {
-			messageArea.setText(null);
-		}
-		messageArea.append(message + "\n");
-		messageArea.setCaretPosition(messageArea.getText().length());
 	}
 
 }
