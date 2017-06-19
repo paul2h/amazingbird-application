@@ -76,7 +76,6 @@ public class DataReceiving implements Runnable {
 					ProxyData.WATER_INSERT_WATER_QUEUE.offer(waterData);
 				}
 				sb.append("\n");
-
 				engin.showMessage(sb.toString());
 
 			}

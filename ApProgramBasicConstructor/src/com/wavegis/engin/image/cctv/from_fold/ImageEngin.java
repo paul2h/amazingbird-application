@@ -67,6 +67,7 @@ public class ImageEngin extends TimerEngin {
 			if (!image.exists() || !image.isFile()) {
 				continue;
 			}
+			showMessage("讀取圖片 :" + image.getName());
 			String filename = image.getName();
 			int pointIndex = filename.lastIndexOf(".");
 			// 檔名格式：xxxxYYMMDD_HHmmss.jpg

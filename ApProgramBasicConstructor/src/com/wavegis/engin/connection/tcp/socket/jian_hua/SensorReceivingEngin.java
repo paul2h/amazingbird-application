@@ -14,8 +14,8 @@ import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.tools.LogTool;
 
 public class SensorReceivingEngin implements Engin {
-	private static final String enginID = "SensorReceiving";
-	private static final String enginName = "建驊水位雨量站Engin";
+	public static final String enginID = "SensorReceiving";
+	private static final String enginName = "建驊測站接收1.0";
 	private static final SensorReceivingEnginView enginView = new SensorReceivingEnginView();
 
 	public static boolean isStarted;

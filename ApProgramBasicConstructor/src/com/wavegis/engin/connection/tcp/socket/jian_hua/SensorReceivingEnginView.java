@@ -5,7 +5,7 @@ import com.wavegis.engin.prototype.SimpleEnginView;
 @SuppressWarnings("serial")
 public class SensorReceivingEnginView extends SimpleEnginView{
 
-	private static final String enginID = "SensorReceiving";
+	private static final String enginID = SensorReceivingEngin.enginID;
 	
 	@Override
 	public String getEnginID() {

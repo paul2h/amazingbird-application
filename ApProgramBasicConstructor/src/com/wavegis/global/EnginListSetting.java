@@ -6,6 +6,7 @@ import java.util.Set;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
+import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.connection.web_check.WebMonitorEngin;
 import com.wavegis.engin.connection.ws.cwb.CWBDataFileGetEngin;
 import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
@@ -65,6 +66,21 @@ public class EnginListSetting {
 	public static final Set<String> standbyEnginIDs_ChiayiCounty = new HashSet<String>() {
 		{
 			add(FakeGpsCarUpdateEngin.enginID);
+		}
+	};
+
+	@SuppressWarnings("serial")
+	public static final Set<String> standbyEnginIDs_ChiayiCity = new HashSet<String>() {
+		{
+			add(AlertAnalysisEngin.enginID);
+			add(CCTVEngin.enginID);
+			add(DBConfigEngin.enginID);
+			add(ImageEngin.enginID);
+			add(QpesumsReadEngin.enginID);
+			add(RawDataInsertEngin.enginID);
+			add(RainDataInsertEngin.enginID);
+			add(SMSSendEngin.enginID);
+			add(SensorReceivingEngin.enginID);
 		}
 	};
 	

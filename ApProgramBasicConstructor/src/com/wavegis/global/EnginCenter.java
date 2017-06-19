@@ -13,6 +13,7 @@ import com.wavegis.engin.notification.gmail.MailSendEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
+import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.connection.web_check.WebMonitorEngin;
 import com.wavegis.engin.connection.ws.cwb.CWBDataFileGetEngin;
 import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
@@ -61,6 +62,7 @@ public class EnginCenter {
 			, new RawDataReceiveEngin()
 			, new RawDataSendEngin()
 			, new ScreemSaveEngin()
+			, new SensorReceivingEngin()
 			, new SMSSendEngin()
 			, new WavegisWSEngin()
 			, new WebMonitorEngin()
@@ -70,7 +72,7 @@ public class EnginCenter {
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_WebMonitor;
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_ChiayiCity;
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){
