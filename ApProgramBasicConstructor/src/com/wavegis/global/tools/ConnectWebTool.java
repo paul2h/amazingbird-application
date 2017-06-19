@@ -36,11 +36,9 @@ public class ConnectWebTool {
 				break;
 			}
 		} catch (java.net.MalformedURLException e) {
-			sb.append("網址格式錯誤!!!\n");
-			e.printStackTrace();
+			sb.append("網址格式錯誤:  "+e.getMessage()+"\n");
 		} catch (java.io.IOException e) {
-			sb.append("連線有問題!!!!!!\n");
-			e.printStackTrace();
+			sb.append("連線有問題:  "+e.getMessage()+"  \n");
 		}
 		return sb.toString();
 	}

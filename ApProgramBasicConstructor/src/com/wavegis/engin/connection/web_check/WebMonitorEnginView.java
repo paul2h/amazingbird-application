@@ -3,9 +3,9 @@ package com.wavegis.engin.connection.web_check;
 import com.wavegis.engin.prototype.SimpleEnginView;
 
 @SuppressWarnings("serial")
-public class WebPokeEnginView extends SimpleEnginView{
+public class WebMonitorEnginView extends SimpleEnginView{
 	
-	private static final String enginID = WebPokeEngin.enginID;
+	private static final String enginID = WebMonitorEngin.enginID;
 
 	@Override
 	public String getEnginID() {

@@ -12,6 +12,7 @@
 	<entry key="TimerPeriod_DB">3600000</entry>
 	<entry key="TimerPeriod_SMS">3600000</entry>
 	<entry key="TimerPeriod_CCTV">10000</entry>
+	<entry key="TimerPeriod_WebMonitor">3600000</entry>
 	<entry key="TimePeriod_Fake_GPS">1800000</entry>
 
 	<!-- 指定幾點更新假資料 -->
@@ -28,6 +29,10 @@
 	<entry key="SMS_SERVER_URL_PREFIX">http://smexpress.mitake.com.tw:9600/SmSendPost.asp</entry>
 	<entry key="SMS_Account">80680205</entry>
 	<entry key="SMS_Password">wavegis25983</entry>
+	
+	<!-- Email 發送 -->
+	<entry key="MAIL_ACCOUNT">mail@wavegis.com.tw</entry>
+	<entry key="MAIL_ACCOUNT_PASSWORD">wavegis25983</entry>	
 
 	<!-- QPESUMS解讀 -->
 	<entry key="gzDirPath">D:/QP/original</entry>
@@ -45,8 +50,8 @@
 	<entry key="SensorReceivingPort">9999</entry>
 	<entry key="SensorAckMessage">ACK</entry>
 	
+	<!-- 原始資料RawData傳遞 -->
 	<entry key="RawDataSendPort">9999</entry>
-
 	<entry key="RawDataTransRegisteredKey">#ID#</entry>
 	<entry key="RawDataTransRegisteredSuccessKey">#Registered_Success#</entry>
 	<entry key="RawDataTransTestConnectionKey">#TEST#</entry>
@@ -54,5 +59,10 @@
 	<entry key="RawDataReceiveID">TEST</entry>
 	<entry key="RawDataReceiveTargetIP">127.0.0.1</entry>
 	<entry key="RawDataReceiveTargetPort">9999</entry>
+	
+	<!-- DBConfig Engin 參數 -->
+	<entry key="GET_CCTV_DATA">false</entry>
+	<entry key="GET_RIVER_BASIN_DATA">false</entry>
+	<entry key="GET_WEB_MONITOR_DATA">true</entry>
 	
 </properties>

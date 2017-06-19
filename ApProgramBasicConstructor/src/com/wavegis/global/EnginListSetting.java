@@ -6,7 +6,7 @@ import java.util.Set;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
-import com.wavegis.engin.connection.web_check.WebPokeEngin;
+import com.wavegis.engin.connection.web_check.WebMonitorEngin;
 import com.wavegis.engin.connection.ws.cwb.CWBDataFileGetEngin;
 import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
 import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
@@ -17,6 +17,7 @@ import com.wavegis.engin.db.data_check.PokerDBEngin;
 import com.wavegis.engin.db.fake.FakeGpsCarUpdateEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
+import com.wavegis.engin.db.read_conf.DBConfigEngin;
 import com.wavegis.engin.db.read_conf.DBEngin;
 import com.wavegis.engin.image.cctv.fake_image.FakeImageEngin;
 import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
@@ -48,7 +49,7 @@ public class EnginListSetting {
 			add(DBEngin.enginID);
 			add(ImageTransServerEngin.enginID);
 			add(ImageTransClientEngin.enginID);
-			add(WebPokeEngin.enginID);
+			add(WebMonitorEngin.enginID);
 			add(HttpImageGetEngin.enginID);
 			add(CWBTyphoonTextEngin.enginID);
 			add(CWBDataFileGetEngin.enginID);
@@ -70,8 +71,10 @@ public class EnginListSetting {
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_WebMonitor = new HashSet<String>() {
 		{
-			add(WebPokeEngin.enginID);
+			add(WebMonitorEngin.enginID);
 			add(MailSendEngin.enginID);
+			add(DBConfigEngin.enginID);
 		}
 	};
+
 }

@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.model.CCTVData;
+import com.wavegis.model.WebMonitorFocusData;
 import com.wavegis.model.WaterData;
 
 /**
@@ -54,7 +55,7 @@ public class DBConfigDao {
 				e1.printStackTrace();
 			}
 		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "ConfigDaoEnvironment");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "PokerDaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
 		daoConnector = sqlSession.getMapper(DBConfigDaoConnector.class);
 
@@ -93,6 +94,11 @@ public class DBConfigDao {
 	public List<WaterData> getRiverBottomDatas() {
 		sqlSession.clearCache();// 清掉暫存
 		return procalDaoConnector.getStationBottomDatas();
+	}
+	
+	public List<WebMonitorFocusData> getWebFocusDatas(){
+		sqlSession.clearCache();
+		return daoConnector.getWebFocusData();
 	}
 	// ]]
 }
