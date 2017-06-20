@@ -83,7 +83,15 @@ public class EnginListSetting {
 			add(SensorReceivingEngin.enginID);
 		}
 	};
-	
+
+	@SuppressWarnings("serial")
+	public static final Set<String> standbyEnginIDs_Keelung = new HashSet<String>() {
+		{
+			add(CCTVEngin.enginID);
+			add(DBConfigEngin.enginID);
+		}
+	};
+
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_WebMonitor = new HashSet<String>() {
 		{

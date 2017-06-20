@@ -9,8 +9,8 @@
 				, a._vr_name AS stname
 				, a._user AS account
 				, a._password AS password
-				, 'C://temp/' || a._vr_no || '.jpg' AS "SavePath"
-				, true AS need_login
+				, a._path || a._vr_no || '.jpg' AS "SavePath"
+				, a.need_login
 				, 'http://' || a._vr_ip || a.url_suffix AS "URL" 
 			FROM 
 				vr.vr_data a

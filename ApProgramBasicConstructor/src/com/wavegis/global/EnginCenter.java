@@ -74,7 +74,7 @@ public class EnginCenter {
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_ChiayiCity;
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Keelung;
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){

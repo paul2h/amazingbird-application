@@ -61,8 +61,8 @@
 	<entry key="RawDataReceiveTargetPort">9999</entry>
 	
 	<!-- DBConfig Engin 參數 -->
-	<entry key="GET_CCTV_DATA">false</entry>
+	<entry key="GET_CCTV_DATA">true</entry>
 	<entry key="GET_RIVER_BASIN_DATA">false</entry>
-	<entry key="GET_WEB_MONITOR_DATA">true</entry>
+	<entry key="GET_WEB_MONITOR_DATA">false</entry>
 	
 </properties>

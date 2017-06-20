@@ -55,7 +55,7 @@ public class DBConfigDao {
 				e1.printStackTrace();
 			}
 		}
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "PokerDaoEnvironment");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "ConfigDaoEnvironment");
 		sqlSession = sqlSessionFactory.openSession(false);// autocommit = false
 		daoConnector = sqlSession.getMapper(DBConfigDaoConnector.class);
 
@@ -86,17 +86,17 @@ public class DBConfigDao {
 	// ]]
 
 	// #[[ 指令用Method
-	public List<CCTVData> getCCTVData() {
+	public List<CCTVData> getCCTVData() throws Exception{
 		sqlSession.commit();// 清掉暫存
 		return daoConnector.getCCTVData();
 	}
 
-	public List<WaterData> getRiverBottomDatas() {
+	public List<WaterData> getRiverBottomDatas() throws Exception{
 		sqlSession.clearCache();// 清掉暫存
 		return procalDaoConnector.getStationBottomDatas();
 	}
 	
-	public List<WebMonitorFocusData> getWebFocusDatas(){
+	public List<WebMonitorFocusData> getWebFocusDatas() throws Exception{
 		sqlSession.clearCache();
 		return daoConnector.getWebFocusData();
 	}
