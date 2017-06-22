@@ -37,7 +37,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 	private static final int frameWidth = 600;
 	private static final int frameHeight = 600;
-	private EnginView[] enginViews = EnginCenter.EnginViews;
+	private EnginView[] enginViews = null;
 	private JTextArea messageArea;
 	private JButton startAllButton, stopAllButton;
 	private JTabbedPane mainEnginViewPanel;
