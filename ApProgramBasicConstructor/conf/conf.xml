@@ -4,9 +4,7 @@
 	<comment>二河局</comment>
 	<entry key="TrayPassword">0921393905</entry>
 	<entry key="KillBATPath">./kill.bat</entry>
-	<entry key="WS_Time_Period">300000</entry>
-	<entry key="CCTV_Time_Period">30000</entry>
-	<entry key="INSERT_Time_Period">300000</entry>
+	
 	<!-- 桃園WebService -->
 	<entry key="TaoyuanWebServiceURL">http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</entry>
 	<!-- 新竹WebService -->
@@ -17,18 +15,5 @@
 	<entry key="MaoliWebServiceActionURL">http://210.61.17.223/eSAV2Service/Actions/</entry>
 	<entry key="MaoliWebServiceUser">wra02</entry>
 	<entry key="MaoliWebServicePassword">wra02wra02</entry>
-	<!-- CCTV共用 -->
-	<entry key="CCTVImagePath">D:/pic/Wra02/</entry>
-	<!-- 新竹CCTV -->
-	<entry key="HsinchuCCTVURL">http://210.66.181.119:85/GetVideo.ashx?ID=01,http://210.66.181.119:85/GetVideo.ashx?ID=02</entry>
-	<entry key="HsinchuImageName">hsinchu01.jpg,hsinchu02.jpg</entry>
-	<entry key="HsinchuLocationName">新竹縣-博愛橋,新竹縣-聚德橋</entry>
-	<!-- 苗栗CCTV -->
-	<entry key="MaoliCCTVURL">http://60.250.203.173:81/CameraImageLink/</entry>
-	<entry key="MaoliImageName">36000101.jpg,36001401.jpg,36000301.jpg,36000401.jpg,36001301.jpg,36000901.jpg</entry>
-	<entry key="MaoliLocationName">苗栗縣-大庄橋,苗栗縣-文峰橋,苗栗縣-玉清橋,苗栗縣-安和橋,苗栗縣-龍聖橋,苗栗縣-為東橋</entry>
 	
-	<!-- Ftp File Engin -->
-	<entry key="FtpSendDir">D:\\temp\\</entry>
-	<entry key="FtpSendFiles">1.jpg,2.jpg,3.jpg,4.jpg,5.jpg,6.jpg</entry>
 </properties>
