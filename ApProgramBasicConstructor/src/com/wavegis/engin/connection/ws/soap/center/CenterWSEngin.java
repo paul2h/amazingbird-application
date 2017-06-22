@@ -7,21 +7,20 @@ import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
-import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.CenterWebServiceSOAPTool;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.WaterData;
 
 public class CenterWSEngin extends TimerEngin {
-	private static final String enginID = "CenterWS";
+	public static final String enginID = "CenterWS";
 	private static final String enginName = "中央WS接收Engin";
 	private static final CenterWSEnginView enginView = new CenterWSEnginView();
 
 	private Logger logger = LogTool.getLogger(CenterWSEngin.class.getName());
 	
 	public CenterWSEngin() {
-		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("WS_Time_Period"));
+		setTimeout(1000*30);//TODO 需拉到conf.xml設定
 	}
 
 	@Override
@@ -47,8 +46,9 @@ public class CenterWSEngin extends TimerEngin {
 			for (WaterData data : datas) {
 				showMessage(data.getStid() + " " + data.getStname() + " " + data.getLasttime() + " " + data.getWaterlevel());
 			}
-			ProxyData.WATER_INSERT_QUEUE.addAll(datas);
+			ProxyData.WATER_INSERT_WATER_QUEUE.addAll(datas);
 			showMessage("取得資料完成.");
+
 		} catch (IOException e) {
 			showMessage("資料取得錯誤!!");
 			e.printStackTrace();

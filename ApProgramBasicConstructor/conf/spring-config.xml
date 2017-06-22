@@ -11,6 +11,6 @@
 	
 	<bean id="Service" class="com.wavegis.basic_construction.Service" />
 	
-	<bean id="DAO" class="com.wavegis.basic_construction.Dao"></bean>
+	<bean id="Dao" class="com.wavegis.basic_construction.Dao"></bean>
 
 </beans>

@@ -32,7 +32,7 @@ public class HsinchuWebServiceEngin extends TimerEngin{
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	
 	public HsinchuWebServiceEngin(){
-		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("WS_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("WS_Time_Period"));
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class HsinchuWebServiceEngin extends TimerEngin{
 	public void timerAction(){
 		showMessage("開始取得資料...");
 		
-		String[] webServiceURLs = GlobalConfig.CONFPIG_PROPERTIES.getProperty("HsinchuWebServiceURL").split(",");
+		String[] webServiceURLs = GlobalConfig.XML_CONFIG.getProperty("HsinchuWebServiceURL").split(",");
 		
 		for(String webServiceURL : webServiceURLs){
 			if(!getWaterDataFromWebService(webServiceURL)){
@@ -119,7 +119,7 @@ public class HsinchuWebServiceEngin extends TimerEngin{
 						if(bean.get("le") != null){
 							waterData.setWaterlevel(Double.parseDouble(bean.get("le").toString()));
 						}
-						ProxyData.WATER_INSERT_QUEUE.offer(waterData);
+						ProxyData.WATER_INSERT_WATER_QUEUE.offer(waterData);
 					}
 				}
 				bSuccess = true;

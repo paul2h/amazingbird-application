@@ -29,7 +29,7 @@ public class HsinchuCityWebServiceEngin extends TimerEngin {
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 
 	public HsinchuCityWebServiceEngin(){
-		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("WS_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("WS_Time_Period"));
 	}
 	
 	@Override

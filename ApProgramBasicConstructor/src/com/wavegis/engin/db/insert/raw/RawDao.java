@@ -64,6 +64,7 @@ public class RawDao {
 	// ]]
 
 	// #[[ 指令用Method
+
 	public void insertRawLocatorData(List<WaterData> waterData) {
 		daoConnector.insertRawLocatorData(waterData);
 		sqlSession.commit();
@@ -71,6 +72,11 @@ public class RawDao {
 	
 	public void insertRawProcalData(List<WaterData> waterData) {
 		daoConnector.insertRawProcalData(waterData);
+		sqlSession.commit();
+	}
+
+	public void insertRawData(List<WaterData> waterData) {
+		daoConnector.insertRawData(waterData);
 		sqlSession.commit();
 	}
 	// ]]

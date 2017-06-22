@@ -34,7 +34,7 @@
 
 	
 	<Loggers>
-		<Root level="ERROR">
+		<Root level="DEBUG">
 			<AppenderRef ref="Console" />
 		</Root>
 		<logger name="com.wavegis.basic_construction" level="TRACE">

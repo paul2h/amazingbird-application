@@ -36,8 +36,8 @@ public class FTPFileTransEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
-		String FtpSendDir = GlobalConfig.CONFPIG_PROPERTIES.getProperty("FtpSendDir");
-		String[] FtpSendFiles = GlobalConfig.CONFPIG_PROPERTIES.getProperty("FtpSendFiles").split(",");
+		String FtpSendDir = GlobalConfig.XML_CONFIG.getProperty("FtpSendDir");
+		String[] FtpSendFiles = GlobalConfig.XML_CONFIG.getProperty("FtpSendFiles").split(",");
 		for (int i = 0; i < FtpSendFiles.length; i++) {
 			try {
 				String fileName = FtpSendFiles[i];

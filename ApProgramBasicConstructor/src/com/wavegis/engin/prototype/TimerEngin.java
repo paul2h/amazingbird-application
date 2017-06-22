@@ -59,6 +59,7 @@ public abstract class TimerEngin implements Engin {
 	protected void setTimeout(int millesecond) {
 		this.timerPeriod = millesecond;
 	}
+	
 	protected void setTimeout(String millesecond) {
 		this.timerPeriod = Integer.parseInt(millesecond);
 	}

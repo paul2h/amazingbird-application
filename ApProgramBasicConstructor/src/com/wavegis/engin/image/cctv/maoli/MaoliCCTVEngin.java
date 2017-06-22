@@ -23,7 +23,7 @@ public class MaoliCCTVEngin extends TimerEngin{
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	
 	public MaoliCCTVEngin(){
-		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("CCTV_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("CCTV_Time_Period"));
 	}
 	
 	@Override
@@ -45,10 +45,10 @@ public class MaoliCCTVEngin extends TimerEngin{
 	public void timerAction(){
 		showMessage("開始取得CCTV圖片...");
 		
-		String cctvURL = GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliCCTVURL");
-		String imageDirPath = GlobalConfig.CONFPIG_PROPERTIES.getProperty("CCTVImagePath");
-		String[] imageNames = GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliImageName").split(",");
-		String[] locationNames = GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliLocationName").split(",");
+		String cctvURL = GlobalConfig.XML_CONFIG.getProperty("MaoliCCTVURL");
+		String imageDirPath = GlobalConfig.XML_CONFIG.getProperty("CCTVImagePath");
+		String[] imageNames = GlobalConfig.XML_CONFIG.getProperty("MaoliImageName").split(",");
+		String[] locationNames = GlobalConfig.XML_CONFIG.getProperty("MaoliLocationName").split(",");
 		
 		if(imageNames.length != locationNames.length){
 			showMessage("設定檔取得失敗，資料筆數不對等");

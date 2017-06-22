@@ -23,7 +23,7 @@ public class HsinchuCCTVEngin extends TimerEngin{
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	
 	public HsinchuCCTVEngin(){
-		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("CCTV_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("CCTV_Time_Period"));
 	}
 	
 	@Override
@@ -45,16 +45,16 @@ public class HsinchuCCTVEngin extends TimerEngin{
 	public void timerAction(){
 		showMessage("開始取得CCTV圖片...");
 		
-		String[] cctvURLs = GlobalConfig.CONFPIG_PROPERTIES.getProperty("HsinchuCCTVURL").split(",");
-		String[] imageNames = GlobalConfig.CONFPIG_PROPERTIES.getProperty("HsinchuImageName").split(",");
-		String[] locationNames = GlobalConfig.CONFPIG_PROPERTIES.getProperty("HsinchuLocationName").split(",");
+		String[] cctvURLs = GlobalConfig.XML_CONFIG.getProperty("HsinchuCCTVURL").split(",");
+		String[] imageNames = GlobalConfig.XML_CONFIG.getProperty("HsinchuImageName").split(",");
+		String[] locationNames = GlobalConfig.XML_CONFIG.getProperty("HsinchuLocationName").split(",");
 		
 		if(cctvURLs.length != imageNames.length && imageNames.length != locationNames.length){
 			showMessage("設定檔取得失敗，資料筆數不對等");
 			
 			return ;
 		}
-		String imageDirPath = GlobalConfig.CONFPIG_PROPERTIES.getProperty("CCTVImagePath");
+		String imageDirPath = GlobalConfig.XML_CONFIG.getProperty("CCTVImagePath");
 		File dir = new File(imageDirPath);
 		
 		if(!dir.exists()){

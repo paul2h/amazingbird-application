@@ -5,16 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.wavegis.basic_construction.Controller;
 import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "2017水情介接-二河局2.4版";
+	private static final String edition = GlobalConfig.edition;
 	private ApplicationContext context;
 	private Controller controller;
 
@@ -31,7 +29,7 @@ public class Starter {
 		try {
 			initXmlSetting();
 			initSpringConstruct();
-			createKillBatFile(GlobalConfig.CONFPIG_PROPERTIES.getProperty("KillBATPath"));
+			createKillBatFile(GlobalConfig.XML_CONFIG.getProperty("KillBATPath"));
 			// 設定&顯現主視窗
 			controller = (Controller) context.getBean("Controller");
 			controller.startApplication(edition);
@@ -43,12 +41,13 @@ public class Starter {
 
 	private void initXmlSetting() {
 		try {
+			
 			System.out.println("讀取Xml設定檔...");
-			
+			// 讀取XML檔案
 			FileInputStream fis = new FileInputStream(new File(GlobalConfig.Conf_XML_path));
-			
-			GlobalConfig.CONFPIG_PROPERTIES.loadFromXML(fis);
-			
+
+			GlobalConfig.XML_CONFIG.loadFromXML(fis);
+
 			fis.close();
 			
 			System.out.println("讀取Xml設定完成.");
@@ -65,8 +64,7 @@ public class Starter {
 	 */
 	public void initSpringConstruct() {
 		System.out.println("初始化Spring架構...");
-		context = new ClassPathXmlApplicationContext(
-				GlobalConfig.Spring_conf_path);
+		context = new ClassPathXmlApplicationContext(GlobalConfig.Spring_conf_path);
 		System.out.println("初始化Spring架構完成.");
 	}
 

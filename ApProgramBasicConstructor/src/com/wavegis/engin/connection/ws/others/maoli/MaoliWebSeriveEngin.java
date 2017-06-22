@@ -48,7 +48,7 @@ public class MaoliWebSeriveEngin extends TimerEngin{
 	
 	
 	public MaoliWebSeriveEngin(){
-		setTimeout(GlobalConfig.CONFPIG_PROPERTIES.getProperty("WS_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("WS_Time_Period"));
 	}
 	
 	@Override
@@ -72,15 +72,15 @@ public class MaoliWebSeriveEngin extends TimerEngin{
 		AuthInfo authInfo = new AuthInfo();
 		HashMap<String, Object> existMap = new HashMap<String, Object>();
 		StationInfo[] stationInfos = null;
-		String actionURL = GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliWebServiceActionURL");
+		String actionURL = GlobalConfig.XML_CONFIG.getProperty("MaoliWebServiceActionURL");
 		
-		authInfo.setUsername(GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliWebServiceUser"));
-		authInfo.setPassword(GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliWebServicePassword"));
+		authInfo.setUsername(GlobalConfig.XML_CONFIG.getProperty("MaoliWebServiceUser"));
+		authInfo.setPassword(GlobalConfig.XML_CONFIG.getProperty("MaoliWebServicePassword"));
 		
 		existMap.put("水位", "");
 		existMap.put("10分鐘累積雨量", "");
 		
-		KeyResult keyResult = (KeyResult)getResponseData(GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliWebServiceURL") + "GetKey", authInfo, KeyResult.class);
+		KeyResult keyResult = (KeyResult)getResponseData(GlobalConfig.XML_CONFIG.getProperty("MaoliWebServiceURL") + "GetKey", authInfo, KeyResult.class);
 		
 		showMessage("取得測站資料中...");
 		if(stationInfos == null){
@@ -159,14 +159,14 @@ public class MaoliWebSeriveEngin extends TimerEngin{
 							
 							rainStationDatas.add(rainData);
 							*/
-							waterData.setRainfall10min(data.getData().getValue());
+//							waterData.setRainfall10min(data.getData().getValue());
 							
-							showMessage("雨量: " + waterData.getRainfall10min());
+//							showMessage("雨量: " + waterData.getRainfall10min());
 						}
 					}
 				}
 			}
-			ProxyData.WATER_INSERT_QUEUE.offer(waterData);
+			ProxyData.WATER_INSERT_WATER_QUEUE.offer(waterData);
 		}
 		showMessage("資料取得完畢.");
 	}
@@ -180,13 +180,13 @@ public class MaoliWebSeriveEngin extends TimerEngin{
 	private AuthAction createAuthAction(KeyResult keyResult, String actionName){
 		String encryption = dataEncryption(keyResult, actionName);
 		
-		return new AuthAction(GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliWebServiceUser"), actionName, encryption, DateFormat.getInstance().format(new Date()), "json");
+		return new AuthAction(GlobalConfig.XML_CONFIG.getProperty("MaoliWebServiceUser"), actionName, encryption, DateFormat.getInstance().format(new Date()), "json");
 	}
 	
 	@SuppressWarnings({"unused", "rawtypes"})
 	private Object getResponseData(String url_suffix, KeyResult keyResult, String actionName, Class classOfT){
 		String encryption = dataEncryption(keyResult, actionName);
-		AuthAction action = new AuthAction(GlobalConfig.CONFPIG_PROPERTIES.getProperty("MaoliWebServiceUser"), actionName, encryption, DateFormat.getInstance().format(new Date()), "json");
+		AuthAction action = new AuthAction(GlobalConfig.XML_CONFIG.getProperty("MaoliWebServiceUser"), actionName, encryption, DateFormat.getInstance().format(new Date()), "json");
 		
 		return getResponseData(url_suffix, action, classOfT);
 	}
