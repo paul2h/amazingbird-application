@@ -15,4 +15,6 @@
 	<entry key="RawDataReceiveTargetPort">9999</entry>
 	
 	<entry key="KenkulRawDataHeader">##KENKUL##</entry>
+	
+	<entry key="RawDataReadDirPath">D:\\temp\\</entry>
 </properties>

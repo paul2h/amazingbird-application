@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
+import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.ProxyDatas;
 import com.wavegis.global.tools.LogTool;
 
@@ -60,7 +61,7 @@ public class RawDataTextReadEngin implements Engin {
 		return true;
 	}
 
-	String LogPath = "D:\\temp\\";// TODO
+	String LogPath = GlobalConfig.XML_CONFIG.getProperty("RawDataReadDirPath" , "C://temp//");
 
 	private void insertProcess() {
 		boolean success = false;
