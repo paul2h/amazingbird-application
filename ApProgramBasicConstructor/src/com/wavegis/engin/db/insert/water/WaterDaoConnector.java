@@ -8,4 +8,5 @@ public interface WaterDaoConnector {
 	public void insertWaterData(List<WaterData> waterData);
 	
 	public void insertRainData(List<WaterData> waterData);
+
 }

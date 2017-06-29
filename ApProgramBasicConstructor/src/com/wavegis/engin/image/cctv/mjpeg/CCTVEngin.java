@@ -16,15 +16,16 @@ import com.wavegis.model.CCTVData;
 
 public class CCTVEngin extends TimerEngin {
 
-	private static final String enginID = "CCTV";
-	private static final String enginName = "CCTV讀取1.0";
+
+	public static final String enginID = "CCTV";
+	private static final String enginName = "CCTV讀取1.1";
 	private static final CCTVEnginView enginView = new CCTVEnginView();
 	private Logger logger;
 	private ConcurrentHashMap<String, Integer> threadCounts = new ConcurrentHashMap<>();
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public CCTVEngin() {
-		int timeout = Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("CCTV_GET_TIME_PERIOD"));
+		int timeout = Integer.valueOf(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_CCTV"));
 		setTimeout(timeout);
 		logger = LogTool.getLogger(CCTVEngin.class.getName());
 	}
@@ -52,7 +53,7 @@ public class CCTVEngin extends TimerEngin {
 			if (threadCounts.containsKey(cctvData.getStname())) {
 				threadCount = threadCounts.get(cctvData.getStname());
 			}
-			showMessage(String.format("開啟接收Thread : %s (之前剩餘Thread數 : %d)", cctvData.getStname(), threadCount));
+			showMessage(String.format("開啟接收Thread : %s (之前剩餘Thread數 : %d) \n %s", cctvData.getStname(), threadCount, cctvData.getURL()));
 			threadCount++;
 			threadCounts.put(cctvData.getStname(), threadCount);
 			new Thread(new Runnable() {
@@ -73,6 +74,7 @@ public class CCTVEngin extends TimerEngin {
 				}
 			}).start();
 		}
+
 	}
 
 	@Override

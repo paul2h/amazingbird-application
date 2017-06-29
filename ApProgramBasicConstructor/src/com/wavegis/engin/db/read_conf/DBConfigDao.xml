@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wavegis.engin.db.read_conf.DBConfigDaoConnector">
+
+	<select id="getCCTVData" resultType="com.wavegis.model.CCTVData">
+			SELECT 
+				a._vr_no AS stid
+				, a._vr_name AS stname
+				, a._user AS account
+				, a._password AS password
+				, a._path || a._vr_no || '.jpg' AS "SavePath"
+				, a.need_login
+				, 'http://' || a._vr_ip || a.url_suffix AS "URL" 
+			FROM 
+				vr.vr_data a
+			WHERE   url_suffix IS NOT NULL
+			ORDER BY 
+				a._vr_no
+	</select>
+	
+	<select id="getWebFocusData" resultType="com.wavegis.model.WebMonitorFocusData">
+		SELECT 
+			focus_list.project_id AS _id
+			, focus_list.project_name
+			, focus_list.web_url
+			, group_list.group_name
+			, status_list.status_name
+			, focus_list.has_url
+			, array_agg(user_list.user_name) AS report_users
+			, array_agg(user_list.mail) AS report_mails
+   		FROM poker_server.focus_list
+   		LEFT JOIN poker_server.group_list ON group_list.group_id = focus_list.group_id
+   		LEFT JOIN poker_server.status_list ON status_list.status_id = focus_list.status_id
+   		LEFT JOIN poker_server.group_user_map ON group_user_map.group_id = focus_list.group_id
+   		LEFT JOIN poker_server.user_list ON user_list.user_id = group_user_map.user_id
+  		GROUP BY focus_list.project_id, focus_list.project_name, focus_list.web_url, group_list.group_name, status_list.status_name, focus_list.has_url, focus_list.last_report_time;
+	
+	</select>
+	
+</mapper>

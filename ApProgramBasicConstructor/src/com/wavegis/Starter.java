@@ -14,7 +14,7 @@ import com.wavegis.global.GlobalConfig;
 
 public class Starter {
 
-	private static final String edition = "2017水情介接-彰化2.3_5";
+	private static final String edition = GlobalConfig.edition;
 	private ApplicationContext context;
 	private Controller controller;
 
@@ -43,15 +43,15 @@ public class Starter {
 
 	private void initXmlSetting() {
 		try {
+			
 			System.out.println("讀取Xml設定檔...");
 			// 讀取XML檔案
-			
 			FileInputStream fis = new FileInputStream(new File(GlobalConfig.Conf_XML_path));
 			
 			GlobalConfig.XML_CONFIG.loadFromXML(fis);
 			
 			fis.close();
-
+			
 			System.out.println("讀取Xml設定完成.");
 		} catch (Exception e) {
 			System.out.println("讀取Xml設定失敗.");
@@ -66,8 +66,7 @@ public class Starter {
 	 */
 	public void initSpringConstruct() {
 		System.out.println("初始化Spring架構...");
-		context = new ClassPathXmlApplicationContext(
-				GlobalConfig.Spring_conf_path);
+		context = new ClassPathXmlApplicationContext(GlobalConfig.Spring_conf_path);
 		System.out.println("初始化Spring架構完成.");
 	}
 

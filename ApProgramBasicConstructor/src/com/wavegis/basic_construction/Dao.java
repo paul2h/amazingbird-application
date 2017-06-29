@@ -3,7 +3,6 @@ package com.wavegis.basic_construction;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.Charset;
-import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.DataModel;
 
 /**
  * 給Service取得Dao的Dao總管理物件
@@ -54,7 +52,7 @@ public class Dao {
 		daoConnector = sqlSession.getMapper(DaoConnector.class);
 	}
 
-	public static Dao getInstance() throws IOException {
+	public static Dao getInstance() {
 		if (instance == null) {
 			instance = new Dao();
 		}
@@ -73,8 +71,5 @@ public class Dao {
 		sqlSession.commit();
 	}
 
-	public List<DataModel> getData() {
-		return daoConnector.getData();
-	}
 	// ]]
 }

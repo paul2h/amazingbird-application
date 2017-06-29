@@ -47,5 +47,4 @@
 			#{element.rainfall24hour}
 		</foreach>
 	</insert>	
-
 </mapper>

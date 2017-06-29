@@ -18,6 +18,7 @@ public abstract class SimpleEnginView extends JPanel implements EnginView {
 
 	private JTextArea messageArea = new JTextArea();
 	private int messageCount = 0;
+
 	private static final int MessageMaxLine = 1000;
 
 	public SimpleEnginView() {

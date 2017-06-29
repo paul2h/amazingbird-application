@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wavegis.engin.db.alert_check.AlertDaoConnector">
+
+	<select id="getData" resultType="com.wavegis.model.SMSAlertData">
+		<![CDATA[
+ 			SELECT
+				a.stid,
+				w.stname AS stnm,
+				w.lasttime AS datatime,
+				w.waterlevel AS waterlv,
+				a.alert_value,
+				b.message_id,
+				b.message,
+				array_agg(f.member_name) AS member_names,
+				array_agg(f.phone) AS phones
+				
+ 			FROM send.send_condition a
+ 			LEFT JOIN water.water_station w ON a.stid = w.stid
+ 			LEFT JOIN send.presetting_message b ON a.message_id = b.message_id
+ 			LEFT JOIN send.sms_organization_relation c ON a.stid =  c.stid
+ 			LEFT JOIN dept.organization d ON c.org_id = d.org_id
+ 			LEFT JOIN send.sms_member_relation e  ON d.org_id = e.org_id AND EXISTS (SELECT 1 FROM send.sms_send_member_relation WHERE member_id = e.member_id AND stid = a.stid)
+ 			LEFT JOIN dept.member f ON e.member_id = f.member_id
+ 			WHERE
+				c.org_id IS NOT NULL
+ 			AND
+				e.member_id IS NOT NULL 
+			AND
+				w.waterlevel > alert_value
+ 			AND
+				w.change_rate < 1
+ 			GROUP BY
+				a.stid,
+				w.stname,
+				w.lasttime,
+				w.waterlevel,				
+				a.alert_value,
+				b.message_id,
+				b.message
+		]]>
+	</select>
+
+</mapper>
