@@ -49,7 +49,6 @@ public class ImageTransClientEngin extends TimerEngin {
 		Socket socket = null;
 
 		for (int i = 0; i < 6; i++) {
-			
 			try {
 				socket = new Socket("13.76.255.253", 5000);// TODO
 				OutputStream out = socket.getOutputStream();

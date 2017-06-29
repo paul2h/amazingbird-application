@@ -104,7 +104,6 @@ public class EnginListSetting {
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_Wra02 = new HashSet<String>() {
 		{
-			add(WebMonitorEngin.enginID);
 			add(MailSendEngin.enginID);
 			add(DBConfigEngin.enginID);
 		}
