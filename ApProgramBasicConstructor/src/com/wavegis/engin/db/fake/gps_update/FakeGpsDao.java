@@ -1,4 +1,4 @@
-package com.wavegis.engin.db.fake;
+package com.wavegis.engin.db.fake.gps_update;
 
 import java.io.IOException;
 import java.io.Reader;

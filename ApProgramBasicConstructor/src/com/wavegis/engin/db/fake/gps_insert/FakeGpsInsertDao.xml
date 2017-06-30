@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wavegis.engin.db.fake.gps_insert.FakeGpsInsertDaoConnector">
+
+	<insert id="insertGpsData" parameterType="java.util.List">
+		insert into log_partition._gps_log_20176(
+		_uid ,
+		unit_name,
+		status,
+		datatime,
+		lon,
+		lat,
+		lon_deg,
+		lat_deg,
+		lon_min,
+		lat_min,
+		speed,
+		course,
+		sat_count,
+		event_code,
+		type_id,
+		input_code,
+		_voltage,
+		round_speed,
+		originalmessage
+		) VALUES
+		<foreach collection="list" item="element" index="index" open="(" separator="),(" close=")">
+			#{element._uid},
+			#{element.unit_name},
+			#{element.status},
+			#{element.datatime},
+			#{element.lon},
+			#{element.lat},
+			#{element.lon_deg},
+			#{element.lat_deg},
+			#{element.lon_min},
+			#{element.lat_min},
+			#{element.speed},
+			#{element.course},
+			#{element.sat_count},
+			#{element.event},
+			#{element.type},
+			#{element.input},
+			#{element.voltage},
+			#{element.roundSpeed},
+			#{element.originalMessage}		
+		</foreach>
+	</insert>
+
+</mapper>

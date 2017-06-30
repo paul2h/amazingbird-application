@@ -38,15 +38,21 @@ public class GlobalConfig {
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	
 	private static final String FrameIconImagePath_ChiayiCity = "./conf/icon/icon_chiayi_city.png";
+	public static final String FrameIconImagePath_ChiayiCounty = "./conf/icon/icon_chiayi_county.png";
 	private static final String FrameIconImagePath_Keelung = "./conf/icon/icon_keelung.png";
 	private static final String FrameIconImagePath_WebMonitor = "./conf/icon/icon_web_monitor.png";
 	private static final String FrameIconImagePath_Wra02 = "./conf/icon/icon_wra02.png";
 	private static final String FrameIconImagePath_Yilan = "./conf/icon/icon_yilan.png";
 	
+	/** 客製化車機訊息判斷key(為與舊版AVLS相容) */
+	public static String CustomMessageKey = "from_old";
+	
 	/**
 	 * 介接icon設定
 	 */
 	public static final ImageIcon FrameIconImage = new ImageIcon(FrameIconImagePath_Yilan);//FIXME 更換縣市需設定
+
+	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	public static List<CCTVData> CCTV_DATA_LIST = new ArrayList<CCTVData>();
 	public static ConcurrentHashMap<String, WaterData> RIVER_BOTTOM_DATAS = new ConcurrentHashMap<>();

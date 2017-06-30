@@ -145,7 +145,8 @@
 		<mapper resource="com/wavegis/engin/db/insert/water/WaterDao.xml" />
 		<mapper resource="com/wavegis/engin/db/alert_check/AlertDao.xml" />
 		<mapper resource="com/wavegis/engin/db/data_check/PokerDao.xml" />
-		<mapper resource="com/wavegis/engin/db/fake/FakeGpsDao.xml" />
+		<mapper resource="com/wavegis/engin/db/fake/gps_update/FakeGpsDao.xml" />
+		<mapper resource="com/wavegis/engin/db/fake/gps_insert/FakeGpsInsertDao.xml" />
 		<mapper resource="com/wavegis/engin/db/alert_check/AlertDao.xml" />
 	</mappers>
 </configuration>

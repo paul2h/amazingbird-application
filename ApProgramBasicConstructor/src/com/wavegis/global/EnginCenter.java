@@ -17,7 +17,8 @@ import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.db.data_check.PokerDBEngin;
-import com.wavegis.engin.db.fake.FakeGpsCarUpdateEngin;
+import com.wavegis.engin.db.fake.gps_insert.FakeGpsCarInsertEngin;
+import com.wavegis.engin.db.fake.gps_update.FakeGpsCarUpdateEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
@@ -48,6 +49,7 @@ public class EnginCenter {
 			, new DBConfigEngin()
 			, new FakeImageEngin()
 			, new FakeGpsCarUpdateEngin()
+			, new FakeGpsCarInsertEngin()
 			, new HttpImageGetEngin()
 			, new ImageEngin()
 			, new ImageTransServerEngin()

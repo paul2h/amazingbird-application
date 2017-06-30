@@ -61,7 +61,7 @@ public class RawDataTextReadEngin implements Engin {
 		return true;
 	}
 
-	String LogPath = GlobalConfig.XML_CONFIG.getProperty("RawDataReadDirPath" , "C://temp//");
+	String LogPath = GlobalConfig.XML_CONFIG.getProperty("RawDataReadDirPath" , "C://temp//");//XXX 待改
 
 	private void insertProcess() {
 		boolean success = false;
@@ -94,7 +94,7 @@ public class RawDataTextReadEngin implements Engin {
 		File dir = new File(dirPath);
 		for (String fileName : dir.list()) {
 			showMessage("偵測到檔案 : " + fileName);
-			logFiles.add(LogPath + fileName);// key取檔案的日期(數字)部分
+			logFiles.add(dirPath + fileName);// key取檔案的日期(數字)部分
 		}
 		return logFiles;
 	}
