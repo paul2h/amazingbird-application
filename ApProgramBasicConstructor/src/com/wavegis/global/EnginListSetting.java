@@ -20,7 +20,6 @@ import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
 import com.wavegis.engin.db.read_conf.DBConfigEngin;
-import com.wavegis.engin.db.read_conf.DBEngin;
 import com.wavegis.engin.image.cctv.fake_image.FakeImageEngin;
 import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
 import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
@@ -37,29 +36,33 @@ public class EnginListSetting {
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_ALL = new HashSet<String>() {
 		{
-			add(CCTVEngin.enginID);
-			add(WavegisWSEngin.enginID);
-			add(RainDataInsertEngin.enginID);
-			add(RawDataInsertEngin.enginID);
-			add(ConvertToBeanEngin.enginID);
-			add(CenterWSEngin.enginID);
 			add(AlertAnalysisEngin.enginID);
-			add(SMSSendEngin.enginID);
-			add(QpesumsReadEngin.enginID);
-			add(ImageEngin.enginID);
-			add(FakeImageEngin.enginID);
-			add(DBEngin.enginID);
-			add(ImageTransServerEngin.enginID);
-			add(ImageTransClientEngin.enginID);
-			add(WebMonitorEngin.enginID);
-			add(HttpImageGetEngin.enginID);
+			add(CCTVEngin.enginID);
 			add(CWBTyphoonTextEngin.enginID);
 			add(CWBDataFileGetEngin.enginID);
+			add(ConvertToBeanEngin.enginID);
+			add(CenterWSEngin.enginID);
+			add(DBConfigEngin.enginID);
+			add(FakeImageEngin.enginID);
+			add(FakeGpsCarUpdateEngin.enginID);
+			add(HttpImageGetEngin.enginID);
+			add(ImageEngin.enginID);
+			add(ImageTransServerEngin.enginID);
+			add(ImageTransClientEngin.enginID);
 			add(KenkulLORAReceiveEngin.enginID);
+			add(MailSendEngin.enginID);
+			add(PokerDBEngin.enginID);
+			add(QpesumsReadEngin.enginID);
+			add(RainDataInsertEngin.enginID);
+			add(RawDataInsertEngin.enginID);
 			add(RawDataReceiveEngin.enginID);
 			add(RawDataSendEngin.enginID);
 			add(ScreemSaveEngin.enginID);
-			add(PokerDBEngin.enginID);
+			add(SensorReceivingEngin.enginID);
+			add(SMSSendEngin.enginID);
+			add(WavegisWSEngin.enginID);
+			add(WebMonitorEngin.enginID);
+			add(WaterDataInsertEngin.enginID);
 		}
 	};
 	
@@ -108,5 +111,15 @@ public class EnginListSetting {
 			add(DBConfigEngin.enginID);
 		}
 	};
+
+	
+	@SuppressWarnings("serial")
+	public static final Set<String> standbyEnginIDs_Yilan = new HashSet<String>() {
+		{
+			add(CCTVEngin.enginID);
+			add(DBConfigEngin.enginID);
+		}
+	};
+
 
 }

@@ -22,7 +22,6 @@ import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
 import com.wavegis.engin.db.read_conf.DBConfigEngin;
-import com.wavegis.engin.db.read_conf.DBEngin;
 import com.wavegis.engin.image.cctv.fake_image.FakeImageEngin;
 import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
 import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
@@ -46,7 +45,6 @@ public class EnginCenter {
 			, new CWBDataFileGetEngin()
 			, new ConvertToBeanEngin()
 			, new CenterWSEngin()
-			, new DBEngin()
 			, new DBConfigEngin()
 			, new FakeImageEngin()
 			, new FakeGpsCarUpdateEngin()
@@ -74,7 +72,7 @@ public class EnginCenter {
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Wra02;
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Yilan;//FIXME 更換縣市需設定
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){

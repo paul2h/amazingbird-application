@@ -5,18 +5,18 @@
 
 	<select id="getCCTVData" resultType="com.wavegis.model.CCTVData">
 			SELECT 
-				a._vr_no AS stid
-				, a._vr_name AS stname
+				a._cctv_no AS stid
+				, a._cctv_name AS stname
 				, a._user AS account
 				, a._password AS password
-				, a._path || a._vr_no || '.jpg' AS "SavePath"
+				, a._path AS "SavePath"
 				, a.need_login
-				, 'http://' || a._vr_ip || a.url_suffix AS "URL" 
+				, 'http://' || a._cctv_ip || a.url_suffix AS "URL" 
 			FROM 
-				vr.vr_data a
+				vr.cctv_data a
 			WHERE   url_suffix IS NOT NULL
 			ORDER BY 
-				a._vr_no
+				a._cctv_no
 	</select>
 	
 	<select id="getWebFocusData" resultType="com.wavegis.model.WebMonitorFocusData">
