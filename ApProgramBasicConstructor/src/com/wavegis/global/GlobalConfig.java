@@ -27,7 +27,7 @@ public class GlobalConfig {
 	/**
 	 * 版本顯示設定
 	 */
-	public static final String edition = String.format("2017水情總介接%s版-%s" ,edition_number_string ,edition_wra02);
+	public static final String edition = String.format("2017水情總介接%s版-%s" ,edition_number_string ,edition_chiayi);
 	
 	public static final String Spring_conf_path = "./spring-config.xml";
 	public static final String Conf_XML_path = "./conf/conf.xml";
@@ -37,14 +37,19 @@ public class GlobalConfig {
 	
 	
 	public static final String FrameIconImagePath_ChiayiCity = "./conf/icon/icon_chiayi_city.png";
+	public static final String FrameIconImagePath_ChiayiCounty = "./conf/icon/icon_chiayi_county.png";
 	public static final String FrameIconImagePath_Keelung = "./conf/icon/icon_keelung.png";
 	public static final String FrameIconImagePath_WebMonitor = "./conf/icon/icon_web_monitor.png";
 	public static final String FrameIconImagePath_Wra02 = "./conf/icon/icon_wra02.png";
 	
+	
+	/** 客製化車機訊息判斷key(為與舊版AVLS相容) */
+	public static String CustomMessageKey = "from_old";
+	
 	/**
 	 * 介接icon設定
 	 */
-	public static final ImageIcon FrameIconImage = new ImageIcon(FrameIconImagePath_Wra02);
+	public static final ImageIcon FrameIconImage = new ImageIcon(FrameIconImagePath_ChiayiCounty);
 
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 

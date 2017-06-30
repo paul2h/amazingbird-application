@@ -1,4 +1,4 @@
-package com.wavegis.engin.db.fake;
+package com.wavegis.engin.db.fake.gps_update;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
