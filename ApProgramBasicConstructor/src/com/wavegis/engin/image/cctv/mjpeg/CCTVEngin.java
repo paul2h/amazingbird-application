@@ -60,7 +60,7 @@ public class CCTVEngin extends TimerEngin {
 				@Override
 				public void run() {
 					try {
-						if (cctvData.isNeedLogin()) {
+						if (cctvData.isNeed_login()) {
 							HttpImageTool.getAuthorizedImage(cctvData.getURL(), cctvData.getAccount(), cctvData.getPassword(), cctvData.getSavePath());
 						} else {
 							HttpImageTool.getImage(cctvData.getURL(), cctvData.getSavePath());

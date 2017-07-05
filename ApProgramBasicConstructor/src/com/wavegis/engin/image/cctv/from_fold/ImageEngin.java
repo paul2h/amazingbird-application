@@ -25,6 +25,7 @@ public class ImageEngin extends TimerEngin {
 	public static final String enginID = "Image";
 	private static final String enginName = "Image讀取Engin";
 	private static final ImageEnginView enginView = new ImageEnginView();
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private Logger logger;
 
 	public ImageEngin() {
@@ -49,7 +50,7 @@ public class ImageEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
-		showMessage(GlobalConfig.dateFormat.format(new Date()) + " 開始取得圖片...");
+		showMessage(dateFormat.format(new Date()) + " 開始取得圖片...");
 
 		// #[[ 找出資料夾內各個 ID 最新的圖片檔案
 		File dir = new File(GlobalConfig.XML_CONFIG.getProperty("ImageDirPath"));
@@ -140,7 +141,7 @@ public class ImageEngin extends TimerEngin {
 		}
 		// ]]
 
-		showMessage(GlobalConfig.dateFormat.format(new Date()) + " 圖片取得結束.");
+		showMessage(dateFormat.format(new Date()) + " 圖片取得結束.");
 	}
 
 	@Override

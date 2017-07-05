@@ -4,7 +4,7 @@ public class CCTVData {
 
 	private String stname;
 	private String URL;
-	private boolean needLogin = false;
+	private boolean need_login = false;
 	private String account;
 	private String password;
 	private String savePath;
@@ -49,12 +49,12 @@ public class CCTVData {
 		this.savePath = savePath;
 	}
 
-	public boolean isNeedLogin() {
-		return needLogin;
+	public boolean isNeed_login() {
+		return need_login;
 	}
 
-	public void setNeedLogin(boolean needLogin) {
-		this.needLogin = needLogin;
+	public void setNeed_login(boolean need_login) {
+		this.need_login = need_login;
 	}
 
 }
