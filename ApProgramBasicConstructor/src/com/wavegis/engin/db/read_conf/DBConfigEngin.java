@@ -17,7 +17,7 @@ import com.wavegis.model.water.WaterData;
 public class DBConfigEngin implements Engin {
 
 	public static final String enginID = "DBConfig";
-	private static final String enginName = "DB設定檔讀取1.1";
+	private static final String enginName = "DB設定檔讀取1.2";
 	private static final DBConfigEnginView enginView = new DBConfigEnginView();
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
