@@ -3,7 +3,7 @@
 <mapper namespace="com.wavegis.engin.db.fake.gps_insert.FakeGpsInsertDaoConnector">
 
 	<insert id="insertGpsData" parameterType="java.util.List">
-		insert into log_partition._gps_log_20176(
+		insert into gps._gps_log_temp(
 		_uid ,
 		unit_name,
 		status,

@@ -18,7 +18,7 @@ import com.wavegis.model.gps.GpsData;
 public class FakeGpsCarInsertEngin implements Engin {
 	// FIXME 最後整個Engin要拆掉 > 拆成GpsCSVDataReadEngin 跟 GpsDataInsertEngin
 	public static final String enginID = "FakeCarInsert";
-	private static final String enginName = "車機log假資料寫入1.0";
+	private static final String enginName = "車機log假資料寫入(未完善)";
 	private static final EnginView enginView = new FakeGpsCarInsertEnginView();
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -79,7 +79,7 @@ public class FakeGpsCarInsertEngin implements Engin {
 		}
 		return logFiles;
 	}
-	
+	/**讀取CSV檔 格式範例 : 嘉義縣-01,0120000001,2017-07-05,5,17  (抽水機編號,uid,日期,開始小時,結束小時)*/
 	private List<GpsData> readCSV(String csvFilePath){
 		List<GpsData> result = new ArrayList<>();
 
@@ -95,6 +95,7 @@ public class FakeGpsCarInsertEngin implements Engin {
 					String uid = gpsParameters[1];
 					Calendar dataTimeCalendar = Calendar.getInstance();
 					dataTimeCalendar.setTime(simpleDateFormat.parse(gpsParameters[2]));
+					dataTimeCalendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(gpsParameters[3]));
 					int startHour = Integer.valueOf(gpsParameters[3]);
 					int lastHour = Integer.valueOf(gpsParameters[4]);
 					int hour = startHour;
@@ -128,7 +129,20 @@ public class FakeGpsCarInsertEngin implements Engin {
 	}
 	
 	private void insertGpsData(List<GpsData> gpsDatas){
-		FakeGpsInsertDao.getInstance().insertGpsData(gpsDatas);
+		List<GpsData> tempList = new ArrayList<GpsData>();
+		int dataCount = 0;
+		for(GpsData gpsData : gpsDatas){
+			showMessage("待寫入資料放入清單 : " + gpsData.get_uid() + " " + gpsData.getDatatime());
+			tempList.add(gpsData);
+			dataCount++;
+			if(dataCount > 100){
+				showMessage("開始寫入...");
+				FakeGpsInsertDao.getInstance().insertGpsData(tempList);
+				dataCount = 0;
+				tempList.clear();
+			}
+		}
+		
 	}
 	
 	@Override
