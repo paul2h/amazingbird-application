@@ -15,7 +15,7 @@ import com.wavegis.model.water.WaterData;
 @SuppressWarnings("unused")
 public class GlobalConfig {
 
-	private static final String edition_number_string = "1.2";
+	private static final String edition_number_string = "1.3_2";
 	private static final String edition_all = "完全版";
 	private static final String edition_changhua = "彰化";
 	private static final String edition_chiayi = "嘉義縣抽水機";
@@ -28,7 +28,7 @@ public class GlobalConfig {
 	/**
 	 * 版本顯示設定
 	 */
-	public static final String edition = String.format("2017水情總介接%s版-%s" ,edition_number_string ,edition_yilan);//FIXME 更換縣市需設定
+	public static final String edition = String.format("2017水情總介接%s版-%s" ,edition_number_string ,edition_chiayi_city);//FIXME 更換縣市需設定
 	
 	public static final String Spring_conf_path = "./spring-config.xml";
 	public static final String Conf_XML_path = "./conf/conf.xml";
@@ -49,7 +49,7 @@ public class GlobalConfig {
 	/**
 	 * 介接icon設定
 	 */
-	public static final ImageIcon FrameIconImage = new ImageIcon(FrameIconImagePath_Yilan);//FIXME 更換縣市需設定
+	public static final ImageIcon FrameIconImage = new ImageIcon(FrameIconImagePath_ChiayiCity);//FIXME 更換縣市需設定
 
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 

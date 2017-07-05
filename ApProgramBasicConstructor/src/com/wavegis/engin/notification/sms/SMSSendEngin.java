@@ -23,12 +23,12 @@ import com.wavegis.model.SMSAlertData;
 public class SMSSendEngin implements Engin {
 
 	public static final String enginID = "sms";
-	private static final String enginName = "簡訊發送Engin";
+	private static final String enginName = "簡訊發送1.0";
 	private static final SMSSendEnginView enginView = new SMSSendEnginView();
 	private boolean isStarted = false;
 	private Logger logger;
 	private TimerTask timerTask;
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm");
 
 	private static String SMS_SERVER_URL_PREFIX = GlobalConfig.XML_CONFIG.getProperty("SMS_SERVER_URL_PREFIX");
 	private static String SMS_Account = GlobalConfig.XML_CONFIG.getProperty("SMS_Account");
@@ -56,6 +56,7 @@ public class SMSSendEngin implements Engin {
 	@Override
 	public boolean startEngin() {
 		showMessage("準備開啟Engin...");
+
 		timerTask = new TimerTask() {
 			@Override
 			public void run() {
@@ -103,12 +104,19 @@ public class SMSSendEngin implements Engin {
 
 		String[] phoneNumbers = alertData.getPhones().replaceAll("\\{", "").replaceAll("\\}", "").split(",");
 
-		// 第一封
-		String message = String.format("水位站警訊訊息:%s(%s)%s%s%s", "" + enterCode, alertData.getStnm(), "" + enterCode, alertData.getMessage(), "" + enterCode);
+		String message = String.format("水位站警訊:%s(%s)%s%s%stime:%s%s水位:%s%s警戒值:%s"
+				, "" + enterCode
+				, alertData.getStnm()
+				, "" + enterCode
+				, alertData.getMessage()
+				, "" + enterCode
+				, sdf.format(alertData.getDatatime())
+				, enterCode
+				, "" + alertData.getWaterlv()
+				, enterCode
+				, "" + alertData.getAlert_value());
+		
 		String responseMessage = send(phoneNumbers, message);// TODO 回傳成功確認
-		// 第二封
-		message = String.format("水位站警界資訊:%s(%s)%s最新資料時間:%s%s最新水位:%s%s警戒水位:%s", "" + enterCode, alertData.getStnm(), enterCode, sdf.format(alertData.getDatatime()), enterCode, "" + alertData.getWaterlv(), enterCode, "" + alertData.getAlert_value());
-		responseMessage += send(phoneNumbers, message);// TODO 回傳成功確認
 
 		System.out.println(responseMessage);
 		return isSuccess;

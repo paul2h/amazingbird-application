@@ -74,7 +74,7 @@ public class EnginCenter {
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Yilan;//FIXME 更換縣市需設定
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_ChiayiCity;//FIXME 更換縣市需設定
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){
