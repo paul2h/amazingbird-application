@@ -2,10 +2,10 @@ package com.wavegis.engin.db.insert.rain;
 
 import java.util.List;
 
-import com.wavegis.model.water.WaterData;
+import com.wavegis.model.RainData;
 
 public interface RainDaoConnector {
 
-	public void insertRainData(List<WaterData> waterData);
+	public void insertRainData(List<RainData> rainData);
 
 }

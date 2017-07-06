@@ -69,12 +69,12 @@ public class DataReceiving implements Runnable {
 
 				if (rainData.getRain_current() >= 0) {
 					sb.append("rainfall: " + rainData.getRain_current() + ", voltage: " + rainData.getVoltage() + " ");
-					ProxyData.WATER_INSERT_RAIN_QUEUE.offer(rainData);
+					ProxyData.RAIN_DATA_INSERT_QUEUE.offer(rainData);
 				}
 				if (waterData.getWaterlevel() >= 0) {
 					sb.append("waterlevel: " + waterData.getWaterlevel() + ", voltage: " + waterData.getVoltage());
 
-					ProxyData.WATER_INSERT_WATER_QUEUE.offer(waterData);
+					ProxyData.RAW_DATA_INSERT_QUEUE.offer(waterData);
 				}
 				sb.append("\n");
 				engin.showMessage(sb.toString());

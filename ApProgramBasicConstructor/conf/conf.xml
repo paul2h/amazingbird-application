@@ -5,13 +5,12 @@
 	<entry key="TrayPassword">0921393905</entry>
 	<entry key="KillBATPath">./kill.bat</entry>
 
-	<entry key="WebServiceURL">http://winfo.tycg.gov.tw/TYSAFE/UPLOADFILE/OPENDATA/WATERLEVEL.XML</entry>
-	
 	<entry key="TimerPeriod">60000</entry>
 	<entry key="TimerPeriod_ImageEngin">60000</entry>
 	<entry key="TimerPeriod_DB">3600000</entry>
 	<entry key="TimerPeriod_SMS">3600000</entry>
 	<entry key="TimerPeriod_CCTV">10000</entry>
+	<entry key="TimerPeriod_WS">600000</entry>
 	<entry key="TimerPeriod_WebMonitor">3600000</entry>
 	<entry key="TimePeriod_Fake_GPS">1800000</entry>
 

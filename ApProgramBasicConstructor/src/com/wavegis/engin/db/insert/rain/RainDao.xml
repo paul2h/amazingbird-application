@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- locator4的DB - mybatis實作dao -->
 <mapper namespace="com.wavegis.engin.db.insert.rain.RainDaoConnector">
 
 	<insert id="insertRainData" parameterType="java.util.List">
 		INSERT INTO rain(
-		stid,
-		stnm,
-		_time,
-		min_10
+		stid
+		, _time
+		, min_10
+		, rain
+		, hour_3
+		, hour_6
+		, hour_12
+		, hour_24
+		, hour_36
+		, hour_72
+		
 		)VALUES
 		<foreach collection="list" item="element" index="index" open="("
 			separator="),(" close=")">
-			#{element.stid},
-			#{element.stname},
-			TO_CHAR(#{element.lasttime}::timestamp, 'YYYYMMDDHH24MI'),
-			#{element.rainfall10min}
+			#{element.stid}
+			, TO_CHAR(#{element.lasttime}::timestamp, 'YYYYMMDDHH24MI')
+			, #{element.min_10}
+			, #{element.hour_1}
+			, #{element.hour_3}
+			, #{element.hour_6}
+			, #{element.hour_12}
+			, #{element.hour_24}
+			, #{element.hour_36}
+			, #{element.hour_72}
+			
 		</foreach>
 	</insert>
 

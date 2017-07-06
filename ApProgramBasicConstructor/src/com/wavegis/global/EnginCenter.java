@@ -12,7 +12,10 @@ import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.connection.web_check.WebMonitorEngin;
 import com.wavegis.engin.connection.ws.cwb.CWBDataFileGetEngin;
 import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
-import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.HsinchuWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.city.HsinchuCityWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.maoli.MaoliWebSeriveEngin;
+import com.wavegis.engin.connection.ws.others.taoyuan.TaoyuanWebServiceEngin;
 import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
@@ -44,20 +47,23 @@ public class EnginCenter {
 			, new CCTVEngin()
 			, new CWBTyphoonTextEngin()
 			, new CWBDataFileGetEngin()
-			, new ConvertToBeanEngin()
 			, new CenterWSEngin()
 			, new DBConfigEngin()
 			, new FakeImageEngin()
 			, new FakeGpsCarUpdateEngin()
 			, new FakeGpsCarInsertEngin()
 			, new HttpImageGetEngin()
+			, new HsinchuCityWebServiceEngin()
+			, new HsinchuWebServiceEngin()
 			, new ImageEngin()
 			, new ImageTransServerEngin()
 			, new ImageTransClientEngin()
 			, new KenkulLORAReceiveEngin()
+			, new MaoliWebSeriveEngin()
 			, new MailSendEngin()
 			, new PokerDBEngin()
 			, new QpesumsReadEngin()
+			, new TaoyuanWebServiceEngin()
 			, new RainDataInsertEngin()
 			, new RawDataInsertEngin()
 			, new RawDataReceiveEngin()
@@ -74,7 +80,7 @@ public class EnginCenter {
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_ChiayiCity;//FIXME 更換縣市需設定
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Wra02;//FIXME 更換縣市需設定
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){

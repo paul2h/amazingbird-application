@@ -26,13 +26,13 @@ import com.wavegis.model.water.WaterData;
 
 public class TaoyuanWebServiceEngin extends TimerEngin {
 
-	private static final String enginID = "TaoyuanWebService";
+	public static final String enginID = "TaoyuanWebService";
 	private static final String enginName = "桃園WebService";
-	private static final TaoyuanWebServiceEnginView enginView = new TaoyuanWebServiceEnginView();
+	private static final EnginView enginView = new TaoyuanWebServiceEnginView();
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	
 	public TaoyuanWebServiceEngin(){
-		setTimeout(GlobalConfig.XML_CONFIG.getProperty("WS_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_WS"));
 	}
 	
 	@Override
@@ -103,10 +103,10 @@ public class TaoyuanWebServiceEngin extends TimerEngin {
 						if(bean.get("WATERHEIGHT_M") != null){
 							waterData.setWaterlevel(Double.parseDouble(bean.get("WATERHEIGHT_M").toString()));
 						}
-						ProxyData.WATER_INSERT_WATER_QUEUE.offer(waterData);
+						ProxyData.RAW_DATA_INSERT_QUEUE.offer(waterData);
 					}
 				}
-				showMessage("資料轉換結束, 共轉換 " + ProxyData.WATER_INSERT_WATER_QUEUE.size() + " 筆.");
+				showMessage("資料轉換結束, 共轉換 " + ProxyData.RAW_DATA_INSERT_QUEUE.size() + " 筆.");
 			}
 		} catch(MalformedURLException e){
 			e.printStackTrace();

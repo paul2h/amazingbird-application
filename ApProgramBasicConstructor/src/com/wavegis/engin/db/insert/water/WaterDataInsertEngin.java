@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
-import com.wavegis.global.ProxyDatas;
+import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.water.WaterData;
 
@@ -46,7 +46,7 @@ public class WaterDataInsertEngin extends TimerEngin {
 	public void timerAction() {
 		List<WaterData> waterDatas = new ArrayList<>();
 		WaterData waterData;
-		while ((waterData = ProxyDatas.WATER_DATA_INSERT_QUEUE.poll()) != null) {
+		while ((waterData = ProxyData.WATER_DATA_INSERT_QUEUE.poll()) != null) {
 			showMessage("從INSERT QUEUE取得資料 : " + waterData.getStid() + " " + simpleDateFormat.format(waterData.getLasttime()));
 			waterDatas.add(waterData);
 		}

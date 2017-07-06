@@ -46,7 +46,7 @@ public class CenterWSEngin extends TimerEngin {
 			for (WaterData data : datas) {
 				showMessage(data.getStid() + " " + data.getStname() + " " + data.getLasttime() + " " + data.getWaterlevel());
 			}
-			ProxyData.WATER_INSERT_WATER_QUEUE.addAll(datas);
+			ProxyData.RAW_DATA_INSERT_QUEUE.addAll(datas);
 			showMessage("取得資料完成.");
 
 		} catch (IOException e) {

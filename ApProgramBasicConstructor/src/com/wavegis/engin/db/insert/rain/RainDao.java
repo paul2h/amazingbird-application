@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.water.WaterData;
+import com.wavegis.model.RainData;
 
 /**
  * 給Service取得Dao的Dao總管理物件
@@ -65,8 +65,8 @@ public class RainDao {
 
 	// #[[ 指令用Method
 
-	public void insertRainData(List<WaterData> waterData) {
-		daoConnector.insertRainData(waterData);
+	public void insertRainData(List<RainData> rainData) {
+		daoConnector.insertRainData(rainData);
 		sqlSession.commit();
 	}
 

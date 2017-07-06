@@ -5,7 +5,7 @@ import com.wavegis.engin.prototype.SimpleEnginView;
 @SuppressWarnings("serial")
 public class TaoyuanWebServiceEnginView extends SimpleEnginView{
 
-	private static final String enginID = "TaoyuanWebService";
+	private static final String enginID = TaoyuanWebServiceEngin.enginID;
 	
 	@Override
 	public String getEnginID() {

@@ -25,14 +25,14 @@ import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.water.WaterData;
 
 public class HsinchuWebServiceEngin extends TimerEngin{
-	private static final String enginID = "HsinchuWebService";
+	public static final String enginID = "HsinchuWebService";
 	private static final String enginName = "新竹WebService";
 	private static final HsinchuWebServiceEnginView enginView = new HsinchuWebServiceEnginView();
 	
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	
 	public HsinchuWebServiceEngin(){
-		setTimeout(GlobalConfig.XML_CONFIG.getProperty("WS_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_WS"));
 	}
 	
 	@Override
@@ -119,7 +119,7 @@ public class HsinchuWebServiceEngin extends TimerEngin{
 						if(bean.get("le") != null){
 							waterData.setWaterlevel(Double.parseDouble(bean.get("le").toString()));
 						}
-						ProxyData.WATER_INSERT_WATER_QUEUE.offer(waterData);
+						ProxyData.RAW_DATA_INSERT_QUEUE.offer(waterData);
 					}
 				}
 				bSuccess = true;

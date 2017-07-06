@@ -1,6 +1,5 @@
 package com.wavegis.engin.db.insert.rain;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +7,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
+import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
-import com.wavegis.model.water.WaterData;
+import com.wavegis.model.RainData;
 
 public class RainDataInsertEngin extends TimerEngin {
 
 	public static final String enginID = "RainDataInsert";
-	private static final String enginName = "雨量資料寫入Engin";
+	private static final String enginName = "雨量資料寫入1.0";
 	private static final RainDataInsertEnginView enginView = new RainDataInsertEnginView();
 	private static final RainDao dao = RainDao.getInstance();
 
@@ -42,16 +42,16 @@ public class RainDataInsertEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
-		// TODO 這邊只放假資料 需要放入真實資料
-		WaterData waterData = new WaterData();
-		waterData.setLasttime(new Timestamp(System.currentTimeMillis()));
-		waterData.setStid("07_JIXIQ");
-		waterData.setStname("錦孝橋F");
-		List<WaterData> waterDatas = new ArrayList<>();
-		waterDatas.add(waterData);
+		List<RainData> rainDatas = new ArrayList<>();
+		RainData rainData;
+		while((rainData = ProxyData.RAIN_DATA_INSERT_QUEUE.poll()) != null){
+			showMessage(String.format("放入待寫清單 : %s  %s "  , rainData.getStid() , rainData.getLasttime()));
+			rainDatas.add(rainData);
+		}
 		showMessage("寫入資料中...");
-		dao.insertRainData(waterDatas);
-		showMessage(String.format("寫入完成,共%d筆", waterDatas.size()));
+		dao.insertRainData(rainDatas);
+		showMessage(String.format("寫入完成,共%d筆", rainDatas.size()));
+		rainDatas.clear();
 	}
 
 	@Override

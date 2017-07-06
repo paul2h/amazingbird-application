@@ -15,7 +15,7 @@ import com.wavegis.model.water.WaterData;
 public class RawDataInsertEngin extends TimerEngin {
 
 	public static final String enginID = "RawDataInsert";
-	private static final String enginName = "水位資料寫入Engin";
+	private static final String enginName = "水位資料寫入1.0";
 	private static final RawDataInsertEnginView enginView = new RawDataInsertEnginView();
 	private static final RawDao dao = RawDao.getInstance();
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -47,8 +47,8 @@ public class RawDataInsertEngin extends TimerEngin {
 		showMessage("寫入資料中...");
 		List<WaterData> waterDatas = new ArrayList<>();
 		WaterData waterData;
-		while((waterData = ProxyData.WATER_INSERT_WATER_QUEUE.poll())!= null){
-			showMessage("放入待INSERT清單中 : " + waterData.getStname() + " " + simpleDateFormat.format(waterData.getLasttime()));
+		while((waterData = ProxyData.RAW_DATA_INSERT_QUEUE.poll())!= null){
+			showMessage("放入待INSERT清單中 : " + waterData.getStid() + " " + simpleDateFormat.format(waterData.getLasttime()));
 			waterDatas.add(waterData);
 		}
 		dao.insertRawData(waterDatas);

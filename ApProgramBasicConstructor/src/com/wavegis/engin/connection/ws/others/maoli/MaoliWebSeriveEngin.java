@@ -40,7 +40,7 @@ import com.wavegis.model.esav.StationInfo;
 import com.wavegis.model.water.WaterData;
 
 public class MaoliWebSeriveEngin extends TimerEngin{
-	private static final String enginID = "MaoliWebSerive";
+	public static final String enginID = "MaoliWebSerive";
 	private static final String enginName = "苗栗WebService";
 	private static final MaoliWebSeriveEnginView enginView = new MaoliWebSeriveEnginView();
 	
@@ -48,7 +48,7 @@ public class MaoliWebSeriveEngin extends TimerEngin{
 	
 	
 	public MaoliWebSeriveEngin(){
-		setTimeout(GlobalConfig.XML_CONFIG.getProperty("WS_Time_Period"));
+		setTimeout(GlobalConfig.XML_CONFIG.getProperty("TimerPeriod_WS"));
 	}
 	
 	@Override
@@ -166,7 +166,7 @@ public class MaoliWebSeriveEngin extends TimerEngin{
 					}
 				}
 			}
-			ProxyData.WATER_INSERT_WATER_QUEUE.offer(waterData);
+			ProxyData.RAW_DATA_INSERT_QUEUE.offer(waterData);
 		}
 		showMessage("資料取得完畢.");
 	}

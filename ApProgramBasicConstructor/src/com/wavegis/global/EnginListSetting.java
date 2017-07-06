@@ -10,7 +10,9 @@ import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.connection.web_check.WebMonitorEngin;
 import com.wavegis.engin.connection.ws.cwb.CWBDataFileGetEngin;
 import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
-import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.HsinchuWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.city.HsinchuCityWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.maoli.MaoliWebSeriveEngin;
 import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
@@ -41,7 +43,6 @@ public class EnginListSetting {
 			add(CCTVEngin.enginID);
 			add(CWBTyphoonTextEngin.enginID);
 			add(CWBDataFileGetEngin.enginID);
-			add(ConvertToBeanEngin.enginID);
 			add(CenterWSEngin.enginID);
 			add(DBConfigEngin.enginID);
 			add(FakeImageEngin.enginID);
@@ -109,8 +110,14 @@ public class EnginListSetting {
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_Wra02 = new HashSet<String>() {
 		{
-			add(MailSendEngin.enginID);
+			add(AlertAnalysisEngin.enginID);
 			add(DBConfigEngin.enginID);
+			add(HsinchuCityWebServiceEngin.enginID);
+			add(HsinchuWebServiceEngin.enginID);
+			add(MaoliWebSeriveEngin.enginID);
+			add(MailSendEngin.enginID);
+			add(RainDataInsertEngin.enginID);
+			add(RawDataInsertEngin.enginID);
 		}
 	};
 
