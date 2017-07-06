@@ -12,7 +12,6 @@ import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.RainData;
 import com.wavegis.model.water.WaterData;
 
 public class ConvertToWaterData {
@@ -28,24 +27,18 @@ public class ConvertToWaterData {
 	 *                         AI1代表水位<br>
 	 *                         DI1代表雨量
 	 */
-	public static synchronized Object[] analysisNewData(String message) throws Exception {
-		RainData rainData = new RainData();
+	public static synchronized WaterData analysisNewData(String message) throws Exception {
 		WaterData waterData = new WaterData();
-		Object[] objs = { rainData, waterData };
 
 		try {
 			String[] analysisMessage = message.split(",");
 
 			if (analysisMessage.length < 4) {
-				return objs;
+				return null;
 			}
-			// data的編號
-			// String dataIndex = analysisMessage[1];
 			// 時間
 			String dataTime = analysisMessage[2].trim();
 
-			rainData.setTime(dataTime);
-			rainData.setLasttime(stringToTimestamp(dataTime));
 			waterData.setLasttime(stringToTimestamp(dataTime));
 			// 資料數
 			int dataCount = Integer.valueOf(analysisMessage[3].trim());
@@ -61,9 +54,6 @@ public class ConvertToWaterData {
 				// 取得數據
 				double data = Double.valueOf(pureDatas[i].substring(20, 30).trim());
 
-				if (rainData.getStid() == null) {
-					rainData.setStid(stid);
-				}
 				if (waterData.getStid() == null) {
 					waterData.setStid(stid);
 				}
@@ -89,7 +79,7 @@ public class ConvertToWaterData {
 					String finalTime = formatDatetime(dataTime);
 
 					if (accumulatedRainfallData.containsKey(finalTime)) {
-						return new Object[0];//判斷已經有同樣資料過  回傳一個無意義物件
+						return null;//判斷已經有同樣資料過  回傳一個無意義物件
 					}
 					if (lastTimeRainData.containsKey(stid)) {// 如果該雨量站前面已經有收到資料(此筆資料不是第一筆資料)
 						// 建華的雨量累積方式較不同 by kiwi
@@ -99,7 +89,7 @@ public class ConvertToWaterData {
 							rainfall = data - lastRainData;
 						}
 					}
-					rainData.setRain_current(rainfall);
+					waterData.setRainfallCounter(rainfall);
 					lastTimeRainData.put(stid, data);
 					accumulatedRainfallData.put(finalTime, rainfall);
 					// 計算累積雨量
@@ -122,21 +112,21 @@ public class ConvertToWaterData {
 					double rainfall_36hr = getAccumulatedRainfall(accumulatedRainfallData, oneAndAHalfDaysAgo, oneDayAgo, rainfall_24hr, false); // 累積雨量(48小時)
 					double rainfall_72hr = getAccumulatedRainfall(accumulatedRainfallData, threeDaysAgo, oneAndAHalfDaysAgo, rainfall_36hr, false); // 累積雨量(72小時)
 
-					rainData.setMin_10(rainfall_10min);
-					rainData.setHour_1(rainfall_hour);
-					rainData.setHour_3(rainfall_3hr);
-					rainData.setHour_6(rainfall_6hr);
-					rainData.setHour_12(rainfall_12hr);
-					rainData.setHour_24(rainfall_24hr);
-					rainData.setHour_36(rainfall_36hr);
-					rainData.setHour_72(rainfall_72hr);
+					waterData.setRainfall10min(rainfall_10min);
+					waterData.setRainfall1hour(rainfall_hour);
+					waterData.setRainfall3hour(rainfall_3hr);
+					waterData.setRainfall6hour(rainfall_6hr);
+					waterData.setRainfall12hour(rainfall_12hr);
+					waterData.setRainfall24hour(rainfall_24hr);
+					waterData.setRainfall36hour(rainfall_36hr);
+					waterData.setRainfall72hour(rainfall_72hr);
 
 					accumulatedRainfallData = abandonSurplusData(accumulatedRainfallData, threeDaysAgo);
 					accumulatedRainfallDatas.put(stid, accumulatedRainfallData);
 
 					break;
 				case "AI4":// 電壓
-					rainData.setVoltage(data);
+					waterData.setVoltage(data);
 					waterData.setVoltage(data);
 
 					break;
@@ -145,7 +135,7 @@ public class ConvertToWaterData {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return objs;
+		return waterData;
 	}
 
 	/** 特別處理時間資料為 "yyyyMMddHHmmss" */

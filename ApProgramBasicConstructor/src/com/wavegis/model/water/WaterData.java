@@ -16,6 +16,8 @@ public class WaterData {
 	private double rainfall6hour;
 	private double rainfall12hour;
 	private double rainfall24hour;
+	private double rainfall36hour;
+	private double rainfall72hour;
 	private double rainfallCounter;
 	private double bottom_height;
 
@@ -129,5 +131,21 @@ public class WaterData {
 
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
+	}
+
+	public double getRainfall36hour() {
+		return rainfall36hour;
+	}
+
+	public void setRainfall36hour(double rainfall36hour) {
+		this.rainfall36hour = rainfall36hour;
+	}
+
+	public double getRainfall72hour() {
+		return rainfall72hour;
+	}
+
+	public void setRainfall72hour(double rainfall72hour) {
+		this.rainfall72hour = rainfall72hour;
 	}
 }
