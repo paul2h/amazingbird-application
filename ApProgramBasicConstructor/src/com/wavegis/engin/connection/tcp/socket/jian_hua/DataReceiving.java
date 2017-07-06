@@ -8,7 +8,6 @@ import java.net.Socket;
 
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.ProxyData;
-import com.wavegis.model.RainData;
 import com.wavegis.model.water.WaterData;
 
 public class DataReceiving implements Runnable {
@@ -47,15 +46,13 @@ public class DataReceiving implements Runnable {
 
 				sender.println(ackMessage);// 有收到訊息就回ACK
 
-				Object[] objs = ConvertToWaterData.analysisNewData(receiveingMessage);
+				WaterData waterData = ConvertToWaterData.analysisNewData(receiveingMessage);
 
-				if (objs.length < 2) {
+				if (waterData == null) {
 					System.out.println("不處理的資料 : " + receiveingMessage);
 					continue;
 				}
 
-				RainData rainData = (RainData) objs[0];
-				WaterData waterData = (WaterData) objs[1];
 				StringBuffer sb = new StringBuffer();
 
 				sb.append(ipAddress + "'s original Message: " + receiveingMessage + "\n");
@@ -67,14 +64,9 @@ public class DataReceiving implements Runnable {
 				}
 				sb.append("stid: " + waterData.getStid() + ", lasttime: " + waterData.getLasttime() + "\n");
 
-				if (rainData.getRain_current() >= 0) {
-					sb.append("rainfall: " + rainData.getRain_current() + ", voltage: " + rainData.getVoltage() + " ");
-					ProxyData.RAIN_DATA_INSERT_QUEUE.offer(rainData);
-				}
 				if (waterData.getWaterlevel() >= 0) {
 					sb.append("waterlevel: " + waterData.getWaterlevel() + ", voltage: " + waterData.getVoltage());
-
-					ProxyData.RAW_DATA_INSERT_QUEUE.offer(waterData);
+					ProxyData.WATER_DATA_INSERT_QUEUE.offer(waterData);
 				}
 				sb.append("\n");
 				engin.showMessage(sb.toString());
