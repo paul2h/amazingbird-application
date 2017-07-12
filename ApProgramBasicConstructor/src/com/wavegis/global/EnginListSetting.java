@@ -34,6 +34,8 @@ import com.wavegis.engin.image.trans.ImageTransClientEngin;
 import com.wavegis.engin.image.trans.ImageTransServerEngin;
 import com.wavegis.engin.notification.gmail.MailSendEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
+import com.wavegis.engin.raw_data_analysis.kenkul.KenkulDataEngin;
+import com.wavegis.engin.raw_data_analysis.text_read.RawDataTextReadEngin;
 
 public class EnginListSetting {
 	
@@ -66,6 +68,19 @@ public class EnginListSetting {
 			add(WavegisWSEngin.enginID);
 			add(WebMonitorEngin.enginID);
 			add(WaterDataInsertEngin.enginID);
+		}
+	};
+
+	@SuppressWarnings("serial")
+	public static final Set<String> standbyEnginIDs_Changhua = new HashSet<String>() {
+		{
+			add(CCTVEngin.enginID);
+			add(DBConfigEngin.enginID);
+//			add(QpesumsReadEngin.enginID);
+			add(WaterDataInsertEngin.enginID);
+			add(RawDataReceiveEngin.enginID);
+			add(RawDataTextReadEngin.enginID);
+			add(KenkulDataEngin.enginID);
 		}
 	};
 	

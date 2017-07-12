@@ -39,6 +39,8 @@ import com.wavegis.engin.notification.gmail.MailSendEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
+import com.wavegis.engin.raw_data_analysis.kenkul.KenkulDataEngin;
+import com.wavegis.engin.raw_data_analysis.text_read.RawDataTextReadEngin;
 
 public class EnginCenter {
 
@@ -60,6 +62,7 @@ public class EnginCenter {
 			, new ImageEngin()
 			, new ImageTransServerEngin()
 			, new ImageTransClientEngin()
+			, new KenkulDataEngin()
 			, new KenkulLORAReceiveEngin()
 			, new MaoliWebSeriveEngin()
 			, new MailSendEngin()
@@ -70,6 +73,7 @@ public class EnginCenter {
 			, new RawDataInsertEngin()
 			, new RawDataReceiveEngin()
 			, new RawDataSendEngin()
+			, new RawDataTextReadEngin()
 			, new ScreemSaveEngin()
 			, new SensorReceivingEngin()
 			, new SMSSendEngin()
@@ -78,11 +82,10 @@ public class EnginCenter {
 			, new WaterDataInsertEngin()
 	};
 	
-
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Wra02;//FIXME 更換縣市需設定
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Changhua;//FIXME 更換縣市需設定
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){
@@ -90,7 +93,7 @@ public class EnginCenter {
 			for(Engin engin : ALL_Engins){
 				if (standbyEnginIDs.contains(engin.getEnginID())) {
 					add( engin);
-				}				
+				}
 			}
 		}
 	};
