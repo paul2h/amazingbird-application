@@ -16,7 +16,7 @@ public class RainDataInsertEngin extends TimerEngin {
 	public static final String enginID = "RainDataInsert";
 	private static final String enginName = "雨量資料寫入1.0";
 	private static final RainDataInsertEnginView enginView = new RainDataInsertEnginView();
-	private static final RainDao dao = RainDao.getInstance();
+	private static RainDao dao = null;
 
 	private Logger logger;
 
@@ -42,6 +42,10 @@ public class RainDataInsertEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
+		if(dao == null){
+			showMessage("初始畫DAO...");
+			dao = RainDao.getInstance();
+		}
 		List<RainData> rainDatas = new ArrayList<>();
 		RainData rainData;
 		while((rainData = ProxyData.RAIN_DATA_INSERT_QUEUE.poll()) != null){

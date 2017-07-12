@@ -3,6 +3,7 @@ package com.wavegis.global;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.wavegis.engin.connection.ftp.FTPFileTransEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
@@ -110,12 +111,14 @@ public class EnginListSetting {
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_Wra02 = new HashSet<String>() {
 		{
-			add(AlertAnalysisEngin.enginID);
+			add(AlertAnalysisEngin.enginID);// TODO
+			add(CCTVEngin.enginID);
 			add(DBConfigEngin.enginID);
-			add(HsinchuCityWebServiceEngin.enginID);
+			add(FTPFileTransEngin.enginID);//TODO
+			add(HsinchuCityWebServiceEngin.enginID);// FIXME
 			add(HsinchuWebServiceEngin.enginID);
-			add(MaoliWebSeriveEngin.enginID);
-			add(MailSendEngin.enginID);
+			add(MaoliWebSeriveEngin.enginID);// TODO
+			add(SMSSendEngin.enginID);
 			add(RainDataInsertEngin.enginID);
 			add(RawDataInsertEngin.enginID);
 		}

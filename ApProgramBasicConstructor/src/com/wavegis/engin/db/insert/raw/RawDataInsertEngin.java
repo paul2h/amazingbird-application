@@ -17,7 +17,7 @@ public class RawDataInsertEngin extends TimerEngin {
 	public static final String enginID = "RawDataInsert";
 	private static final String enginName = "水位資料寫入1.0";
 	private static final RawDataInsertEnginView enginView = new RawDataInsertEnginView();
-	private static final RawDao dao = RawDao.getInstance();
+	private static RawDao dao = null;
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	private Logger logger;
@@ -44,6 +44,10 @@ public class RawDataInsertEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
+		if(dao == null){
+			showMessage("初始化DAO...");
+			dao = RawDao.getInstance();
+		}
 		showMessage("寫入資料中...");
 		List<WaterData> waterDatas = new ArrayList<>();
 		WaterData waterData;

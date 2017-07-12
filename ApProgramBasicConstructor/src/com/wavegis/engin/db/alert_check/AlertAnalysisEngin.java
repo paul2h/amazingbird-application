@@ -17,7 +17,7 @@ import com.wavegis.model.SMSAlertData;
 public class AlertAnalysisEngin implements Engin {
 
 	public static final String enginID = "alertAnalysis";
-	private static final String enginName = "水位警戒分析Engin";
+	private static final String enginName = "水位警戒分析1.0";
 	private boolean isStarted = false;
 	private Logger logger;
 	private TimerTask timerTask;
@@ -42,15 +42,16 @@ public class AlertAnalysisEngin implements Engin {
 
 	@Override
 	public boolean startEngin() {
+		if(dao == null){
 		showMessage("初始化DAO");
-		try {
-			dao = new AlertDao();
-		} catch (IOException e) {
-			showMessage("DAO初始化失敗");
-			e.printStackTrace();
-			return false;
+			try {
+				dao = AlertDao.getInstance();
+			} catch (IOException e) {
+				showMessage("DAO初始化失敗");
+				e.printStackTrace();
+				return false;
+			}
 		}
-
 		showMessage("Engin開啟");
 		timerTask = new TimerTask() {
 			@Override

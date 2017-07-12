@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.wavegis.engin.connection.ftp.FTPFileTransEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
@@ -52,6 +53,7 @@ public class EnginCenter {
 			, new FakeImageEngin()
 			, new FakeGpsCarUpdateEngin()
 			, new FakeGpsCarInsertEngin()
+			, new FTPFileTransEngin()
 			, new HttpImageGetEngin()
 			, new HsinchuCityWebServiceEngin()
 			, new HsinchuWebServiceEngin()

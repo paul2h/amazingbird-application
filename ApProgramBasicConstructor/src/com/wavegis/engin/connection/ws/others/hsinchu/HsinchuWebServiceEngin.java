@@ -26,7 +26,7 @@ import com.wavegis.model.water.WaterData;
 
 public class HsinchuWebServiceEngin extends TimerEngin{
 	public static final String enginID = "HsinchuWebService";
-	private static final String enginName = "新竹WebService";
+	private static final String enginName = "新竹縣WS資料取得1.0";
 	private static final HsinchuWebServiceEnginView enginView = new HsinchuWebServiceEnginView();
 	
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
@@ -58,9 +58,7 @@ public class HsinchuWebServiceEngin extends TimerEngin{
 		
 		for(String webServiceURL : webServiceURLs){
 			if(!getWaterDataFromWebService(webServiceURL)){
-				showMessage("資料取得失敗.\n" + webServiceURL);
-				
-				break;
+				showMessage("資料取得失敗 : " + webServiceURL);
 			}
 		}
 		showMessage("資料取得完畢.");
@@ -75,6 +73,7 @@ public class HsinchuWebServiceEngin extends TimerEngin{
 	private boolean getWaterDataFromWebService(String urlString){
 		boolean bSuccess = false;
 		try {
+			showMessage("開始連線WS..." + urlString);
 			URL url = new URL(urlString);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			String line;
@@ -119,6 +118,8 @@ public class HsinchuWebServiceEngin extends TimerEngin{
 						if(bean.get("le") != null){
 							waterData.setWaterlevel(Double.parseDouble(bean.get("le").toString()));
 						}
+						
+						showMessage("取得資料 : " + waterData.getStid() + "  " + waterData.getLasttime() + "\t" + waterData.getWaterlevel());
 						ProxyData.RAW_DATA_INSERT_QUEUE.offer(waterData);
 					}
 				}
