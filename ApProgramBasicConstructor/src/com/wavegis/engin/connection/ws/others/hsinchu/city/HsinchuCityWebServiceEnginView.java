@@ -5,7 +5,7 @@ import com.wavegis.engin.prototype.SimpleEnginView;
 @SuppressWarnings("serial")
 public class HsinchuCityWebServiceEnginView extends SimpleEnginView{
 
-	private static final String enginID = "HsinchuCityWebServiceEngin";
+	private static final String enginID = HsinchuCityWebServiceEngin.enginID;
 	
 	@Override
 	public String getEnginID() {

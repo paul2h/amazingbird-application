@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.global.ProxyDatas;
+import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
 
 public class RawDataReceiveEngin implements Engin {
@@ -153,7 +153,7 @@ public class RawDataReceiveEngin implements Engin {
 			showMessage("取得測試連線回傳 : " + originalData);
 		} else if (originalData.indexOf(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader").toString()) >= 0) {
 			showMessage("取得塏固資料 : " + originalData);
-			ProxyDatas.KENKUL_RAW_DATA.offer(originalData.replaceAll(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader"), ""));
+			ProxyData.KENKUL_RAW_DATA.offer(originalData.replaceAll(GlobalConfig.XML_CONFIG.getProperty("KenkulRawDataHeader"), ""));
 		} else {
 			showMessage("取得無法辨識資料 : " + originalData);
 		}

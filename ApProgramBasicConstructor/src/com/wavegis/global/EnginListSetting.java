@@ -3,6 +3,7 @@ package com.wavegis.global;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.wavegis.engin.connection.ftp.FTPFileTransEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
@@ -10,7 +11,9 @@ import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.connection.web_check.WebMonitorEngin;
 import com.wavegis.engin.connection.ws.cwb.CWBDataFileGetEngin;
 import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
-import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.HsinchuWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.city.HsinchuCityWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.maoli.MaoliWebSeriveEngin;
 import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
@@ -31,6 +34,8 @@ import com.wavegis.engin.image.trans.ImageTransClientEngin;
 import com.wavegis.engin.image.trans.ImageTransServerEngin;
 import com.wavegis.engin.notification.gmail.MailSendEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
+import com.wavegis.engin.raw_data_analysis.kenkul.KenkulDataEngin;
+import com.wavegis.engin.raw_data_analysis.text_read.RawDataTextReadEngin;
 
 public class EnginListSetting {
 	
@@ -41,7 +46,6 @@ public class EnginListSetting {
 			add(CCTVEngin.enginID);
 			add(CWBTyphoonTextEngin.enginID);
 			add(CWBDataFileGetEngin.enginID);
-			add(ConvertToBeanEngin.enginID);
 			add(CenterWSEngin.enginID);
 			add(DBConfigEngin.enginID);
 			add(FakeImageEngin.enginID);
@@ -64,6 +68,19 @@ public class EnginListSetting {
 			add(WavegisWSEngin.enginID);
 			add(WebMonitorEngin.enginID);
 			add(WaterDataInsertEngin.enginID);
+		}
+	};
+
+	@SuppressWarnings("serial")
+	public static final Set<String> standbyEnginIDs_Changhua = new HashSet<String>() {
+		{
+			add(CCTVEngin.enginID);
+			add(DBConfigEngin.enginID);
+//			add(QpesumsReadEngin.enginID);
+			add(WaterDataInsertEngin.enginID);
+			add(RawDataReceiveEngin.enginID);
+			add(RawDataTextReadEngin.enginID);
+			add(KenkulDataEngin.enginID);
 		}
 	};
 	
@@ -109,8 +126,16 @@ public class EnginListSetting {
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_Wra02 = new HashSet<String>() {
 		{
-			add(MailSendEngin.enginID);
+			add(AlertAnalysisEngin.enginID);// TODO
+			add(CCTVEngin.enginID);
 			add(DBConfigEngin.enginID);
+			add(FTPFileTransEngin.enginID);//TODO
+			add(HsinchuCityWebServiceEngin.enginID);// FIXME
+			add(HsinchuWebServiceEngin.enginID);
+			add(MaoliWebSeriveEngin.enginID);// TODO
+			add(SMSSendEngin.enginID);
+			add(RainDataInsertEngin.enginID);
+			add(RawDataInsertEngin.enginID);
 		}
 	};
 

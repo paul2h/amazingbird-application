@@ -17,7 +17,7 @@ import com.wavegis.model.water.WaterData;
 public class DBConfigEngin implements Engin {
 
 	public static final String enginID = "DBConfig";
-	private static final String enginName = "DB設定檔讀取1.1";
+	private static final String enginName = "DB設定檔讀取1.2";
 	private static final DBConfigEnginView enginView = new DBConfigEnginView();
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
@@ -30,7 +30,6 @@ public class DBConfigEngin implements Engin {
 
 	public DBConfigEngin() {
 		logger = LogTool.getLogger(DBConfigEngin.class.getName());
-		dao = DBConfigDao.getInstance();
 		GET_CCTV_DATA = Boolean.valueOf(GlobalConfig.XML_CONFIG.getProperty("GET_CCTV_DATA", "false"));
 		GET_RIVER_BASIN_DATA = Boolean.valueOf(GlobalConfig.XML_CONFIG.getProperty("GET_RIVER_BASIN_DATA", "false"));
 		GET_WEB_MONITOR_DATA = Boolean.valueOf(GlobalConfig.XML_CONFIG.getProperty("GET_WEB_MONITOR_DATA", "false"));
@@ -53,6 +52,11 @@ public class DBConfigEngin implements Engin {
 
 	@Override
 	public boolean startEngin() {
+		if( dao == null){
+			showMessage("取得DAO...");
+			dao = DBConfigDao.getInstance();
+		}
+			
 		showMessage(dateFormat.format(new Date()) + " 開始取得CCTV資料...");
 
 		if (GET_CCTV_DATA) {

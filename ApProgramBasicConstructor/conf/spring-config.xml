@@ -10,7 +10,7 @@
 	<bean id="Controller" class="com.wavegis.basic_construction.Controller" />
 	
 	<bean id="Service" class="com.wavegis.basic_construction.Service" />
-	
+	<!--  目前此DAO暫時沒用到
 	<bean id="Dao" class="com.wavegis.basic_construction.Dao"></bean>
-
+ 	-->
 </beans>

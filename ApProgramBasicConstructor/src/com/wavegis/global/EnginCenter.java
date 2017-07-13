@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.wavegis.engin.connection.ftp.FTPFileTransEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
@@ -12,7 +13,10 @@ import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
 import com.wavegis.engin.connection.web_check.WebMonitorEngin;
 import com.wavegis.engin.connection.ws.cwb.CWBDataFileGetEngin;
 import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
-import com.wavegis.engin.connection.ws.others.ConvertToBeanEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.HsinchuWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.hsinchu.city.HsinchuCityWebServiceEngin;
+import com.wavegis.engin.connection.ws.others.maoli.MaoliWebSeriveEngin;
+import com.wavegis.engin.connection.ws.others.taoyuan.TaoyuanWebServiceEngin;
 import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
@@ -35,6 +39,8 @@ import com.wavegis.engin.notification.gmail.MailSendEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
+import com.wavegis.engin.raw_data_analysis.kenkul.KenkulDataEngin;
+import com.wavegis.engin.raw_data_analysis.text_read.RawDataTextReadEngin;
 
 public class EnginCenter {
 
@@ -44,24 +50,30 @@ public class EnginCenter {
 			, new CCTVEngin()
 			, new CWBTyphoonTextEngin()
 			, new CWBDataFileGetEngin()
-			, new ConvertToBeanEngin()
 			, new CenterWSEngin()
 			, new DBConfigEngin()
 			, new FakeImageEngin()
 			, new FakeGpsCarUpdateEngin()
 			, new FakeGpsCarInsertEngin()
+			, new FTPFileTransEngin()
 			, new HttpImageGetEngin()
+			, new HsinchuCityWebServiceEngin()
+			, new HsinchuWebServiceEngin()
 			, new ImageEngin()
 			, new ImageTransServerEngin()
 			, new ImageTransClientEngin()
+			, new KenkulDataEngin()
 			, new KenkulLORAReceiveEngin()
+			, new MaoliWebSeriveEngin()
 			, new MailSendEngin()
 			, new PokerDBEngin()
 			, new QpesumsReadEngin()
+			, new TaoyuanWebServiceEngin()
 			, new RainDataInsertEngin()
 			, new RawDataInsertEngin()
 			, new RawDataReceiveEngin()
 			, new RawDataSendEngin()
+			, new RawDataTextReadEngin()
 			, new ScreemSaveEngin()
 			, new SensorReceivingEngin()
 			, new SMSSendEngin()
@@ -70,11 +82,10 @@ public class EnginCenter {
 			, new WaterDataInsertEngin()
 	};
 	
-
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Yilan;//FIXME 更換縣市需設定
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Changhua;//FIXME 更換縣市需設定
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){
@@ -82,7 +93,7 @@ public class EnginCenter {
 			for(Engin engin : ALL_Engins){
 				if (standbyEnginIDs.contains(engin.getEnginID())) {
 					add( engin);
-				}				
+				}
 			}
 		}
 	};

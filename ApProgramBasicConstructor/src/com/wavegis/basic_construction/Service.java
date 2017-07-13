@@ -1,15 +1,13 @@
 package com.wavegis.basic_construction;
 
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.wavegis.global.tools.LogTool;
 
 public class Service {
 
-	@SuppressWarnings("unused")
-	@Autowired
-	private Dao dao;
+//	@Autowired
+//	private Dao dao;目前基本架構DAO無用到
 
 	private Logger logger;
 

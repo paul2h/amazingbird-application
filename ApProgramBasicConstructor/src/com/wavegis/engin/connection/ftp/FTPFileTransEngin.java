@@ -11,7 +11,7 @@ import com.wavegis.global.tools.LogTool;
 public class FTPFileTransEngin extends TimerEngin {
 
 	public static final String enginID = "FTP_TRANS";
-	private static final String enginName = "FTP檔案傳輸Engin";
+	private static final String enginName = "FTP檔案傳輸1.0";
 	private static final EnginView enginView = new FTPFileTransEnginView();
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 
@@ -44,7 +44,7 @@ public class FTPFileTransEngin extends TimerEngin {
 				String filePath = FtpSendDir + "/" + fileName;
 
 				showMessage("發送檔案..." + filePath);
-				FTPTool.UploadFile("13.76.255.253", "/", "wra02", "wavegis", filePath, fileName, true);
+				FTPTool.UploadFile("13.76.255.253", "/", "wra02", "wavegis", filePath, fileName, true);//TODO
 				showMessage("發送完成 :" + filePath);
 			} catch (Exception e) {
 				e.printStackTrace();

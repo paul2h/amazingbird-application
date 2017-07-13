@@ -13,7 +13,7 @@
 				, a.need_login
 				, 'http://' || a._cctv_ip || a.url_suffix AS "URL" 
 			FROM 
-				vr.cctv_data a
+				vr.cctv_view a
 			WHERE   url_suffix IS NOT NULL
 			ORDER BY 
 				a._cctv_no

@@ -15,7 +15,6 @@ public class PokerDBEngin extends TimerEngin {
 	private PokerDao dao = null;
 
 	public PokerDBEngin() {
-		initDao();
 		setTimeout(5000);
 	}
 
@@ -36,6 +35,14 @@ public class PokerDBEngin extends TimerEngin {
 
 	@Override
 	public void timerAction() {
+		if(dao == null){
+			boolean initDAOSuccess = initDao();
+			if(!initDAOSuccess){
+				stopEngin();
+				return;
+			}
+		}
+		
 		List<CheckDBData> lists = dao.getAlertData();
 		for (CheckDBData data : lists) {
 			showMessage("stid : " + data.getColumn_value() + ", update_time : "
@@ -50,13 +57,17 @@ public class PokerDBEngin extends TimerEngin {
 
 	}
 
-	private void initDao() {
+	private boolean initDao() {
+		boolean isSuccess = false;
 		try {
 			dao = new PokerDao();
+			isSuccess = true;
 		} catch (IOException e) {
 			showMessage("DAO初始化失敗");
 			e.printStackTrace();
+			isSuccess = false;
 		}
+		return isSuccess;
 	}
 
 }

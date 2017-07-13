@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.global.ProxyDatas;
+import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
 
 public class RawDataTextReadEngin implements Engin {
@@ -111,7 +111,7 @@ public class RawDataTextReadEngin implements Engin {
 				if (readString.indexOf("##KENKUL##") > 0) {// TODO
 					String filteString = readString.substring(readString.indexOf("##KENKUL##")).replaceAll("##KENKUL##", "").trim();// TODO
 					showMessage("取得資料,放入QUEUE中 : " + filteString);
-					ProxyDatas.KENKUL_RAW_DATA.offer(filteString);
+					ProxyData.KENKUL_RAW_DATA.offer(filteString);
 				}
 				readString = "";
 			}
