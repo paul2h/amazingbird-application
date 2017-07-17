@@ -15,7 +15,9 @@ import com.wavegis.model.water.WaterData;
 @SuppressWarnings("unused")
 public class GlobalConfig {
 
-	private static final String edition_number_string = "1.3_6";
+
+	private static final String edition_number_string = "1.3_62";
+
 	private static final String edition_all = "完全版";
 	private static final String edition_changhua = "彰化";
 	private static final String edition_chiayi = "嘉義縣抽水機";
@@ -28,7 +30,7 @@ public class GlobalConfig {
 	/**
 	 * 版本顯示設定
 	 */
-	public static final String edition = String.format("2017水情總介接%s版-%s" ,edition_number_string ,edition_wra02);//FIXME 更換縣市需設定
+	public static final String edition = String.format("2017水情總介接%s版-%s" ,edition_number_string ,edition_changhua);//FIXME 更換縣市需設定
 	
 	public static final String Spring_conf_path = "./spring-config.xml";
 	public static final String Conf_XML_path = "./conf/conf.xml";
@@ -36,6 +38,7 @@ public class GlobalConfig {
 	public static final String MyBatisConfig_XML_Path_Output = "./conf/myBatisConfig.xml";// 匯出後jar檔要執行的路徑
 	public static final String LogSettingPath = "./conf/log4j2.xml";
 	
+	private static final String FrameIconImagePath_Changhua = "./conf/icon/icon_changhua.png";
 	private static final String FrameIconImagePath_ChiayiCity = "./conf/icon/icon_chiayi_city.png";
 	public static final String FrameIconImagePath_ChiayiCounty = "./conf/icon/icon_chiayi_county.png";
 	private static final String FrameIconImagePath_Keelung = "./conf/icon/icon_keelung.png";
@@ -49,7 +52,7 @@ public class GlobalConfig {
 	/**
 	 * 介接icon設定
 	 */
-	public static final ImageIcon FrameIconImage = new ImageIcon(FrameIconImagePath_Wra02);//FIXME 更換縣市需設定
+	public static final ImageIcon FrameIconImage = new ImageIcon(FrameIconImagePath_Changhua);//FIXME 更換縣市需設定
 
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
