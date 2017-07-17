@@ -12,9 +12,10 @@ import com.wavegis.global.tools.LogTool;
 public class HttpImageGetEngin extends TimerEngin{
 	
 	public static final String enginID = "HttpImageGet";
-	private static final String engninName = "Http圖片接收Engin";
+	private static final String engninName = "Http圖片接收1.0";
 	private static final HttpImageGetEnginView enginView = new HttpImageGetEnginView();
 	private static Logger logger = LogTool.getLogger(HttpImageGetEngin.class.getName());
+	
 
 	@Override
 	public String getEnginID() {

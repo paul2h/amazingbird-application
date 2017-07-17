@@ -14,6 +14,7 @@ import com.wavegis.engin.connection.ws.data_analysis.CWBTyphoonTextEngin;
 import com.wavegis.engin.connection.ws.others.hsinchu.HsinchuWebServiceEngin;
 import com.wavegis.engin.connection.ws.others.hsinchu.city.HsinchuCityWebServiceEngin;
 import com.wavegis.engin.connection.ws.others.maoli.MaoliWebSeriveEngin;
+import com.wavegis.engin.connection.ws.others.taoyuan.TaoyuanWebServiceEngin;
 import com.wavegis.engin.connection.ws.soap.center.CenterWSEngin;
 import com.wavegis.engin.connection.ws.soap.wavegis.WavegisWSEngin;
 import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
@@ -30,6 +31,7 @@ import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
 import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
 import com.wavegis.engin.image.cctv.screem_save.ScreemSaveEngin;
 import com.wavegis.engin.image.http_image.HttpImageGetEngin;
+import com.wavegis.engin.image.http_image_typhoon.TyphoonImageEngin;
 import com.wavegis.engin.image.qpesums.QpesumsReadEngin;
 import com.wavegis.engin.image.trans.ImageTransClientEngin;
 import com.wavegis.engin.image.trans.ImageTransServerEngin;
@@ -131,13 +133,15 @@ public class EnginListSetting {
 			add(AlertAnalysisEngin.enginID);// TODO
 			add(CCTVEngin.enginID);
 			add(DBConfigEngin.enginID);
-			add(FTPFileTransEngin.enginID);//TODO
+			add(FTPFileTransEngin.enginID);
 			add(HsinchuCityWebServiceEngin.enginID);// FIXME
 			add(HsinchuWebServiceEngin.enginID);
 			add(MaoliWebSeriveEngin.enginID);// TODO
-			add(SMSSendEngin.enginID);
 			add(RainDataInsertEngin.enginID);
 			add(RawDataInsertEngin.enginID);
+			add(SMSSendEngin.enginID);
+			add(TaoyuanWebServiceEngin.enginID);
+			add(TyphoonImageEngin.enginID);//TODO
 		}
 	};
 

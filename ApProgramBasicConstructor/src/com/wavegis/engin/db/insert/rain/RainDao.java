@@ -66,8 +66,10 @@ public class RainDao {
 	// #[[ 指令用Method
 
 	public void insertRainData(List<RainData> rainData) {
-		daoConnector.insertRainData(rainData);
-		sqlSession.commit();
+		if(rainData.size() > 0){
+			daoConnector.insertRainData(rainData);
+			sqlSession.commit();
+		}
 	}
 
 	// ]]

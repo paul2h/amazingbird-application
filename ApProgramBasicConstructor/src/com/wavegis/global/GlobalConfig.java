@@ -15,6 +15,7 @@ import com.wavegis.model.water.WaterData;
 @SuppressWarnings("unused")
 public class GlobalConfig {
 
+
 	private static final String edition_number_string = "1.5_2";
 
 	private static final String edition_all = "完全版";
@@ -44,7 +45,6 @@ public class GlobalConfig {
 	private static final String FrameIconImagePath_WebMonitor = "./conf/icon/icon_web_monitor.png";
 	private static final String FrameIconImagePath_Wra02 = "./conf/icon/icon_wra02.png";
 	private static final String FrameIconImagePath_Yilan = "./conf/icon/icon_yilan.png";
-	
 	
 	/** 客製化車機訊息判斷key(為與舊版AVLS相容) */
 	public static String CustomMessageKey = "from_old";
