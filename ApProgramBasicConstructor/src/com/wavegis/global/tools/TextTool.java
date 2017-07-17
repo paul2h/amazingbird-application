@@ -14,6 +14,7 @@ public class TextTool {
 		String result = "";
 		File file = new File(textPath);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
+		
 		while (reader.ready()) {
 			result += reader.readLine() + "\n";
 		}
@@ -53,5 +54,15 @@ public class TextTool {
 			}
 		}
 		return success;
+	}
+	
+	public static String getTargetText(String originalText , String TargetStartText , String TargetEndText){
+		String filtText = null;
+		if (originalText != null) {
+			int startIndex = originalText.indexOf(TargetStartText) + TargetStartText.length();
+			int endIndex = originalText.indexOf(TargetEndText);
+			filtText = originalText.substring(startIndex, endIndex);
+		}
+		return filtText;
 	}
 }

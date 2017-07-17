@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wavegis.engin.db.insert.flood.FloodKMLInsertDaoConnector">
+
+	<insert id="insertFloodLogDatas" parameterType="java.util.List">
+		INSERT INTO disaster.flood_log(
+			stid
+			, datatime
+			, area_geom
+		) VALUES
+		<foreach collection="list" item="element" index="index" open="(" separator="),(" close=")">
+			#{element.stid}
+			, #{element.datatime}
+			, GeometryFromText( #{element.polygon_string} , 4326)
+		</foreach>
+	</insert>
+
+</mapper>

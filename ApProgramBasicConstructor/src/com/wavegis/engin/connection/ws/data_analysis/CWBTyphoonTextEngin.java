@@ -56,9 +56,7 @@ public class CWBTyphoonTextEngin extends TimerEngin {
 			originalText = TextTool.readText(capTargetDir + fileName);
 			if (originalText != null) {
 				showMessage("開始解析文字...");
-				int startIndex = originalText.indexOf(DescriptionStartTag) + DescriptionStartTag.length();
-				int endIndex = originalText.indexOf(DescriptionEndTag);
-				description_text = originalText.substring(startIndex, endIndex);
+				description_text = TextTool.getTargetText(originalText, DescriptionStartTag, DescriptionEndTag);
 				description_text = description_text.replaceAll("\\[", "</dd><dt>[");
 				description_text = description_text.replaceAll("\\]", "]</dt>\n<dd>");
 				description_text = description_text + "</dd>";
