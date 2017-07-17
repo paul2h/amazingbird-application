@@ -1,7 +1,12 @@
 package com.wavegis.global.tools;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.Inet4Address;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ConnectWebTool {
@@ -81,6 +86,27 @@ public class ConnectWebTool {
 			System.out.println("連線有問題!!!!!!");
 			e.printStackTrace();
 		}
+		return result;
+	}
+	
+	public static String getWebPageText(String urlString) {
+		String result = "";
+		URL url;
+		try {
+			url = new URL(urlString);
+			InputStream htmlStream = url.openStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(htmlStream));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				result += line;
+			}
+			reader.close();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 }

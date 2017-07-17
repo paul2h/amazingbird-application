@@ -83,4 +83,30 @@
 	<entry key="FtpSendDir">D:\\temp\\</entry>
 	<entry key="FtpSendFiles">1.jpg,2.jpg,3.jpg,4.jpg,5.jpg,6.jpg</entry>	
 	
+	<!-- CWB Typhoon 圖片 -->
+	<!-- 氣象雲圖  -->
+	<entry key="SATELLITE_URL_PREFIX">http://www.cwb.gov.tw/V7/observe/satellite/Data/s3p/s3p-</entry>
+	<entry key="SATELLITE_URL_SUFFIX">.jpg</entry>
+	<entry key="satelliteTimeFormat">yyyy-MM-dd-HH-mm</entry>
+	<entry key="SATELLITE_IMAGE_PATH">D:/</entry>
+	<!-- 小時累積雨量圖 -->
+	<entry key="HOUR_RAINFALL_URL_PREFIX">http://www.cwb.gov.tw/V7/observe/rainfall/Data/hq</entry>
+	<entry key="HOUR_RAINFALL_URL_SUFFIX">.jpg</entry>
+	<entry key="hourRainfallTimeFormat">ddHHmm</entry>
+	<entry key="HOUR_RAINFALL_IMAGE_PATH">D:/</entry>
+	<!-- 累積雨量圖 (有兩張圖) -->
+	<entry key="RAINFALL_URL_PREFIX">http://www.cwb.gov.tw/V7/observe/rainfall/Data/QZ/</entry>
+	<entry key="RAINFALL_URL_SUFFIX_01">.QZJ.grd1.I9.jpg</entry>
+	<entry key="RAINFALL_URL_SUFFIX_02">.QZJ.grd2.I9.jpg</entry>
+	<entry key="RAINFALL_IMAGE_AREA_INDEX">2</entry>
+	<entry key="rainfallTimeFormat">yyyy-MM-dd_HHmm</entry>
+	<entry key="RAINFALL_IMAGE_PATH">D:/</entry>
+	<!-- JTWC 颱風 -->
+	<entry key="TYPHOON_JTWC_URL">https://metoc.ndbc.noaa.gov/ProductFeeds-portlet/img/jtwc/products/wp0816.gif</entry>
+	<entry key="TYPHOON_JTWC_IMAGE_PATH">D:/</entry>
+	<!-- ECMWF 颱風 -->
+	<entry key="TYPHOON_ECMWF_URL_PREFIX"><![CDATA[http://www.ecmwf.int/en/forecasts/charts/medium/mean-sea-level-pressure-wind-speed-850-hpa-and-geopotential-500-hpa?parameter=Wind%20850%20and%20mslp&area=Asia&time=]]></entry>
+	<entry key="ecmwfTyphoonTimeFormat">yyyyMMdd</entry>
+	<entry key="TYPHOON_ECMWF_IMAGE_PATH">D:/</entry>
+	
 </properties>

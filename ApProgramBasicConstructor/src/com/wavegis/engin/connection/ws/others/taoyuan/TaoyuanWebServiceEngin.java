@@ -27,7 +27,7 @@ import com.wavegis.model.water.WaterData;
 public class TaoyuanWebServiceEngin extends TimerEngin {
 
 	public static final String enginID = "TaoyuanWebService";
-	private static final String enginName = "桃園WebService";
+	private static final String enginName = "桃園水位1.0";
 	private static final EnginView enginView = new TaoyuanWebServiceEnginView();
 	private Logger logger = LogTool.getLogger(this.getClass().getName());
 	
@@ -104,7 +104,9 @@ public class TaoyuanWebServiceEngin extends TimerEngin {
 							waterData.setWaterlevel(Double.parseDouble(bean.get("WATERHEIGHT_M").toString()));
 						}
 						ProxyData.RAW_DATA_INSERT_QUEUE.offer(waterData);
+						System.out.println(waterData.getStid()+","+waterData.getStname());
 					}
+					
 				}
 				showMessage("資料轉換結束, 共轉換 " + ProxyData.RAW_DATA_INSERT_QUEUE.size() + " 筆.");
 			}

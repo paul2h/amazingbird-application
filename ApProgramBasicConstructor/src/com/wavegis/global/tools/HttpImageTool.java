@@ -27,7 +27,6 @@ public class HttpImageTool {
 		url.openConnection();
 		BufferedImage image = ImageIO.read(url);
 		ImageIO.write(image, "jpg", new File(saveImagePath));
-		System.out.println("finished");
 	}
 
 	/**

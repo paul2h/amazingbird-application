@@ -15,7 +15,7 @@ import com.wavegis.model.water.WaterData;
 @SuppressWarnings("unused")
 public class GlobalConfig {
 
-	private static final String edition_number_string = "1.3_3";
+	private static final String edition_number_string = "1.3_6";
 	private static final String edition_all = "完全版";
 	private static final String edition_changhua = "彰化";
 	private static final String edition_chiayi = "嘉義縣抽水機";

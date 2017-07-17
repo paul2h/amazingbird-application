@@ -32,6 +32,7 @@ import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
 import com.wavegis.engin.image.cctv.mjpeg.CCTVEngin;
 import com.wavegis.engin.image.cctv.screem_save.ScreemSaveEngin;
 import com.wavegis.engin.image.http_image.HttpImageGetEngin;
+import com.wavegis.engin.image.http_image_typhoon.TyphoonImageEngin;
 import com.wavegis.engin.image.qpesums.QpesumsReadEngin;
 import com.wavegis.engin.image.trans.ImageTransClientEngin;
 import com.wavegis.engin.image.trans.ImageTransServerEngin;
@@ -66,6 +67,7 @@ public class EnginCenter {
 			, new PokerDBEngin()
 			, new QpesumsReadEngin()
 			, new TaoyuanWebServiceEngin()
+			, new TyphoonImageEngin()
 			, new RainDataInsertEngin()
 			, new RawDataInsertEngin()
 			, new RawDataReceiveEngin()
