@@ -15,7 +15,6 @@ import com.wavegis.model.water.WaterData;
 @SuppressWarnings("unused")
 public class GlobalConfig {
 
-
 	private static final String edition_number_string = "1.5_2";
 
 	private static final String edition_all = "完全版";
