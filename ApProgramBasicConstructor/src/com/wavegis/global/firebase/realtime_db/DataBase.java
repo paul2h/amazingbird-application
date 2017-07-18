@@ -1,24 +1,43 @@
 package com.wavegis.global.firebase.realtime_db;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import com.google.firebase.*;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseCredentials;
-import com.google.firebase.database.*;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DataBase {
+	
+	private static DataBase instance = null;
 
 	private static DatabaseReference database;
 
 	private static final String DATABASE_URL = "https://beaming-ion-547.firebaseio.com/";
 	private static final String SERVICE_ACCOUNT_CREDENTIALS = "./conf/beaming-ion-547-firebase-adminsdk-qdfty-15d29b6336.json";
 
-	private ArrayList<Map<String, ValueEventListener>> valueListeners = new ArrayList<>();
-	private ArrayList<Map<String, ChildEventListener>> childListeners = new ArrayList<>();
+	private List<Map<String, ValueEventListener>> valueListeners = new ArrayList<>();
+	private List<Map<String, ChildEventListener>> childListeners = new ArrayList<>();
 
+	public static DataBase getInstance() { 
+        if (instance == null) {
+            instance = new DataBase(); 
+        }
+
+        return instance; 
+    }
+	
 	public DataBase() {
 
 		try {
@@ -123,6 +142,26 @@ public class DataBase {
 			database.child(childOfMap).removeEventListener(celOfMap);
 		}
 		childListeners.clear();
+	}
+	
+	public void removeValueListenersWithChild(String child) {
+		List<ValueEventListener> ves = valueListeners.stream().filter(velMap -> velMap.containsKey(child))
+															  .map(velMap -> velMap.get(child))
+															  .collect(Collectors.toList());
+		ves.stream().forEach(ve -> database.child(child).removeEventListener(ve));
+		valueListeners = valueListeners.stream().filter(velMap -> !velMap.containsKey(child))
+												.collect(Collectors.toList());
+		System.out.println("after valueListeners size():" + valueListeners.size());
+	}
+	
+	public void removeChildListenersWithChild(String child) {
+		List<ChildEventListener> ces = childListeners.stream().filter(celMap -> celMap.containsKey(child))
+															  .map(celMap -> celMap.get(child))
+															  .collect(Collectors.toList());
+		ces.stream().forEach(ce -> database.child(child).removeEventListener(ce));
+		childListeners = childListeners.stream().filter(celMap -> !celMap.containsKey(child))
+												.collect(Collectors.toList());
+		System.out.println("after childListeners size():" + childListeners.size());
 	}
 
 }

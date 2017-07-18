@@ -9,6 +9,8 @@ import org.pixsee.fcm.Message;
 import org.pixsee.fcm.Notification;
 import org.pixsee.fcm.Sender;
 
+import com.wavegis.model.fcm.PushInfo;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,16 +24,8 @@ public class PushNotification {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void send(List<String> registrationIds, Map<String, Object> datas) {
-		
-//		Notification notification = new Notification("wavegis", "test");
-		Message message = new Message.MessageBuilder()
-								     .addRegistrationToken(registrationIds) 
-								     .addData(datas)
-								     .contentAvailable(true)
-//								     .notification(notification)
-								     .build();
-			    
+	public void send(PushInfo pushInfo) {
+		Message message = pushInfo.genPushMessage();
 		fcm.send(message, new Callback() {
 			@Override
 			public void onResponse(Call call, Response response) {
@@ -58,7 +52,9 @@ public class PushNotification {
 		        put("type", "message");
 		    }
 		};
-		pn.send(registrationIds, datas);
+		
+		PushInfo pushInfo = new PushInfo("title", "body", "Android", registrationIds, datas);
+		pn.send(pushInfo);
 	}
 
 }
