@@ -1,4 +1,4 @@
-package com.wavegis.global.firebase;
+package com.wavegis.global.firebase.realtime_db;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,8 +15,8 @@ public class DataBase {
 
 	private static DatabaseReference database;
 
-	private static final String DATABASE_URL = "https://friendlychat-b96fb.firebaseio.com/";
-	private static final String SERVICE_ACCOUNT_CREDENTIALS = "FriendlyChat-28cc69543f94.json";
+	private static final String DATABASE_URL = "https://beaming-ion-547.firebaseio.com/";
+	private static final String SERVICE_ACCOUNT_CREDENTIALS = "./conf/beaming-ion-547-firebase-adminsdk-qdfty-15d29b6336.json";
 
 	private ArrayList<Map<String, ValueEventListener>> valueListeners = new ArrayList<>();
 	private ArrayList<Map<String, ChildEventListener>> childListeners = new ArrayList<>();
