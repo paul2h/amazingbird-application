@@ -86,6 +86,11 @@
 	<!-- Flood KML -->
 	<entry key="FloodKMLDirPath">E:\\temp\\彰化\\kml\\</entry>
 	<entry key="FloodKMLBackupDirPath">E:\\temp\\彰化\\kml\\new_fold\\</entry>
+	
+	<!-- AlertAnalysisEngine開關 -->
+	<entry key="CheckSMSAlert">false</entry>
+	<entry key="CheckFloodAlert">true</entry>
+	<entry key="CheckWaterlevelAlert">false</entry>
 
 	<!-- CWB Typhoon 圖片 -->
 	<!-- 氣象雲圖  -->

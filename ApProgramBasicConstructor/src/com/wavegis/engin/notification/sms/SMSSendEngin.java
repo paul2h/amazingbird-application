@@ -18,7 +18,7 @@ import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.LogTool;
-import com.wavegis.model.SMSAlertData;
+import com.wavegis.model.water.WaterAlertData;
 
 public class SMSSendEngin implements Engin {
 
@@ -61,7 +61,7 @@ public class SMSSendEngin implements Engin {
 			@Override
 			public void run() {
 				showMessage("開始傳送警訊");
-				SMSAlertData alertData;
+				WaterAlertData alertData;
 				for (String stid : ProxyData.SMS_SEND_LIST.keySet()) {
 					alertData = ProxyData.SMS_SEND_LIST.get(stid);
 					if (!alertData.HasSend()) {
@@ -99,7 +99,7 @@ public class SMSSendEngin implements Engin {
 		return stopSuccess;
 	}
 
-	private boolean sendSMSProcess(SMSAlertData alertData) throws IOException {
+	private boolean sendSMSProcess(WaterAlertData alertData) throws IOException {
 		boolean isSuccess = false;
 
 		String[] phoneNumbers = alertData.getPhones().replaceAll("\\{", "").replaceAll("\\}", "").split(",");

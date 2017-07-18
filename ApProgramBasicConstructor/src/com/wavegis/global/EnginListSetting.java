@@ -76,6 +76,7 @@ public class EnginListSetting {
 	@SuppressWarnings("serial")
 	public static final Set<String> standbyEnginIDs_Changhua = new HashSet<String>() {
 		{
+			add(AlertAnalysisEngin.enginID);
 			add(CCTVEngin.enginID);
 			add(DBConfigEngin.enginID);
 			add(FloodAlertEngin.enginID);

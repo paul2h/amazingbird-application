@@ -11,7 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.wavegis.global.GlobalConfig;
-import com.wavegis.model.SMSAlertData;
+import com.wavegis.model.flood.FloodAlertData;
+import com.wavegis.model.water.WaterAlertData;
 
 /**
  * 給Service取得Dao的Dao總管理物件
@@ -64,9 +65,14 @@ public class AlertDao {
 
 	// #[[ 指令用Method
 
-	public List<SMSAlertData> getAlertData() {
+	public List<WaterAlertData> getAlertData() {
 		sqlSession.clearCache();// 要加這個才會清除暫存
-		return daoConnector.getData();
+		return daoConnector.getWaterlevelAlertData();
+	}
+	
+	public List<FloodAlertData> getFloodAlertData(){
+		sqlSession.clearCache();// 要加這個才會清除暫存
+		return daoConnector.getFloodAlertData();
 	}
 	// ]]
 }

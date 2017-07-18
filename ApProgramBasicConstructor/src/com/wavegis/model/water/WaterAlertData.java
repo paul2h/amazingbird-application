@@ -1,8 +1,8 @@
-package com.wavegis.model;
+package com.wavegis.model.water;
 
 import java.sql.Timestamp;
 
-public class SMSAlertData {
+public class WaterAlertData {
 
 	private String stid;
 	private String stnm;

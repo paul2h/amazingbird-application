@@ -3,7 +3,7 @@
 
 <mapper namespace="com.wavegis.engin.db.alert_check.AlertDaoConnector">
 
-	<select id="getData" resultType="com.wavegis.model.SMSAlertData">
+	<select id="getWaterlevelAlertData" resultType="com.wavegis.model.water.WaterAlertData">
 		<![CDATA[
  			SELECT
 				a.stid,
@@ -40,6 +40,25 @@
 				b.message_id,
 				b.message
 		]]>
+	</select>
+	
+	<select id="getFloodAlertData" resultType="com.wavegis.model.flood.FloodAlertData">
+			SELECT
+				flood_area_id
+				, area_name
+				, datatime
+				, EXTRACT(EPOCH FROM datatime) AS datatime_long
+				, area_range
+				, waterlevel
+				, stid
+				, station_lon
+				, station_lat
+				, ASTEXT(area_geom) AS area_polygon_string
+			FROM 
+				disaster.flood_area
+			WHERE
+				area_range > 5 --TODO 待有設定畫面後更改條件
+			ORDER BY flood_area_id	
 	</select>
 
 </mapper>
