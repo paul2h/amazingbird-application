@@ -27,6 +27,7 @@ import com.wavegis.engin.db.flood_check.FloodAlertEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
+import com.wavegis.engin.db.message.MessageEngin;
 import com.wavegis.engin.db.read_conf.DBConfigEngin;
 import com.wavegis.engin.image.cctv.fake_image.FakeImageEngin;
 import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
@@ -69,6 +70,7 @@ public class EnginCenter {
 			, new KenkulLORAReceiveEngin()
 			, new MaoliWebSeriveEngin()
 			, new MailSendEngin()
+			, new MessageEngin()
 			, new PokerDBEngin()
 			, new QpesumsReadEngin()
 			, new TaoyuanWebServiceEngin()

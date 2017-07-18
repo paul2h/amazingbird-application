@@ -1,13 +1,14 @@
 package com.wavegis.engin.db.flood_check;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 
 import com.google.firebase.database.DataSnapshot;
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
+import com.wavegis.global.firebase.cloud_message.PushNotification;
 import com.wavegis.global.firebase.realtime_db.DataBase;
 import com.wavegis.global.firebase.realtime_db.Handler;
 import com.wavegis.global.tools.LogTool;
@@ -22,8 +23,9 @@ public class FloodAlertEngin implements Engin {
     private static final String CHILD_ALERT = "alert_changhua";
     private static final String CHILD_DEVICE = "device_changhua";
 	
-    private ConcurrentLinkedQueue<Device> queue = new ConcurrentLinkedQueue<>();
-	private DataBase db = new DataBase();
+    private List<Device> devices = new ArrayList<>();
+	
+	private PushNotification pushNotification = new PushNotification();
 	
 	private Logger logger;
 	private static final FloodAlertEnginView enginView = new FloodAlertEnginView();
@@ -53,27 +55,8 @@ public class FloodAlertEngin implements Engin {
 	}
 
 	@Override
-	public boolean startEngin() {
-//		db.append(CHILD_DEVICE, new Device(UUID.randomUUID().toString(), "iOS"));
-		
-		db.fetch(CHILD_DEVICE, new Handler() {
-			@Override
-			public void process(DataSnapshot dataSnapshot) {
-				for (DataSnapshot ds : dataSnapshot.getChildren()) {
-					Map<String, Object> map = (Map<String, Object>) ds.getValue();
-					Device device = new Device();
-	  	    		device.setToken((String)map.get("token"));
-	  	    		device.setDevice_os((String)map.get("device_os"));
-
-	  	    		showMessage("Fetch " + CHILD_DEVICE + " token:" + device.getToken() + " os:" + device.getDevice_os());
-
-	  	    		System.out.println(device.getToken());
-	  	    		System.out.println(device.getDevice_os());
-
-	                queue.add(device);				
-				}				
-			}
-		});
+	public boolean startEngin() {	
+		DataBase db = DataBase.getInstance();
 		
 		showMessage("Add " + CHILD_DEVICE + " listener");
 		db.addListener(CHILD_DEVICE, new Handler() {
@@ -83,7 +66,7 @@ public class FloodAlertEngin implements Engin {
                 final Device device = dataSnapshot.getValue(Device.class);
                 
   	    		showMessage("Get device token:" + device.getToken() + " os:" + device.getDevice_os());
-                queue.add(device);				
+                devices.add(device);				
 			}
 		});
 		
@@ -92,6 +75,7 @@ public class FloodAlertEngin implements Engin {
 			@Override
 			public void process(DataSnapshot dataSnapshot) {
 	  	    	//FCM Push
+
 			}
 		});
 		isStarted = true;
@@ -101,7 +85,9 @@ public class FloodAlertEngin implements Engin {
 	@Override
 	public boolean stopEngin() {
 		showMessage("Remove all child listeners");
-		db.removeAllListener();
+		DataBase db = DataBase.getInstance();
+		db.removeChildListenersWithChild(CHILD_DEVICE);
+		db.removeChildListenersWithChild(CHILD_ALERT);
 		isStarted = false;
 		return false;
 	}

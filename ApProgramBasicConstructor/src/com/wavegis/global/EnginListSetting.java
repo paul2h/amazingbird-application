@@ -25,6 +25,7 @@ import com.wavegis.engin.db.insert.flood.FloodKMLInsertEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
+import com.wavegis.engin.db.message.MessageEngin;
 import com.wavegis.engin.db.read_conf.DBConfigEngin;
 import com.wavegis.engin.image.cctv.fake_image.FakeImageEngin;
 import com.wavegis.engin.image.cctv.from_fold.ImageEngin;
@@ -38,6 +39,7 @@ import com.wavegis.engin.notification.gmail.MailSendEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
 import com.wavegis.engin.raw_data_analysis.kenkul.KenkulDataEngin;
 import com.wavegis.engin.raw_data_analysis.text_read.RawDataTextReadEngin;
+import com.wavegis.model.message.Message;
 
 public class EnginListSetting {
 	
@@ -81,6 +83,7 @@ public class EnginListSetting {
 			add(FloodAlertEngin.enginID);
 			add(FloodKMLInsertEngin.enginID);
 //			add(QpesumsReadEngin.enginID);
+			add(MessageEngin.enginID);
 			add(WaterDataInsertEngin.enginID);
 			add(RawDataReceiveEngin.enginID);
 			add(RawDataTextReadEngin.enginID);
