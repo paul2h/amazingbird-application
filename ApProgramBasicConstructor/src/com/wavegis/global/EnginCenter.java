@@ -23,7 +23,7 @@ import com.wavegis.engin.db.alert_check.AlertAnalysisEngin;
 import com.wavegis.engin.db.data_check.PokerDBEngin;
 import com.wavegis.engin.db.fake.gps_insert.FakeGpsCarInsertEngin;
 import com.wavegis.engin.db.fake.gps_update.FakeGpsCarUpdateEngin;
-import com.wavegis.engin.db.insert.flood.FloodKMLInsertEngin;
+import com.wavegis.engin.db.flood_check.FloodAlertEngin;
 import com.wavegis.engin.db.insert.rain.RainDataInsertEngin;
 import com.wavegis.engin.db.insert.raw.RawDataInsertEngin;
 import com.wavegis.engin.db.insert.water.WaterDataInsertEngin;
@@ -57,8 +57,8 @@ public class EnginCenter {
 			, new FakeImageEngin()
 			, new FakeGpsCarUpdateEngin()
 			, new FakeGpsCarInsertEngin()
+			, new FloodAlertEngin()
 			, new FTPFileTransEngin()
-			, new FloodKMLInsertEngin()
 			, new HttpImageGetEngin()
 			, new HsinchuCityWebServiceEngin()
 			, new HsinchuWebServiceEngin()

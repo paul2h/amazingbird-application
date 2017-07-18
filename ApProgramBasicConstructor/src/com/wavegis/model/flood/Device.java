@@ -24,8 +24,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Device {
 
-	private String token;
-	private String device_os;
+	private String fcm_token;
+	private String device_OS;
 
     public Device() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -33,24 +33,24 @@ public class Device {
     
     public Device(String token, String device_os) {
 		super();
-		this.token = token;
-		this.device_os = device_os;
+		this.fcm_token = token;
+		this.device_OS = device_os;
 	}
 
 	public String getToken() {
-		return token;
+		return fcm_token;
 	}
 
 	public void setToken(String token) {
-		this.token = token;
+		this.fcm_token = token;
 	}
 
 	public String getDevice_os() {
-		return device_os;
+		return device_OS;
 	}
 
 	public void setDevice_os(String device_os) {
-		this.device_os = device_os;
+		this.device_OS = device_os;
 	}
 }
 // [END user_class]

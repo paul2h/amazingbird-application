@@ -1,4 +1,4 @@
-package com.wavegis.global.firebase;
+package com.wavegis.global.firebase.realtime_db;
 
 import com.google.firebase.database.DataSnapshot;
 

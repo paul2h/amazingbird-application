@@ -8,8 +8,8 @@ import org.apache.logging.log4j.Logger;
 import com.google.firebase.database.DataSnapshot;
 import com.wavegis.engin.prototype.Engin;
 import com.wavegis.engin.prototype.EnginView;
-import com.wavegis.global.firebase.DataBase;
-import com.wavegis.global.firebase.Handler;
+import com.wavegis.global.firebase.realtime_db.DataBase;
+import com.wavegis.global.firebase.realtime_db.Handler;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.flood.Device;
 
@@ -19,8 +19,8 @@ public class FloodAlertEngin implements Engin {
 	private static final String enginName = "淹水範圍監控Engin";
 	private boolean isStarted = false;
 	
-    private static final String CHILD_ALERT = "alert";
-    private static final String CHILD_DEVICE = "device";
+    private static final String CHILD_ALERT = "alert_changhua";
+    private static final String CHILD_DEVICE = "device_changhua";
 	
     private ConcurrentLinkedQueue<Device> queue = new ConcurrentLinkedQueue<>();
 	private DataBase db = new DataBase();

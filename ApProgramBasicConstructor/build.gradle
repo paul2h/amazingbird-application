@@ -2,6 +2,9 @@ apply plugin: 'java'
 
 repositories {  
 	mavenCentral()
+	maven {
+        url  "http://dl.bintray.com/tudor/Pixsee" 
+    }
 }
 
 dependencies {
@@ -28,6 +31,7 @@ dependencies {
 	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
 	
 	compile 'com.google.firebase:firebase-admin:5.2.0'
+	compile 'org.pixsee.java-fcm:Java-fcm:1.0.0'
 }
 
 sourceSets {
