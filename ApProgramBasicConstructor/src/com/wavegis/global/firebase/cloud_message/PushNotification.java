@@ -24,13 +24,12 @@ public class PushNotification {
 	@SuppressWarnings("rawtypes")
 	public void send(List<String> registrationIds, Map<String, Object> datas) {
 		
-		Notification notification = new Notification("wavegis", "test");
-		notification.setClickAction(".NotificationClick");
+//		Notification notification = new Notification("wavegis", "test");
 		Message message = new Message.MessageBuilder()
 								     .addRegistrationToken(registrationIds) 
 								     .addData(datas)
 								     .contentAvailable(true)
-								     .notification(notification)
+//								     .notification(notification)
 								     .build();
 			    
 		fcm.send(message, new Callback() {
