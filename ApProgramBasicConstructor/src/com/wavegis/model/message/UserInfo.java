@@ -8,7 +8,7 @@ public class UserInfo {
 	private String device_OS;
 	private String email;
 	private String fcm_token;
-	private String photoURL;
+	private String photoUrl;
 	private String user_name;
 	
 	public UserInfo() {
@@ -20,7 +20,7 @@ public class UserInfo {
 		this.device_OS = device_OS;
 		this.email = email;
 		this.fcm_token = fcm_token;
-		this.photoURL = photoURL;
+		this.photoUrl = photoURL;
 		this.user_name = user_name;
 	}
 
@@ -49,11 +49,11 @@ public class UserInfo {
 	}
 
 	public String getPhotoURL() {
-		return photoURL;
+		return photoUrl;
 	}
 
 	public void setPhotoURL(String photoURL) {
-		this.photoURL = photoURL;
+		this.photoUrl = photoURL;
 	}
 
 	public String getUser_name() {

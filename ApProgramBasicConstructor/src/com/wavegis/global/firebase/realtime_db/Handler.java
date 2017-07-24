@@ -4,6 +4,9 @@ import com.google.firebase.database.DataSnapshot;
 
 public interface Handler {
 	
-    public void process(DataSnapshot dataSnapshot);
+    public void add(DataSnapshot dataSnapshot);
+    
+    public void remove(DataSnapshot dataSnapshot);
+
 
 }

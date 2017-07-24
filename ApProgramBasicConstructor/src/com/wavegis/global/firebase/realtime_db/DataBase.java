@@ -27,18 +27,16 @@ public class DataBase {
 	private static final String DATABASE_URL = "https://beaming-ion-547.firebaseio.com/";
 	private static final String SERVICE_ACCOUNT_CREDENTIALS = "./conf/beaming-ion-547-firebase-adminsdk-qdfty-15d29b6336.json";
 
-	private List<Map<String, ValueEventListener>> valueListeners = new ArrayList<>();
 	private List<Map<String, ChildEventListener>> childListeners = new ArrayList<>();
 
 	public static DataBase getInstance() { 
         if (instance == null) {
             instance = new DataBase(); 
         }
-
         return instance; 
     }
 	
-	public DataBase() {
+	private DataBase() {
 
 		try {
 			// [START initialize]
@@ -57,6 +55,11 @@ public class DataBase {
 
 		database = FirebaseDatabase.getInstance().getReference();
 	}
+	
+	public void update(String child, String key, Object obj) {
+		final DatabaseReference ref = database.child(child).child(key);
+		ref.setValue(obj);
+	}
 
 	public void append(String child, Object obj) {
 		final DatabaseReference ref = database.child(child).push();
@@ -64,31 +67,11 @@ public class DataBase {
 	}
 
 	@SuppressWarnings("serial")
-	public void fetch(String child, Handler handler) {
-		ValueEventListener vel = new ValueEventListener() {
-			@Override
-			public void onDataChange(DataSnapshot dataSnapshot) {
-				handler.process(dataSnapshot);
-			}
-
-			@Override
-			public void onCancelled(DatabaseError arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		};
-		
-		database.child(child).addListenerForSingleValueEvent(vel);
-		Map<String, ValueEventListener> velMap = new HashMap<String, ValueEventListener>() {{put(child, vel);}};
-		valueListeners.add(velMap);
-	}
-
-	@SuppressWarnings("serial")
 	public void addListener(String child, Handler handler) {
 		ChildEventListener cel = new ChildEventListener() {
 
 			public void onChildAdded(DataSnapshot dataSnapshot, String prevChildName) {
-				handler.process(dataSnapshot);
+				handler.add(dataSnapshot);
 			}
 
 			@Override
@@ -112,7 +95,7 @@ public class DataBase {
 			@Override
 			public void onChildRemoved(DataSnapshot arg0) {
 				// TODO Auto-generated method stub
-
+				handler.remove(arg0);
 			}
 		};
 		
@@ -121,40 +104,7 @@ public class DataBase {
 		childListeners.add(celMap);
 	}
 	
-	public void removeAllListener() {
-		removeValueListeners();
-		removeChildListeners();
-	}
-	
-	private void removeValueListeners() {
-		for (Map<String, ValueEventListener> velMap : valueListeners) {
-			String childOfMap = (String) velMap.keySet().toArray()[0];
-			ValueEventListener velOfMap = (ValueEventListener) velMap.values().toArray()[0];
-			database.child(childOfMap).removeEventListener(velOfMap);
-		}
-		valueListeners.clear();
-	}
-	
-	private void removeChildListeners() {
-		for (Map<String, ChildEventListener> celMap : childListeners) {
-			String childOfMap = (String) celMap.keySet().toArray()[0];
-			ChildEventListener celOfMap = (ChildEventListener) celMap.values().toArray()[0];
-			database.child(childOfMap).removeEventListener(celOfMap);
-		}
-		childListeners.clear();
-	}
-	
-	public void removeValueListenersWithChild(String child) {
-		List<ValueEventListener> ves = valueListeners.stream().filter(velMap -> velMap.containsKey(child))
-															  .map(velMap -> velMap.get(child))
-															  .collect(Collectors.toList());
-		ves.stream().forEach(ve -> database.child(child).removeEventListener(ve));
-		valueListeners = valueListeners.stream().filter(velMap -> !velMap.containsKey(child))
-												.collect(Collectors.toList());
-		System.out.println("after valueListeners size():" + valueListeners.size());
-	}
-	
-	public void removeChildListenersWithChild(String child) {
+	public void removeListenersWithChild(String child) {
 		List<ChildEventListener> ces = childListeners.stream().filter(celMap -> celMap.containsKey(child))
 															  .map(celMap -> celMap.get(child))
 															  .collect(Collectors.toList());
@@ -162,6 +112,15 @@ public class DataBase {
 		childListeners = childListeners.stream().filter(celMap -> !celMap.containsKey(child))
 												.collect(Collectors.toList());
 		System.out.println("after childListeners size():" + childListeners.size());
+	}
+	
+	public void removeAllListener() {
+		for (Map<String, ChildEventListener> celMap : childListeners) {
+			String childOfMap = (String) celMap.keySet().toArray()[0];
+			ChildEventListener celOfMap = (ChildEventListener) celMap.values().toArray()[0];
+			database.child(childOfMap).removeEventListener(celOfMap);
+		}
+		childListeners.clear();
 	}
 
 }

@@ -7,9 +7,9 @@ public class FloodAlertData {
 	private String flood_area_id;
 	private Date datatime;
 	private String datatime_long;
-	private double area_range;
-	private double waterlevel;
-	private String stid;
+	private double area_range;//範圍
+	private double waterlevel;//水深
+	private String stid;//測站
 	private String area_polygon_string;
 	private boolean hasSend = false;
 

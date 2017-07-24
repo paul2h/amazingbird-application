@@ -1,6 +1,5 @@
 package com.wavegis.engin.db.message;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,13 +21,13 @@ import com.wavegis.model.message.UserInfo;
 public class MessageEngin implements Engin {
 	
 	public static final String enginID = "message";
-	private static final String enginName = "警急應變即時通訊系統Engin";
+	private static final String enginName = "警急應變即時通訊系統1.0";
 	private boolean isStarted = false;
 	
     private static final String CHILD_MESSAGE = "message_changhua";
     private static final String CHILD_USERINFO = "userInfo_changhua";
 
-    private List<UserInfo> users = new ArrayList<>();
+    private Map<String, UserInfo> users = new HashMap<>();
 	
 	private PushNotification pushNotification = new PushNotification();
 	
@@ -66,44 +65,70 @@ public class MessageEngin implements Engin {
 		showMessage("Add " + CHILD_USERINFO + " listener");
 		db.addListener(CHILD_USERINFO, new Handler() {
 			@Override
-			public void process(DataSnapshot dataSnapshot) {
-	  	    	System.out.println("listeners:");
-
+			public void add(DataSnapshot dataSnapshot) {
+	  	    	String key = dataSnapshot.getKey();
                 final UserInfo userInfo = dataSnapshot.getValue(UserInfo.class);
                 
-  	    		showMessage("Get user:" + userInfo.getUser_name());
-                users.add(userInfo);				
+  	    		showMessage("Get user:" + userInfo.getUser_name() + " " + userInfo.getDevice_OS()+ " " + userInfo.getEmail()+ " " + userInfo.getFcm_token()+ " " + userInfo.getPhotoURL());
+                users.put(key, userInfo);		
+                System.out.println("users size:" + users.size());
+			}
+
+			@Override
+			public void remove(DataSnapshot dataSnapshot) {
+	  	    	String key = dataSnapshot.getKey();
+                users.remove(key);
+                System.out.println("users size:" + users.size());
 			}
 		});
 		
 		showMessage("Add " + CHILD_MESSAGE + " listener");
 		db.addListener(CHILD_MESSAGE, new Handler() {
 			@Override
-			public void process(DataSnapshot dataSnapshot) {
-	  	    	//FCM Push
+			public void add(DataSnapshot dataSnapshot) {
+	  	    	//FCM Push		
+				
                 final Message message = dataSnapshot.getValue(Message.class);
-                String title = message.getName();
+                if(message.isHasSend()) return;
+                
+                String key = dataSnapshot.getKey();
+               
+                String title = message.getUser_name();
                 String body = message.getText();
+
 				Map<String, Object> datas = new HashMap<String, Object>() {
 				    {
 				    	put("title", title);
-				    	put("message", body);
+				    	put("content", body);
 				        put("type", "message");
 				    }
 				};
-				List<String> iosTokens = users.stream().filter(user -> user.getDevice_OS().equals("iOS"))
-													   .map(user -> user.getFcm_token())
-													   .collect(Collectors.toList());
-				List<String> androidTokens = users.stream().filter(user -> user.getDevice_OS().equals("Android"))
-														   .map(user -> user.getFcm_token())
-														   .collect(Collectors.toList());
 				
+				List<UserInfo> sendUsers = users.values().stream().filter(user -> !message.getFrom_email().equals(user.getEmail()))
+						   							   	 		  .collect(Collectors.toList());
+								
+				List<String> iosTokens = sendUsers.stream().filter(user -> user.getDevice_OS().equals("iOS"))
+													   	   .map(user -> user.getFcm_token())
+													   	   .collect(Collectors.toList());
+				List<String> androidTokens = sendUsers.stream().filter(user -> user.getDevice_OS().equals("Android"))
+														   	   .map(user -> user.getFcm_token())
+														   	   .collect(Collectors.toList());
+
 				PushInfo iOSPushInfo = new PushInfo(title, body, "iOS", iosTokens, datas);
 				PushInfo androidPushInfo = new PushInfo(title, body, "Android", androidTokens, datas);
 
 				pushNotification.send(iOSPushInfo);
 				pushNotification.send(androidPushInfo);
+				
+				message.setHasSend(true);
+				db.update(CHILD_MESSAGE, key, message);
 			}
+
+			@Override
+			public void remove(DataSnapshot dataSnapshot) {
+				
+			}
+			
 		});
 		isStarted = true;
 		return true;
@@ -111,10 +136,10 @@ public class MessageEngin implements Engin {
 
 	@Override
 	public boolean stopEngin() {
-		showMessage("Remove all child listeners");
+		showMessage("Remove all listeners");
 		DataBase db = DataBase.getInstance();
-		db.removeChildListenersWithChild(CHILD_USERINFO);
-		db.removeChildListenersWithChild(CHILD_MESSAGE);
+		db.removeListenersWithChild(CHILD_USERINFO);
+		db.removeListenersWithChild(CHILD_MESSAGE);
 		isStarted = false;
 		return false;
 	}

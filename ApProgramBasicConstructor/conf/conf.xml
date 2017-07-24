@@ -90,7 +90,7 @@
 	<!-- AlertAnalysisEngine開關 -->
 	<entry key="CheckSMSAlert">false</entry>
 	<entry key="CheckFloodAlert">true</entry>
-	<entry key="CheckWaterlevelAlert">false</entry>
+	<entry key="CheckWaterlevelAlert">true</entry>
 
 	<!-- CWB Typhoon 圖片 -->
 	<!-- 氣象雲圖  -->

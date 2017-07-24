@@ -33,24 +33,24 @@ public class Device {
     
     public Device(String token, String device_os) {
 		super();
-		this.fcm_token = token;
+		this.setFcm_token(token);
 		this.device_OS = device_os;
 	}
-
-	public String getToken() {
-		return fcm_token;
-	}
-
-	public void setToken(String token) {
-		this.fcm_token = token;
-	}
-
+    
 	public String getDevice_os() {
 		return device_OS;
 	}
 
 	public void setDevice_os(String device_os) {
 		this.device_OS = device_os;
+	}
+
+	public String getFcm_token() {
+		return fcm_token;
+	}
+
+	public void setFcm_token(String fcm_token) {
+		this.fcm_token = fcm_token;
 	}
 }
 // [END user_class]
