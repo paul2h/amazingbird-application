@@ -3,7 +3,7 @@
 
 <mapper namespace="com.wavegis.engin.db.read_conf.ProcalDBConfigDaoConnector">
 
-	<select id="getStationBottomDatas" resultType="com.wavegis.model.water.WaterData">
+	<select id="getStationBottomDatas" resultType="com.wavegis.model.water.WaterData" >
 			SELECT 
 				stno AS stid,
 				cname AS stname,
@@ -11,5 +11,12 @@
 			FROM 
 				level_raw_station
 	</select>
+	<select id="getKenkulGatewayIDMap" resultType="com.wavegis.model.water.KenkulGatewayIDMapping">
+		SELECT
+			gateway_id
+			, represent_gateway_id
+		FROM water.kenkul_gateway_id_map
+		ORDER BY gateway_id
+	</select>	
 	
 </mapper>

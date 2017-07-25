@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.wavegis.engin.prototype.EnginView;
 import com.wavegis.engin.prototype.TimerEngin;
 import com.wavegis.global.GlobalConfig;
+import com.wavegis.global.ProxyData;
 import com.wavegis.global.tools.HttpImageTool;
 import com.wavegis.global.tools.LogTool;
 import com.wavegis.model.CCTVData;
@@ -48,7 +49,7 @@ public class CCTVEngin extends TimerEngin {
 	@Override
 	public void timerAction() {
 		showMessage("開始取得影像..." + simpleDateFormat.format(Calendar.getInstance().getTime()));
-		for (final CCTVData cctvData : GlobalConfig.CCTV_DATA_LIST) {
+		for (final CCTVData cctvData : ProxyData.CCTV_DATA_LIST) {
 			int threadCount = 0;
 			if (threadCounts.containsKey(cctvData.getStname())) {
 				threadCount = threadCounts.get(cctvData.getStname());

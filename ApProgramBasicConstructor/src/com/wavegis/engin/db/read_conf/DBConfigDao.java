@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.wavegis.global.GlobalConfig;
 import com.wavegis.model.CCTVData;
 import com.wavegis.model.WebMonitorFocusData;
+import com.wavegis.model.water.KenkulGatewayIDMapping;
 import com.wavegis.model.water.WaterData;
 
 /**
@@ -99,6 +100,11 @@ public class DBConfigDao {
 	public List<WebMonitorFocusData> getWebFocusDatas() throws Exception{
 		sqlSession.clearCache();
 		return daoConnector.getWebFocusData();
+	}
+	
+	public List<KenkulGatewayIDMapping> getKenkulGatewayIDMap(){
+		sqlSession.clearCache();
+		return procalDaoConnector.getKenkulGatewayIDMap();		
 	}
 	// ]]
 }

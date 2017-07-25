@@ -39,7 +39,6 @@ import com.wavegis.engin.notification.gmail.MailSendEngin;
 import com.wavegis.engin.notification.sms.SMSSendEngin;
 import com.wavegis.engin.raw_data_analysis.kenkul.KenkulDataEngin;
 import com.wavegis.engin.raw_data_analysis.text_read.RawDataTextReadEngin;
-import com.wavegis.model.message.Message;
 
 public class EnginListSetting {
 	

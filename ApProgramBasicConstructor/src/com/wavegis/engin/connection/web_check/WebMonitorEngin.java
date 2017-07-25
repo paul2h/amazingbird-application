@@ -45,7 +45,7 @@ public class WebMonitorEngin extends TimerEngin {
 	@Override
 	public void timerAction() {
 		showMessage("開始測試網頁程序..." + sdf.format(Calendar.getInstance().getTime()));
-		for (WebMonitorFocusData focusData : GlobalConfig.WEB_MONITOR_URL_LIST) {
+		for (WebMonitorFocusData focusData : ProxyData.WEB_MONITOR_URL_LIST) {
 			if (focusData.isHas_url()) {
 				checkConnectionProcess(focusData);
 			} else {

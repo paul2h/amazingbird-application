@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
-import com.wavegis.global.GlobalConfig;
+import com.wavegis.global.ProxyData;
 import com.wavegis.model.water.WaterData;
 
 public class ConvertToWaterData {
@@ -63,8 +63,8 @@ public class ConvertToWaterData {
 					// 水位傳來的單位是cm 轉成m
 					data = data / 100;
 
-					if (GlobalConfig.RIVER_BOTTOM_DATAS.containsKey(stid)) {
-						data = data + GlobalConfig.RIVER_BOTTOM_DATAS.get(stid).getBottom_height();
+					if (ProxyData.RIVER_BOTTOM_DATAS.containsKey(stid)) {
+						data = data + ProxyData.RIVER_BOTTOM_DATAS.get(stid).getBottom_height();
 					}
 					waterData.setWaterlevel(data);
 

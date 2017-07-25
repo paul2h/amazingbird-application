@@ -42,7 +42,7 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="org.postgresql.Driver" />
 				<property name="url"
-					value="jdbc:postgresql://192.168.1.20:5430/procal_chiayi" />
+					value="jdbc:postgresql://192.168.1.20:5430/procal_changhua2" />
 				<property name="username" value="postgres" />
 				<property name="password" value="postgres" />
 				<property name="poolMaximumActiveConnections" value="10" />

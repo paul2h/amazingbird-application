@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.wavegis.engin.prototype.AnalysisEngin;
+import com.wavegis.global.ProxyData;
 import com.wavegis.model.water.KenkulWaterData;
 import com.wavegis.model.water.OriginalWaterData;
 
@@ -98,8 +99,9 @@ public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterDat
 			// #0020958517030407554804002AD2-01249+071760000003782327-033,001AD2-01249+071760000003782327-033,003AD2-01249+071760000003782327-033,004AD2-01249+071760000003782327-033,253
 			// #00209585 170304 075548 04 002 AD2 -01249 +07176 00000 0 378 2 327 -033 ,001AD2-01249+071760000003782327-033,003AD2-01249+071760000003782327-033,004AD2-01249+071760000003782327-033,253
 			try {
-
-				String stidHead = KENKUL_LORA_HEAD + originalMessage.substring(1, 4);
+				String gatewayID = originalMessage.substring(1, 4);
+				gatewayID = ProxyData.KENKUL_GATEWAY_ID_MAP.containsKey(gatewayID) ? ProxyData.KENKUL_GATEWAY_ID_MAP.get(gatewayID) : gatewayID;
+				String stidHead = KENKUL_LORA_HEAD + gatewayID;
 				String dateString = originalMessage.substring(9, 21);
 				Timestamp datatime = new Timestamp(sdf.parse(dateString).getTime());
 
@@ -108,7 +110,6 @@ public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterDat
 				String[] dataStrings = originalMessage.substring(23, originalMessage.lastIndexOf(",")).split(",");
 				if (dataStrings.length == dataCount) {
 					for (int i = 0; i < dataCount; i++) {
-
 						// #[[ 基本解讀
 						OriginalWaterData<Double> waterData = new KenkulWaterData();
 						String dataString = dataStrings[i];
@@ -124,7 +125,6 @@ public class OriginalDataAnalysisEngin implements AnalysisEngin<OriginalWaterDat
 						double RSSISignal = Double.valueOf(dataString.substring(32, 35));
 
 						// ]]
-
 						// #[[ 計算各累積雨量
 						double rainfall = 0;
 

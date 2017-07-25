@@ -55,9 +55,5 @@ public class GlobalConfig {
 
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-	public static List<CCTVData> CCTV_DATA_LIST = new ArrayList<CCTVData>();
-	public static ConcurrentHashMap<String, WaterData> RIVER_BOTTOM_DATAS = new ConcurrentHashMap<>();
-	public static List<WebMonitorFocusData> WEB_MONITOR_URL_LIST = new ArrayList<WebMonitorFocusData>();
-
 	public static Properties XML_CONFIG = new Properties();
 }

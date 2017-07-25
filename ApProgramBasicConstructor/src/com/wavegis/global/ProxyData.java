@@ -1,18 +1,28 @@
 package com.wavegis.global;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import com.wavegis.model.CCTVData;
 import com.wavegis.model.MailData;
 import com.wavegis.model.RainData;
+import com.wavegis.model.WebMonitorFocusData;
 import com.wavegis.model.flood.FloodAlertData;
 import com.wavegis.model.water.WaterAlertData;
 import com.wavegis.model.water.WaterData;
 
 public class ProxyData {
-
-	public static final Map<String, Double> RIVER_BASINS = new ConcurrentHashMap<String, Double>();
+	/** 各水位站底層高 */
+	public static final ConcurrentHashMap<String, WaterData> RIVER_BOTTOM_DATAS = new ConcurrentHashMap<>();
+	/** CCTV清單 */
+	public static final List<CCTVData> CCTV_DATA_LIST = new ArrayList<CCTVData>();
+	/** 監控Engine監測連結清單 */
+	public static final List<WebMonitorFocusData> WEB_MONITOR_URL_LIST = new ArrayList<WebMonitorFocusData>();
+	/** 塏固Gateway對照Map */
+	public static final Map<String, String> KENKUL_GATEWAY_ID_MAP = new ConcurrentHashMap<>();
 	/** 簡訊警訊發送清單 */
 	public static final Map<String, WaterAlertData> SMS_SEND_LIST = new ConcurrentHashMap<String, WaterAlertData>();
 	/** 淹水範圍推播清單 */
