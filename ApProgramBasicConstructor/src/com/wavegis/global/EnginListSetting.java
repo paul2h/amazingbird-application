@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.wavegis.engin.connection.ftp.FTPFileTransEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
+import com.wavegis.engin.connection.tcp.nio_socket.lockist.LockistReceiveEngine;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
 import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
@@ -58,6 +59,7 @@ public class EnginListSetting {
 			add(ImageTransServerEngin.enginID);
 			add(ImageTransClientEngin.enginID);
 			add(KenkulLORAReceiveEngin.enginID);
+			add(LockistReceiveEngine.enginID);
 			add(MailSendEngin.enginID);
 			add(PokerDBEngin.enginID);
 			add(QpesumsReadEngin.enginID);
@@ -71,6 +73,14 @@ public class EnginListSetting {
 			add(WavegisWSEngin.enginID);
 			add(WebMonitorEngin.enginID);
 			add(WaterDataInsertEngin.enginID);
+		}
+	};
+	
+	@SuppressWarnings("serial")
+	public static final Set<String> standbyEnginIDs_Lockist = new HashSet<String>() {
+		{
+			add(LockistReceiveEngine.enginID);
+
 		}
 	};
 

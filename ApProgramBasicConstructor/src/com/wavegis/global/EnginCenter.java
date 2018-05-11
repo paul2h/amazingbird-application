@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.wavegis.engin.connection.ftp.FTPFileTransEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.kenkul.KenkulLORAReceiveEngin;
+import com.wavegis.engin.connection.tcp.nio_socket.lockist.LockistReceiveEngine;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataReceiveEngin;
 import com.wavegis.engin.connection.tcp.nio_socket.raw_data_trans.RawDataSendEngin;
 import com.wavegis.engin.connection.tcp.socket.jian_hua.SensorReceivingEngin;
@@ -68,6 +69,7 @@ public class EnginCenter {
 			, new ImageTransClientEngin()
 			, new KenkulDataEngin()
 			, new KenkulLORAReceiveEngin()
+			, new LockistReceiveEngine()
 			, new MaoliWebSeriveEngin()
 			, new MailSendEngin()
 			, new MessageEngin()
@@ -91,7 +93,7 @@ public class EnginCenter {
 	/**
 	 * 設定要使用的Engin
 	 * */
-	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Changhua;//FIXME 更換縣市需設定
+	private static final Set<String> standbyEnginIDs = EnginListSetting.standbyEnginIDs_Lockist;//FIXME 更換縣市需設定
 	
 	@SuppressWarnings("serial")
 	public static final ArrayList<Engin> Engins = new ArrayList<Engin>(){
